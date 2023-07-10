@@ -76,6 +76,7 @@ if ($tmp == "forgotpass_success") {
     <script type="text/javascript" src="assets/js/plugins/forms/selects/bootstrap_select.min.js"></script>
     <script type="text/javascript" src="assets/js/pages/form_bootstrap_select.js"></script>
     <script type="text/javascript" src="assets/js/plugins/notifications/sweet_alert.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <!-- /theme JS files -->
 </head>
 <body class="login-container login-cover">
@@ -108,8 +109,9 @@ if ($tmp == "forgotpass_success") {
                             </div>
                         </div>
                         <div class="form-group has-feedback has-feedback-left">
-                            <input type="password" class="form-control" placeholder="Password" name="pass"
+                            <input type="password" class="form-control" placeholder="password" name="pass" id="password"
                                    required="required" style="color:white;">
+                            <span class="input-icon" onclick="myFunction()" style="cursor: pointer;float: right;margin-top: -28px;color: #000;margin-right: 10px;"><i class="fa fa-eye" aria-hidden="true"></i></span>
                             <div class="form-control-feedback">
                                 <i class="icon-lock2 text-muted"></i>
                             </div>
@@ -140,11 +142,16 @@ if ($tmp == "forgotpass_success") {
     </div>
     <!-- /page content -->
 </div>
-<!-- /page container
 <script>
-    window.onload = function() {
-        history.replaceState("", "", "<?php echo $scriptName; ?>index.php");
+    function myFunction() {
+        var x = document.getElementById("password");
+        if (x.type === "password") {
+            x.type = "text";
+
+        } else {
+            x.type = "password";
+        }
     }
- </script> -->
+</script>
 </body>
 </html>

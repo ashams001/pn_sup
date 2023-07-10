@@ -1,7 +1,6 @@
 <?php
 include("sup_config.php");
 include("config.php");
-
 ?>
 <script type="text/javascript" src="assets/js/plugins/forms/styling/uniform.min.js"></script>
 <script type="text/javascript" src="assets/js/plugins/forms/styling/switchery.min.js"></script>
@@ -300,8 +299,8 @@ include("config.php");
 						<i class="caret"></i>
 					</a>
 					<ul class="dropdown-menu dropdown-menu-right">
-						<li><a href="javascript:void(0)"><i class="icon-user-plus"></i> My profile</a></li>
-						<li><a href="javascript:void(0)"><i class="icon-cog5"></i> Change Password</a></li>
+						<li><a href="<?php echo $siteURL; ?>profile.php"><i class="icon-user-plus"></i> My profile</a></li>
+						<li><a href="<?php echo $siteURL; ?>change_pass.php"><i class="icon-cog5"></i> Change Password</a></li>
 						<li><a href="logout.php"><i class="icon-switch2"></i> Logout</a></li>
 					</ul>
 				</li>
