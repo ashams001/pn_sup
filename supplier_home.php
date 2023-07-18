@@ -1,7 +1,7 @@
 <?php include("sup_config.php");
 include("config.php");
 if (!isset($_SESSION['user'])) {
-	header('location: logout.php');
+    header('location: logout.php');
 }
 $temp = "";
 $timestamp = date('H:i:s');
@@ -10,115 +10,115 @@ $chicagotime = date("Y-m-d H:i:s");
 $role = $_SESSION['role_id'];
 $user_id = $_SESSION["id"];
 if (count($_POST) > 0) {
-	$message_stauts_class = '';
-	$import_status_message = '';
+    $message_stauts_class = '';
+    $import_status_message = '';
     if(null != $_POST['op_type'] && $_POST['op_type'] == "del_file"){
-		$file_name = $_POST['file_name'];
-		$file_type = $_POST['file_type'];
-		$order_id = $_POST['order_id'];
+        $file_name = $_POST['file_name'];
+        $file_type = $_POST['file_type'];
+        $order_id = $_POST['order_id'];
         $path = "./order_invoices/" . $_POST['file_name'];
-		unlink($path);
-		$sql = "DELETE FROM `order_files` where order_id = '$order_id' and file_type ='$file_type' and file_name= '$file_name'";
-		$result1 = mysqli_query($sup_db, $sql);
-		exit();
+        unlink($path);
+        $sql = "DELETE FROM `order_files` where order_id = '$order_id' and file_type ='$file_type' and file_name= '$file_name'";
+        $result1 = mysqli_query($sup_db, $sql);
+        exit();
     }else{
-		$order_status_id = $_POST['edit_order_status'];
-		$e_order_status = $_POST['e_order_status'];
-		$order_id = $_POST['edit_order_id'];
-		if (!is_null($order_status_id) && !empty($order_status_id)) {
-			$sql = "update sup_order set order_status_id='$order_status_id', modified_on='$chicagotime', modified_by='$user_id' where  order_id = '$order_id'";
-			$result1 = mysqli_query($sup_db, $sql);
-			if ($result1) {
+        $order_status_id = $_POST['edit_order_status'];
+        $e_order_status = $_POST['e_order_status'];
+        $order_id = $_POST['edit_order_id'];
+        if (!is_null($order_status_id) && !empty($order_status_id)) {
+            $sql = "update sup_order set order_status_id='$order_status_id', modified_on='$chicagotime', modified_by='$user_id' where  order_id = '$order_id'";
+            $result1 = mysqli_query($sup_db, $sql);
+            if ($result1) {
                 $sql_ses_log = "INSERT INTO `supplier_session_log`(`order_id`, `c_id`, `order_status_id`, `created_by`, `created_on`) VALUES ('$order_id','','$order_status_id','$user_id','$chicagotime')";
                 $result_log = mysqli_query($sup_db, $sql_ses_log);
-				$message_stauts_class = 'alert-success';
-				$import_status_message = 'Order status Updated successfully.';
-			} else {
-				$message_stauts_class = 'alert-danger';
-				$import_status_message = 'Error: Please Insert valid data';
-			}
-		} else {
-			$order_status_id = $_POST['edit_order_status_id'];
-			$order_up_status_id = $_POST['edit_up_order_status_id'];
-			$e_order_status = $_POST['e_order_status'];
-			$order_id = $_POST['edit_id'];
-			$is_updated = true;
-			if (null != $order_id) {
-				$ship_det = $_POST['edit_ship_details'];
-				if (null != $ship_det) {
-					$sql = "update sup_order set order_status_id='$order_up_status_id',shipment_details = '$ship_det' , modified_on = '$message', modified_by='$user_id' where  order_id = '$order_id'";
-					$result1 = mysqli_query($sup_db, $sql);
-					if (!$result1) {
-						$is_updated = false;
-					}
-				}
-				if (!$is_updated) {
-					$message_stauts_class = 'alert-danger';
-					$import_status_message = 'Error: Error updating  order. Try after sometime.';
-				}
-				//invoice
-				if (isset($_FILES['invoice'])) {
-					$errors = array();
-					$file_name = $_FILES['invoice']['name'];
-					$file_size = $_FILES['invoice']['size'];
-					$file_tmp = $_FILES['invoice']['tmp_name'];
-					$file_type = $_FILES['invoice']['type'];
-					$file_ext = strtolower(end(explode('.', $file_name)));
-					$extensions = array("jpeg", "jpg", "png", "pdf");
-					if (in_array($file_ext, $extensions) === false) {
-						$errors[] = "extension not allowed, please choose a JPEG/PNG/PDF file.";
-						$message_stauts_class = 'alert-danger';
-						$import_status_message = 'Error: Extension not allowed, please choose a JPEG/PNG/PDF file.';
-					}
-					if ($file_size > 2097152) {
-						$errors[] = 'Max allowed file size is 2 MB';
-						$message_stauts_class = 'alert-danger';
-						$import_status_message = 'Error: File size must not exceed 2 MB';
-					}
-					if (empty($errors) == true) {
+                $message_stauts_class = 'alert-success';
+                $import_status_message = 'Order status Updated successfully.';
+            } else {
+                $message_stauts_class = 'alert-danger';
+                $import_status_message = 'Error: Please Insert valid data';
+            }
+        } else {
+            $order_status_id = $_POST['edit_order_status_id'];
+            $order_up_status_id = $_POST['edit_up_order_status_id'];
+            $e_order_status = $_POST['e_order_status'];
+            $order_id = $_POST['edit_id'];
+            $is_updated = true;
+            if (null != $order_id) {
+                $ship_det = $_POST['edit_ship_details'];
+                if (null != $ship_det) {
+                    $sql = "update sup_order set order_status_id='$order_up_status_id',shipment_details = '$ship_det' , modified_on = '$message', modified_by='$user_id' where  order_id = '$order_id'";
+                    $result1 = mysqli_query($sup_db, $sql);
+                    if (!$result1) {
+                        $is_updated = false;
+                    }
+                }
+                if (!$is_updated) {
+                    $message_stauts_class = 'alert-danger';
+                    $import_status_message = 'Error: Error updating  order. Try after sometime.';
+                }
+                //invoice
+                if (isset($_FILES['invoice'])) {
+                    $errors = array();
+                    $file_name = $_FILES['invoice']['name'];
+                    $file_size = $_FILES['invoice']['size'];
+                    $file_tmp = $_FILES['invoice']['tmp_name'];
+                    $file_type = $_FILES['invoice']['type'];
+                    $file_ext = strtolower(end(explode('.', $file_name)));
+                    $extensions = array("jpeg", "jpg", "png", "pdf");
+                    if (in_array($file_ext, $extensions) === false) {
+                        $errors[] = "extension not allowed, please choose a JPEG/PNG/PDF file.";
+                        $message_stauts_class = 'alert-danger';
+                        $import_status_message = 'Error: Extension not allowed, please choose a JPEG/PNG/PDF file.';
+                    }
+                    if ($file_size > 2097152) {
+                        $errors[] = 'Max allowed file size is 2 MB';
+                        $message_stauts_class = 'alert-danger';
+                        $import_status_message = 'Error: File size must not exceed 2 MB';
+                    }
+                    if (empty($errors) == true) {
                         $file_name = $order_id . '__' . $file_name;
-						move_uploaded_file($file_tmp, "./order_invoices/" . $file_name);
-						$sql = "INSERT INTO `order_files`(`order_id`, `file_type`, `file_name`, `created_at`) VALUES ('$order_id' ,'invoice','$file_name','$chicagotime' )";
-						$result1 = mysqli_query($sup_db, $sql);
-					}
+                        move_uploaded_file($file_tmp, "./order_invoices/" . $file_name);
+                        $sql = "INSERT INTO `order_files`(`order_id`, `file_type`, `file_name`, `created_at`) VALUES ('$order_id' ,'invoice','$file_name','$chicagotime' )";
+                        $result1 = mysqli_query($sup_db, $sql);
+                    }
 
-				}
-				//attachments
-				if (isset($_FILES['attachments'])) {
-					foreach ($_FILES['attachments']['name'] as $key => $val) {
+                }
+                //attachments
+                if (isset($_FILES['attachments'])) {
+                    foreach ($_FILES['attachments']['name'] as $key => $val) {
 
-						$errors = array();
-						$file_name = $_FILES['attachments']['name'][$key];
-						$file_size = $_FILES['attachments']['size'][$key];
-						$file_tmp = $_FILES['attachments']['tmp_name'][$key];
-						$file_type = $_FILES['attachments']['type'][$key];
-						$file_ext = strtolower(end(explode('.', $file_name)));
-						$extensions = array("jpeg", "jpg", "png", "pdf");
-						if (in_array($file_ext, $extensions) === false) {
-							$errors[] = "extension not allowed, please choose a JPEG/PNG/PDF file.";
-							$message_stauts_class = 'alert-danger';
-							$import_status_message = 'Error: Extension not allowed, please choose a JPEG/PNG/PDF file.';
-						}
-						if ($file_size > 2097152) {
-							$errors[] = 'Max allowed file size is 2 MB';
-							$message_stauts_class = 'alert-danger';
-							$import_status_message = 'Error: File size must not exceed 2 MB';
-						}
-						if (empty($errors) == true) {
-							$file_name = $order_id . '__' . $file_name;
-							move_uploaded_file($file_tmp, "./order_invoices/" . $file_name);
-							$sql = "INSERT INTO `order_files`(`order_id`, `file_type`, `file_name`, `created_at`) VALUES ('$order_id' ,'attachment','$file_name','$chicagotime' )";
-							$result1 = mysqli_query($sup_db, $sql);
+                        $errors = array();
+                        $file_name = $_FILES['attachments']['name'][$key];
+                        $file_size = $_FILES['attachments']['size'][$key];
+                        $file_tmp = $_FILES['attachments']['tmp_name'][$key];
+                        $file_type = $_FILES['attachments']['type'][$key];
+                        $file_ext = strtolower(end(explode('.', $file_name)));
+                        $extensions = array("jpeg", "jpg", "png", "pdf");
+                        if (in_array($file_ext, $extensions) === false) {
+                            $errors[] = "extension not allowed, please choose a JPEG/PNG/PDF file.";
+                            $message_stauts_class = 'alert-danger';
+                            $import_status_message = 'Error: Extension not allowed, please choose a JPEG/PNG/PDF file.';
+                        }
+                        if ($file_size > 2097152) {
+                            $errors[] = 'Max allowed file size is 2 MB';
+                            $message_stauts_class = 'alert-danger';
+                            $import_status_message = 'Error: File size must not exceed 2 MB';
+                        }
+                        if (empty($errors) == true) {
+                            $file_name = $order_id . '__' . $file_name;
+                            move_uploaded_file($file_tmp, "./order_invoices/" . $file_name);
+                            $sql = "INSERT INTO `order_files`(`order_id`, `file_type`, `file_name`, `created_at`) VALUES ('$order_id' ,'attachment','$file_name','$chicagotime' )";
+                            $result1 = mysqli_query($sup_db, $sql);
 
-						}
-					}
-				}
+                        }
+                    }
+                }
                 $sql_ses_log = "INSERT INTO `supplier_session_log`(`order_id`, `c_id`, `order_status_id`, `created_by`, `created_on`) VALUES ('$order_id','','$order_status_id','$user_id','$chicagotime')";
                 $result_log = mysqli_query($sup_db, $sql_ses_log);
-			}
-			$message_stauts_class = 'alert-success';
-			$import_status_message = 'Order status Updated successfully.';
-		}
+            }
+            $message_stauts_class = 'alert-success';
+            $import_status_message = 'Order status Updated successfully.';
+        }
     }
 }
 ?>
@@ -149,7 +149,7 @@ if (count($_POST) > 0) {
     <script type="text/javascript" src="assets/js/plugins/ui/ripple.min.js"></script>
     <script type="text/javascript" src="assets/js/plugins/notifications/sweet_alert.min.js"></script>
     <script type="text/javascript" src="assets/js/pages/components_modals.js"></script>
-   <!-- <link href="<?php /*echo $siteURL . "/assets/css/icons/icomoon/styles.css" */?>" rel="stylesheet" type="text/css">
+    <!-- <link href="<?php /*echo $siteURL . "/assets/css/icons/icomoon/styles.css" */?>" rel="stylesheet" type="text/css">
     <link href="<?php /*echo $siteURL . "/assets/css/bootstrap.css" */?>" rel="stylesheet" type="text/css">
     <link href="<?php /*echo $siteURL . "/assets/css/core.css" */?>" rel="stylesheet" type="text/css">
     <link href="<?php /*echo $siteURL . "/assets/css/components.css" */?>" rel="stylesheet" type="text/css">
@@ -157,13 +157,13 @@ if (count($_POST) > 0) {
     <link href="<?php /*echo $siteURL . "/assets/css/style_main.css" */?>" rel="stylesheet" type="text/css">-->
     <!-- /global stylesheets -->
     <!-- Core JS files -->
- <!--   <script type="text/javascript" src="<?php /*echo $siteURL . "/assets/js/plugins/loaders/pace.min.js" */?>"></script>
+    <!--   <script type="text/javascript" src="<?php /*echo $siteURL . "/assets/js/plugins/loaders/pace.min.js" */?>"></script>
     <script type="text/javascript" src="<?php /*echo $siteURL . "/assets/js/core/libraries/jquery.min.js" */?>"></script>
     <script type="text/javascript" src="<?php /*echo $siteURL . "/assets/js/core/libraries/bootstrap.min.js" */?>"></script>
     <script type="text/javascript" src="<?php /*echo $siteURL . "/assets/js/plugins/loaders/blockui.min.js" */?>"></script>-->
     <!-- /core JS files -->
     <!-- Theme JS files -->
-   <!-- <script type="text/javascript" src="<?php /*echo $siteURL . "/assets/js/plugins/tables/datatables/datatables.min.js" */?>"></script>
+    <!-- <script type="text/javascript" src="<?php /*echo $siteURL . "/assets/js/plugins/tables/datatables/datatables.min.js" */?>"></script>
     <script type="text/javascript" src="<?php /*echo $siteURL . "/assets/js/plugins/forms/selects/select2.min.js" */?>"></script>
     <script type="text/javascript" src="<?php /*echo $siteURL . "/assets/js/core/app.js" */?>"></script>
     <script type="text/javascript" src="<?php /*echo $siteURL . "/assets/js/pages/datatables_basic.js" */?>"></script>
@@ -223,29 +223,29 @@ include("./sup_admin_menu.php");
                 <?php if ($temp == "one") { ?>
                     <div class="alert alert-success no-border">
                         <button type="button" class="close" data-dismiss="alert"><span>&times;</span><span
-                                    class="sr-only">Close</span></button>
+                                class="sr-only">Close</span></button>
                         <span class="text-semibold">Form Type</span> Created Successfully.
                     </div>
                 <?php } ?>
                 <?php if ($temp == "two") { ?>
                     <div class="alert alert-success no-border">
                         <button type="button" class="close" data-dismiss="alert"><span>&times;</span><span
-                                    class="sr-only">Close</span></button>
+                                class="sr-only">Close</span></button>
                         <span class="text-semibold">Form Type</span> Updated Successfully.
                     </div>
                 <?php } ?>
-				<?php
-				if (!empty($import_status_message)) {
-					echo '<div class="alert-dismissible fade show alert ' . $message_stauts_class . '">' . $import_status_message . '</div>';
-				}
-				?>
-				<?php
-				if (!empty($_SESSION['import_status_message'])) {
-					echo '<div class="alert ' . $_SESSION['message_stauts_class'] . '">' . $_SESSION['import_status_message'] . '</div>';
-					$_SESSION['message_stauts_class'] = '';
-					$_SESSION['import_status_message'] = '';
-				}
-				?>
+                <?php
+                if (!empty($import_status_message)) {
+                    echo '<div class="alert-dismissible fade show alert ' . $message_stauts_class . '">' . $import_status_message . '</div>';
+                }
+                ?>
+                <?php
+                if (!empty($_SESSION['import_status_message'])) {
+                    echo '<div class="alert ' . $_SESSION['message_stauts_class'] . '">' . $_SESSION['import_status_message'] . '</div>';
+                    $_SESSION['message_stauts_class'] = '';
+                    $_SESSION['import_status_message'] = '';
+                }
+                ?>
             </div>
             <div class="content" id="order_det_table">
                 <form action="" id="update-form" method="post" class="form-horizontal">
@@ -265,85 +265,85 @@ include("./sup_admin_menu.php");
                             </tr>
                             </thead>
                             <tbody>
-							<?php
-							$query = sprintf("SELECT * FROM  sup_order  where order_active = 1 order by created_on DESC ;  ");
-							$qur = mysqli_query($sup_db, $query);
-							while ($rowc = mysqli_fetch_array($qur)) {
-								?>
+                            <?php
+                            $query = sprintf("SELECT * FROM  sup_order  where order_active = 1 order by created_on DESC ;  ");
+                            $qur = mysqli_query($sup_db, $query);
+                            while ($rowc = mysqli_fetch_array($qur)) {
+                                ?>
                                 <tr>
                                     <td><?php echo ++$counter; ?></td>
-									<?php $order_id = $rowc['order_id'];
-									$order_status_id = $rowc['order_status_id'];
-									$ship_det = $rowc['shipment_details']; ?>
+                                    <?php $order_id = $rowc['order_id'];
+                                    $order_status_id = $rowc['order_status_id'];
+                                    $ship_det = $rowc['shipment_details']; ?>
                                     <input hidden id="edit_order_id" name="edit_order_id"
                                            value="<?php echo $order_id; ?>">
                                     <input hidden id="e_order_status" name="e_order_status"
                                            value="<?php echo $order_status_id; ?>">
-                                   <!-- <td><?php /*echo $order_id; */?><input hidden id="edit_order_id" name="edit_order_id"
+                                    <!-- <td><?php /*echo $order_id; */?><input hidden id="edit_order_id" name="edit_order_id"
                                                                        value="<?php /*echo $order_id; */?>">
                                         <input hidden id="e_order_status" name="e_order_status"
                                                value="<?php /*echo $order_status_id; */?>"></td>-->
                                     <td><?php echo $rowc['order_desc']; ?></td>
-									<?php
+                                    <?php
 
-									$qurtemp = mysqli_query($sup_db, "SELECT * FROM  sup_order_status where sup_order_status_id  = '$order_status_id' ");
-									while ($rowctemp = mysqli_fetch_array($qurtemp)) {
-										$order_status = $rowctemp["sup_order_status"];
-									}
-									?>
+                                    $qurtemp = mysqli_query($sup_db, "SELECT * FROM  sup_order_status where sup_order_status_id  = '$order_status_id' ");
+                                    while ($rowctemp = mysqli_fetch_array($qurtemp)) {
+                                        $order_status = $rowctemp["sup_order_status"];
+                                    }
+                                    ?>
                                     <td><?php echo dateReadFormat($rowc['created_on']); ?></td>
                                     <td><select name="edit_order_status" id="edit_order_status" class="form-control"
                                                 onchange="update_order_status()">
-											<?php
-											$os_access = 0;
-											$os_sa_access = 0;
-											if ($role == 3) {
-												$os_access = 1;
-												$sql1 = mysqli_query($sup_db, "SELECT * FROM `sup_order_status`  ORDER BY `sup_order_status_id` ASC ");
+                                            <?php
+                                            $os_access = 0;
+                                            $os_sa_access = 0;
+                                            if ($role == 3) {
+                                                $os_access = 1;
+                                                $sql1 = mysqli_query($sup_db, "SELECT * FROM `sup_order_status`  ORDER BY `sup_order_status_id` ASC ");
 //												$result1 = mysqli_fetch_array($sql1);
-												$selected = "";
-												while ($row1 = mysqli_fetch_array($sql1)) {
-													if ($row1['sup_order_status_id'] == $order_status_id) {
-														$selected = "selected";
-													} else {
-														$selected = "";
-													}
-													/*if ($row1['sup_sa_os_access'] == 1) {
-														echo "<option " . $selected . " disabled=\"disabled\" value='" . $row1['sup_order_status_id'] . "' >" . $row1['sup_order_status'] . "</option>";
-													} else {
-														echo "<option " . $selected . " value='" . $row1['sup_order_status_id'] . "'  >" . $row1['sup_order_status'] . "</option>";
-													}*/
+                                                $selected = "";
+                                                while ($row1 = mysqli_fetch_array($sql1)) {
+                                                    if ($row1['sup_order_status_id'] == $order_status_id) {
+                                                        $selected = "selected";
+                                                    } else {
+                                                        $selected = "";
+                                                    }
+                                                    /*if ($row1['sup_sa_os_access'] == 1) {
+                                                        echo "<option " . $selected . " disabled=\"disabled\" value='" . $row1['sup_order_status_id'] . "' >" . $row1['sup_order_status'] . "</option>";
+                                                    } else {
+                                                        echo "<option " . $selected . " value='" . $row1['sup_order_status_id'] . "'  >" . $row1['sup_order_status'] . "</option>";
+                                                    }*/
                                                     if ($row1['sup_sa_os_access'] == 1) {
                                                         //echo "<option " . $selected . " disabled=\"disabled\" value='" . $row1['sup_order_status_id'] . "' >" . $row1['sup_order_status'] . "</option>";
                                                     } else {
                                                         echo "<option " . $selected . " value='" . $row1['sup_order_status_id'] . "'  >" . $row1['sup_order_status'] . "</option>";
                                                     }
-												}
-											} else if ($role == 2) {
-												$os_sa_access = 1;
-												$sql1 = mysqli_query($sup_db, "SELECT * FROM `sup_order_status`  ORDER BY `sup_order_status_id` ASC ");
+                                                }
+                                            } else if ($role == 2) {
+                                                $os_sa_access = 1;
+                                                $sql1 = mysqli_query($sup_db, "SELECT * FROM `sup_order_status`  ORDER BY `sup_order_status_id` ASC ");
 //												$sql1 = "SELECT * FROM `sup_order_status` ORDER BY `sup_order_status_id` ASC ";
 //												$result1 = $mysqli->query($sql1);
-												while ($row1 = mysqli_fetch_array($sql1)) {
-													if ($row1['sup_order_status_id'] == $order_status_id) {
-														$selected = "selected";
-													} else {
-														$selected = "";
-													}
-													/*if ($row1['sup_os_access'] == 1) {
-														echo "<option " . $selected . " disabled=\"disabled\" value='" . $row1['sup_order_status_id'] . "'  >" . $row1['sup_order_status'] . "</option>";
-													} else {
+                                                while ($row1 = mysqli_fetch_array($sql1)) {
+                                                    if ($row1['sup_order_status_id'] == $order_status_id) {
+                                                        $selected = "selected";
+                                                    } else {
+                                                        $selected = "";
+                                                    }
+                                                    /*if ($row1['sup_os_access'] == 1) {
+                                                        echo "<option " . $selected . " disabled=\"disabled\" value='" . $row1['sup_order_status_id'] . "'  >" . $row1['sup_order_status'] . "</option>";
+                                                    } else {
                                                         echo "<option " . $selected . " value='" . $row1['sup_order_status_id'] . "'  >" . $row1['sup_order_status'] . "</option>";
-													}*/
+                                                    }*/
                                                     if ($row1['sup_os_access'] == 1) {
-                                                       // echo "<option " . $selected . " disabled=\"disabled\" value='" . $row1['sup_order_status_id'] . "'  >" . $row1['sup_order_status'] . "</option>";
+                                                        // echo "<option " . $selected . " disabled=\"disabled\" value='" . $row1['sup_order_status_id'] . "'  >" . $row1['sup_order_status'] . "</option>";
                                                     } else {
                                                         echo "<option " . $selected . " value='" . $row1['sup_order_status_id'] . "'  >" . $row1['sup_order_status'] . "</option>";
                                                     }
-												}
-											}
+                                                }
+                                            }
 
-											?>
+                                            ?>
                                         </select></td>
                                     <td>
                                         <!--                                        <button type="submit" id="edit" class="btn btn-info btn">Update</button>-->
@@ -356,7 +356,7 @@ include("./sup_admin_menu.php");
                                         </button>
                                     </td>
                                 </tr>
-							<?php } ?>
+                            <?php } ?>
                             </tbody>
                         </table>
                     </div>
@@ -398,10 +398,10 @@ include("./sup_admin_menu.php");
                                             <div class="col-lg-8">
                                                 <input type="file" name="invoice" id="invoice" class="form-control">
                                                 <!-- `display Invoice-->
-												<?php $qurimage = mysqli_query($sup_db, "SELECT * FROM  order_files where file_type='invoice' and order_id = '$order_id'");
-												while ($rowcimage = mysqli_fetch_array($qurimage)) {
-												    $filename = $rowcimage['file_name'];
-													?>
+                                                <?php $qurimage = mysqli_query($sup_db, "SELECT * FROM  order_files where file_type='invoice' and order_id = '$order_id'");
+                                                while ($rowcimage = mysqli_fetch_array($qurimage)) {
+                                                    $filename = $rowcimage['file_name'];
+                                                    ?>
                                                     <div class="col-lg-12">
                                                         <a target="_blank" href='./order_invoices/<?php echo $filename; ?>'><?php echo $filename; ?></a>
                                                         <button id="file_del" onClick="file_del('$order_id','$filename')">
@@ -410,7 +410,7 @@ include("./sup_admin_menu.php");
                                                             <input type="hidden" name="file_type" id="file_type" value="invoice">
                                                             <span id="close_bt">&times;</span></button>
                                                     </div>
-												<?php } ?>
+                                                <?php } ?>
                                                 <div id=" error6" class="red">
                                                 </div>
                                             </div>
@@ -427,10 +427,10 @@ include("./sup_admin_menu.php");
                                                 <input type="file" name="attachments[]" id="attachments"
                                                        class="form-control" multiple>
                                                 <!-- `display Invoice-->
-												<?php $qurimage = mysqli_query($sup_db, "SELECT * FROM  order_files where file_type='attachment' and order_id = '$order_id'");
-												while ($rowcimage = mysqli_fetch_array($qurimage)) {
-													$filename = $rowcimage['file_name'];
-													?>
+                                                <?php $qurimage = mysqli_query($sup_db, "SELECT * FROM  order_files where file_type='attachment' and order_id = '$order_id'");
+                                                while ($rowcimage = mysqli_fetch_array($qurimage)) {
+                                                    $filename = $rowcimage['file_name'];
+                                                    ?>
                                                     <div class="col-lg-12">
                                                         <a target="_blank" href='./order_invoices/<?php echo $filename; ?>'><?php echo $filename; ?></a>
                                                         <button id="file_del" onClick="file_del('$order_id','$filename')">
@@ -439,7 +439,7 @@ include("./sup_admin_menu.php");
                                                             <input type="hidden" name="file_type" id="file_type" value="attachment">
                                                             <span id="close_bt">&times;</span></button>
                                                     </div>
-												<?php } ?>
+                                                <?php } ?>
                                                 <div id="error6" class="red">
                                                 </div>
                                             </div>
@@ -497,7 +497,7 @@ include("./sup_admin_menu.php");
 <?php
 $i = $_SESSION["sqq1"];
 if ($i == "") {
-	?>
+    ?>
 
 <?php }
 ?>
@@ -526,10 +526,10 @@ if ($i == "") {
     }, 2000);
 
 
-  /*  setTimeout(function () {
-        $( "#update-form" ).load(window.location.href + " #order_det_table" );
-        // location.reload();
-    }, 20000);*/
+    /*  setTimeout(function () {
+          $( "#update-form" ).load(window.location.href + " #order_det_table" );
+          // location.reload();
+      }, 20000);*/
     $(document).ready(function() {
         $('#order_details_wrapper').DataTable( {
             "paging":   false,
