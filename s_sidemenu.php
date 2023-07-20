@@ -2,7 +2,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Snippet - BBBootstrap</title>
+    <title></title>
     <style>
         @font-face { font-family: Arial !important; font-display: swap !important; }
     </style>
@@ -14,9 +14,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <style>
-        .rounded-pill {
-            border-radius: 0rem!important;
-        }
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -33,7 +30,8 @@
         /* Handle on hover */
         ::-webkit-scrollbar-thumb:hover {
             background: #555;
-        } @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
         *{
             margin: 0;
             padding: 0;
@@ -225,12 +223,12 @@
             align-items: center;
             height: 100%;
             width: 100%;
-            border-radius: 6px;
+            border-radius: 0px;
             text-decoration: none;
             transition: var(--tran-03);
         }
 
-        .sidebar li a:hover{
+        /*.sidebar li a:hover{
             background-color: var(--primary-color);
         }
         .sidebar li a:hover .icon,
@@ -240,7 +238,7 @@
         body.dark .sidebar li a:hover .icon,
         body.dark .sidebar li a:hover .text{
             color: var(--text-color);
-        }
+        }*/
 
         .sidebar .menu-bar{
             height: calc(100% - 55px);
@@ -351,25 +349,17 @@
     <header>
         <div class="image-text">
                 <span class="image">
-                    <!--<img src="logo.png" alt="">-->
+                   <img src="assets/images/logo.png" alt="" style="width:37px;height: 50px;margin-left: 0px;">
                 </span>
-
             <div class="text logo-text">
-                <img src="assets/images/site_logo.png" alt="" style="width:150px;margin-left: -36px;height: 50px;"/></div>
+                <img src="assets/images/site_logo.png" alt="" style="width:150px;margin-left: -51px;height: 50px;"/>
+            </div>
         </div>
         </div>
-
         <i class="bx bx-chevron-right toggle"></i>
     </header>
-
     <div class="menu-bar">
         <div class="menu">
-
-            <!-- <li class="search-box">
-                 <i class="bx bx-search icon"></i>
-                 <input type="text" placeholder="Search...">
-             </li>-->
-
             <ul class="menu-links">
                 <li class="nav-link">
                     <a href="#">
@@ -384,66 +374,10 @@
                         <span class="text nav-text">Historical Orders</span>
                     </a>
                 </li>
-
-                <!--             <li class="nav-link">
-                                 <a href="#">
-                                     <i class="bx bx-bell icon"></i>
-                                     <span class="text nav-text">Notifications</span>
-                                 </a>
-                             </li>
-
-                             <li class="nav-link">
-                                 <a href="#">
-                                     <i class="bx bx-pie-chart-alt icon"></i>
-                                     <span class="text nav-text">Stats</span>
-                                 </a>
-                             </li>
-
-                             <li class="nav-link">
-                                 <a href="#">
-                                     <i class="bx bx-heart icon"></i>
-                                     <span class="text nav-text">Favourites</span>
-                                 </a>
-                             </li>
-
-                             <li class="nav-link">
-                                 <a href="#">
-                                     <i class="bx bx-wallet icon"></i>
-                                     <span class="text nav-text">Money</span>
-                                 </a>
-                             </li>
-
-                         </ul>-->
         </div>
-
-        <!--<div class="bottom-content">
-            <li class="">
-                <a href="#">
-                    <i class="bx bx-log-out icon"></i>
-                    <span class="text nav-text">Logout</span>
-                </a>
-            </li>
-
-            <li class="mode">
-                <div class="sun-moon">
-                    <i class="bx bx-moon icon moon"></i>
-                    <i class="bx bx-sun icon sun"></i>
-                </div>
-                <span class="mode-text text">Dark mode</span>
-
-                <div class="toggle-switch">
-                    <span class="switch"></span>
-                </div>
-            </li>
-
-        </div>-->
     </div>
 
 </nav>
-<script type="text/javascript" src="#"></script>
-<script type="text/javascript" src="#"></script>
-<script type="text/javascript" src="#"></script>
-<script type="text/javascript" src="#"></script>
 <script type="text/javascript">const body = document.querySelector('body'),
         sidebar = body.querySelector('nav'),
         toggle = body.querySelector(".toggle"),
