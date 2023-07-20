@@ -66,26 +66,23 @@
             0% {
                 width: 25%;
                 background: #f0f0f0;
-                box-shadow: 0 0 0 #cccccc, 0 0 0 #ffffff, 10px 10px 10px #cccccc inset, -10px -10px 10px #ffffff inset
             }
 
             25% {
                 width: 50%;
                 background: #f8f8f8;
-                box-shadow: 10px 10px 10px #cccccc, 10px 10px 10px #ffffff, 0 0 0 #cccccc inset, 0 0 0 #ffffff inset
             }
 
             50% {
                 width: 75%;
                 background: #f8f8f8;
-                box-shadow: 10px 10px 10px #cccccc, 10px 10px 10px #ffffff, 0 0 0 #cccccc inset, 0 0 0 #ffffff inset
             }
 
             100% {
 
                 width: 100%;
                 background: #fafafa;
-                box-shadow: 40px 40px 40px #cccccc, 0 0 0 #ffffff, 0 0 0 #cccccc inset, 2px 2px 2px #ffffff inset
+
             }
 
         }
@@ -96,31 +93,16 @@
 </head>
 <body classname="snippet-body" data-new-gr-c-s-check-loaded="14.1115.0" data-gr-ext-installed="">
 <div class="d-flex vw-100 vh-100 align-items-center justify-content-center">
-    <img src="https://www.clipartmax.com/png/full/357-3572287_southwestern-connections-inc-ss-green-projects-logo.png" class="rounded-circle imgfluid"  alt=""/>
 
     <header
         class="d-flex navbar-conts flex-wrap align-items-center justify-content-center justify-content-md-between py-1 mb-4 border-bottom rounded-pill  ">
         <a href="~/HOME" class="navbarlogo d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none w-auto">
-            <img src="assets/images/site_logo.png" alt="" style="width: 150px!important;margin-left: 72px!important;"/>
+            <!--<img src="assets/images/site_logo.png" alt="" style="width: 150px!important;margin-left: 72px!important;"/>-->
         </a>
-
-        <!--<ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-            <li><a href="#" class="nav-link px-2 link-secondary">Home</a></li>
-            <li><a href="#" class="nav-link px-2 link-dark">Features</a></li>
-            <li><a href="#" class="nav-link px-2 link-dark">Pricing</a></li>
-            <li><a href="#" class="nav-link px-2 link-dark">FAQs</a></li>
-            <li><a href="#" class="nav-link px-2 link-dark">About</a></li>
-        </ul>-->
-
-        <!-- <div class="col-md-5 text-end">
-             <button type="button" class="btn btn-outline-primary rounded-pill me-2">Login</button>
-             <button type="button" class="btn btn-primary rounded-pill">Sign-up</button>
-
-         </div>-->
         <div class="dropdown text-end">
             <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1"
                data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+                <img src="user_images/user.png" alt="mdo" width="32" height="32" class="rounded-circle">
             </a>
             <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" style="">
                 <li><a href="<?php echo $siteURL; ?>profile.php" class="dropdown-item"><i class="icon-user-plus"></i> My profile</a></li>
