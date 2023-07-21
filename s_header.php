@@ -1,8 +1,12 @@
+<?php
+include("sup_config.php");
+include("config.php");
+?>
 <html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Snippet - BBBootstrap</title>
+    <title></title>
     <style>
         @font-face { font-family: Arial !important; font-display: swap !important; }
     </style>
@@ -27,7 +31,6 @@
             padding: 0
         }
         .navbar-conts {
-
             width: 60px;
             height: 60px;
             background-color: transparent;
@@ -94,23 +97,25 @@
 <body classname="snippet-body" data-new-gr-c-s-check-loaded="14.1115.0" data-gr-ext-installed="">
 <div class="d-flex vw-100 vh-100 align-items-center justify-content-center">
 
-    <header
-        class="d-flex navbar-conts flex-wrap align-items-center justify-content-center justify-content-md-between py-1 mb-4 border-bottom rounded-pill  ">
+    <header class="d-flex navbar-conts flex-wrap align-items-center justify-content-center justify-content-md-between py-1 mb-4 border-bottom rounded-pill">
         <a href="~/HOME" class="navbarlogo d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none w-auto">
             <!--<img src="assets/images/site_logo.png" alt="" style="width: 150px!important;margin-left: 72px!important;"/>-->
         </a>
-        <div class="dropdown text-end">
+        <div class="col-md-3"></div>
+        <div class="navbar-center col-md-3">
+            <h3 id="screen_header" style="margin-left: -86px;"><span class="text-semibold"><?php echo $cam_page_header; ?></span></h3>
+        </div>
+        <div class="dropdown text-end" style="z-index: 1;">
             <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1"
                data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="user_images/user.png" alt="mdo" width="32" height="32" class="rounded-circle">
+                <img src="user_images/<?php echo $_SESSION["uu_img"]; ?>" alt="" width="32" height="32" class="rounded-circle">
+                <span><?php echo $_SESSION['fullname']; ?></span>
+              <!--  <img src="user_images/user.png" alt="mdo" width="32" height="32" class="rounded-circle">-->
             </a>
-            <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" style="">
+            <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" style="z-index: 1;">
                 <li><a href="<?php echo $siteURL; ?>profile.php" class="dropdown-item"><i class="icon-user-plus"></i> My profile</a></li>
                 <li><a href="<?php echo $siteURL; ?>change_pass.php" class="dropdown-item"><i class="icon-cog5"></i> Change Password</a></li>
                 <li><a href="logout.php" class="dropdown-item"><i class="icon-switch2"></i> Logout</a></li>
-                <!--<li><a class="dropdown-item" href="#"><i class="icon-user-plus"></i>My Profile</a></li>
-                <li><a class="dropdown-item" href="#"><i class="icon-cog5"></i>Change Password</a></li>
-                <li><a class="dropdown-item" href="#">Logout</a></li>-->
             </ul>
         </div>
     </header>

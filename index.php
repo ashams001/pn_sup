@@ -34,7 +34,7 @@ if (count($_POST) > 0) {
 		}
 	}
 	if ($is_error == 0) {
-		header("Location:supplier_home.php");
+		header("Location:active_orders.php");
 	}
 }
 $tmp = $_SESSION['temp'];

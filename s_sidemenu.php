@@ -362,14 +362,14 @@
         <div class="menu">
             <ul class="menu-links">
                 <li class="nav-link">
-                    <a href="#">
+                    <a href="active_orders.php">
                         <i class="bx bx-home-alt icon" style="margin-left: -57px;"></i>
                         <span class="text nav-text">Active Orders</span>
                     </a>
                 </li>
 
                 <li class="nav-link">
-                    <a href="#">
+                    <a href="historical_orders.php">
                         <i class="bx bx-bar-chart-alt-2 icon" style="margin-left: -57px;"></i>
                         <span class="text nav-text">Historical Orders</span>
                     </a>
