@@ -73,7 +73,7 @@ if (!isset($_SESSION['user'])) {
         #form_settings {
             margin-left: 414px;
             margin-right: -70px;
-            margin-top: -20px;
+            margin-top: -628px;
         }
         .navbar {
 
@@ -146,6 +146,10 @@ if (!isset($_SESSION['user'])) {
             margin-right: 112px;
             display: block;
         }
+        .row.row-xs.align-items-center.mg-b-20{
+            margin-top: 10px!important;
+            margin-bottom: 10px!important;
+        }
     </style>
 </head>
 
@@ -187,12 +191,55 @@ include('s_sidemenu.php');
                             <div class="pd-30 pd-sm-20">
                                 <input type="hidden" name="hidden_id" id="hidden_id" value="<?php echo $id; ?>">
                                 <div class="row row-xs align-items-center mg-b-20">
-                                    <div class="col-md-4">
+                                    <div class="col-md-2">
                                         <label class="form-label mg-b-0">Order Name</label>
                                     </div>
-                                    <div class="col-md-8 mg-t-5 mg-md-t-0">
-                                        <input type="text" name="name" id="name" class="form-control"
-                                               value="<?php echo $order_name; ?>" placeholder="Name" required>
+                                    <div class="col-md-6 mg-t-5 mg-md-t-0">
+                                        <input type="text" name="edit_order_name" id="edit_order_name" class="form-control"
+                                               value="<?php echo $order_name; ?>" disabled>
+                                    </div>
+                                </div>
+                                <div class="row row-xs align-items-center mg-b-20">
+                                    <div class="col-md-2">
+                                        <label class="form-label mg-b-0">Order Id</label>
+                                    </div>
+                                    <div class="col-md-6 mg-t-5 mg-md-t-0">
+                                        <input type="text" name="edit_order_id" id="edit_order_id" class="form-control"
+                                               value="<?php echo $ordr_id; ?>" disabled>
+                                    </div>
+                                </div>
+                                <div class="row row-xs align-items-center mg-b-20">
+                                    <div class="col-md-2">
+                                        <label class="form-label mg-b-0">Order Description</label>
+                                    </div>
+                                    <div class="col-md-6 mg-t-5 mg-md-t-0">
+                                        <input type="text" name="edit_order_desc" id="edit_order_desc" class="form-control"
+                                               value="<?php echo $rowcmain['order_desc']; ?>" disabled>
+                                    </div>
+                                </div>
+                                <div class="row row-xs align-items-center mg-b-20">
+                                    <div class="col-md-2">
+                                        <label class="form-label mg-b-0">Order Status</label>
+                                    </div>
+                                    <div class="col-md-6 mg-t-5 mg-md-t-0">
+                                        <select name="edit_order_status" id="edit_order_status" class="form-control form-select select2" data-bs-placeholder="Select Order Status">
+                                            <option value="" selected disabled> Select Order Status </option>
+                                           <!-- --><?php
+/*                                            $form_type = $rowcmain['form_type'];
+                                            $sql1 = "SELECT * FROM `form_type` ";
+                                            $result1 = $mysqli->query($sql1);
+                                            //                                            $entry = 'selected';
+                                            while ($row1 = $result1->fetch_assoc()) {
+                                                if ($form_type == $row1['form_type_id']) {
+                                                    $entry = 'selected';
+                                                } else {
+                                                    $entry = '';
+
+                                                }
+                                                echo "<option value='" . $row1['form_type_id'] . "'  $entry>" . $row1['form_type_name'] . "</option>";
+                                            }
+                                            */?>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
