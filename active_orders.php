@@ -280,11 +280,6 @@ include('s_sidemenu.php');
         <div class="card" style="z-index: -1;">
             <div class="card-header" style="background: #1F5D96;">
                 <h4 class="card-title">
-                    <button type="button" class="btn btn-danger btn-sm br-5" onclick="submitForm('delete_form_option.php')" style="color: #FFFFFF;">
-                        <i>
-                            <svg class="table-delete" xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="16"><path d="M0 0h24v24H0V0z" fill="none"></path><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9zm7.5-5l-1-1h-5l-1 1H5v2h14V4h-3.5z"></path></svg>
-                        </i>
-                    </button>
                 </h4>
             </div>
             <div class="card-body pt-0" style="margin-top: 33px;">
@@ -292,7 +287,6 @@ include('s_sidemenu.php');
                     <table class="table datatable-basic table-bordered text-nowrap mb-0" id="example2">
                         <thead>
                         <tr>
-                            <th><label class="ckbox"><input type="checkbox" id="checkAll" ><span></span></label></th>
                             <th>S.No</th>
                             <th>Order Desc</th>
                             <th>Ordered On</th>
@@ -307,7 +301,6 @@ include('s_sidemenu.php');
                         while ($rowc = mysqli_fetch_array($qur)) {
                             ?>
                             <tr>
-                                <td><label class="ckbox"><input type="checkbox" id="delete_check[]" name="delete_check[]" value="<?php echo $rowc["form_create_id"]; ?>"><span></span></label></td>
                                 <td><?php echo ++$counter; ?></td>
                                 <?php $order_id = $rowc['order_id'];
                                 $order_status_id = $rowc['order_status_id'];
@@ -326,13 +319,15 @@ include('s_sidemenu.php');
                                 ?>
                                 <td><?php echo dateReadFormat($rowc['created_on']); ?></td>
                                 <td><?php echo $order_status; ?></td>
-                                <td>
-                                    <a class="btn btn-success btn-sm br-5 me-2" href="order_edit.php?id=<?php echo $finalid ?>">
+                                <a href="order_edit.php">  <td>
+                                        <a class="link-opacity-10-hover" href="order_edit.php?id=<?php echo $order_id ?>">Edit</a>
+                                        <!-- <a class="btn btn-success btn-sm br-5 me-2" href="order_edit.php?id=<?php /*echo $order_id */?>">
                                         <i>
                                             <svg class="table-edit" xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="16"><path d="M0 0h24v24H0V0z" fill="none"></path><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM5.92 19H5v-.92l9.06-9.06.92.92L5.92 19zM20.71 5.63l-2.34-2.34c-.2-.2-.45-.29-.71-.29s-.51.1-.7.29l-1.83 1.83 3.75 3.75 1.83-1.83c.39-.39.39-1.02 0-1.41z"></path></svg>
                                         </i>
-                                    </a>
-                                </td>
+                                    </a>-->
+                                    </td></a>
+
                             </tr>
                         <?php } ?>
                         </tbody>
