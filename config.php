@@ -1,7 +1,7 @@
 <?php
 define('SITE_ROOT', __DIR__);
-
-include("C:/xampp/htdocs/pn_config.php");
+	
+include("/Users/ashams001/Sites/PN/sup_config.php");
 //include("config/database_config.php");
 //include("config/general_coding_config.php");
 include("config/error_config.php");
