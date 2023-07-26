@@ -108,7 +108,11 @@ include("config.php");
         <div class="dropdown text-end" style="z-index: 1;">
             <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1"
                data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="user_images/<?php echo $_SESSION["uu_img"]; ?>" alt="" width="32" height="32" class="rounded-circle">
+                <?php if(!empty($_SESSION["uu_img"])){ ?>
+                    <img src="user_images/<?php echo $_SESSION["uu_img"]; ?>" alt="" width="32" height="32" class="rounded-circle">
+                <?php }else{ ?>
+                    <img src="user_images/user.png" alt="" width="32" height="32" class="rounded-circle">
+                <?php } ?>
                 <span><?php echo $_SESSION['fullname']; ?></span>
               <!--  <img src="user_images/user.png" alt="mdo" width="32" height="32" class="rounded-circle">-->
             </a>
