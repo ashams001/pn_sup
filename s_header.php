@@ -1,5 +1,4 @@
 <?php
-include("sup_config.php");
 include("config.php");
 ?>
 <html>

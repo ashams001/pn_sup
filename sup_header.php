@@ -1,5 +1,4 @@
 <?php
-include("sup_config.php");
 include("config.php");
 ?>
 <script type="text/javascript" src="assets/js/plugins/forms/styling/uniform.min.js"></script>
