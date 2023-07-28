@@ -4,8 +4,9 @@ include("config.php");
 $chicagotime = date("Y-m-d H:i:s");
 if (count($_POST) > 0) {
     $is_error = 0;
-    $result = mysqli_query($db, "SELECT * FROM sup_account_users WHERE user_name='" . $_POST["user"] . "' and u_password = '" . (md5($_POST["pass"])) . "'");
-    $row = mysqli_fetch_array($result);
+    $result = "SELECT * FROM sup_account_users WHERE user_name='" . $_POST["user"] . "' and u_password = '" . (md5($_POST["pass"])) . "'";
+    $q = mysqli_query($sup_db,$result);
+    $row = mysqli_fetch_array($q);
     if (is_array($row)) {
         $_SESSION["id"] = $row['u_id'];
         $_SESSION["user"] = $row['user_name'];
@@ -19,9 +20,9 @@ if (count($_POST) > 0) {
         $_SESSION["pin_flag"] = $row['pin_flag'];
         $pin = $row['pin'];
         $pin_flag = $row['pin_flag'];
-        mysqli_query($db, "INSERT INTO `sup_session_log`(`u_id`,`created_at`) VALUES ('$logid','$chicagotime')");
+        mysqli_query($sup_db, "INSERT INTO `sup_session_log`(`u_id`,`created_at`) VALUES ('$logid','$chicagotime')");
     } else {
-        $result = mysqli_query($db, "SELECT * FROM sup_account_users WHERE u_status = '0' AND user_name='" . $_POST["user"] . "' and u_password = '" . (md5($_POST["pass"])) . "'");
+        $result = mysqli_query($sup_db, "SELECT * FROM sup_account_users WHERE u_status = '0' AND user_name='" . $_POST["user"] . "' and u_password = '" . (md5($_POST["pass"])) . "'");
         $row = mysqli_fetch_array($result);
         if (is_array($row)) {
             $message_stauts_class = $_SESSION["alert_danger_class"];
@@ -34,7 +35,7 @@ if (count($_POST) > 0) {
         }
     }
     if ($is_error == 0) {
-        header("Location:active_orders.php");
+        header("Location:active_orders_new.php");
     }
 }
 $tmp = $_SESSION['temp'];
@@ -44,72 +45,73 @@ if ($tmp == "forgotpass_success") {
     $import_status_message = $_SESSION["error_2"];
 }
 ?>
+<!DOCTYPE html>
 <html lang="en">
-<title></title>
-<header>
+<head>
     <meta charset="utf-8">
-    <meta name=”viewport” content=”width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="assets/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="assets/css/vendor.bundle.base.css">
+    <script src="assets/js/vendor.bundle.base.js"></script>
     <link rel="stylesheet" href="assets/css/style.css">
-    <script src="assets/js/index_js/jquery.min.js"></script>
-    <script src="assets/js/index_js/popper.js"></script>
-    <script src="assets/js/index_js/bootstrap.min.js"></script>
-    <script src="assets/js/index_js/main.js"></script>
-    <style>
-        body {margin: 0; height: 100%; overflow: hidden}
-    </style>
-</header>
-<body data-new-gr-c-s-check-loaded="14.1116.0" data-gr-ext-installed="">
-<section class="ftco-section">
-    <?php
-    if (!empty($import_status_message)) {
-        echo '<div class="alert ' . $message_stauts_class . '">' . $import_status_message . '</div>';
-    }
-    ?>
-    <form action="" class="form-validate" method="post">
-        <div class="row justify-content-center">
-            <div class="col-md-6 text-center mb-5">
-                <h2 class="heading-section"></h2>
-            </div>
-        </div>
-        <div class="row justify-content-center">
-            <div class="col-md-6 col-lg-4">
-                <div class="login-wrap py-5">
-                    <div class="img d-flex align-items-center justify-content-center">
-                        <img src="assets/images/site_logo.png" alt="" style="width:100px;"/>
+    <link rel="shortcut icon" href="assets/images/favicon.png" />
+    <script type="text/javascript" src="https://me.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=f_ih03-Npe_Oc5RtvAXPhVWocsz4JbBKQLiLedfRZ0VUIHNxMCRnyYJgP-HMTgk-tgR4MnLQxyywnR5X_4W4q-3_fVo5EHg952pr_ADO3RO46XlQW1wybYI0Y5wS1teDPcj9HBrGRbArwGWLwSUTvUlAD_2F-cn1pRLKHJalJiQ" charset="UTF-8"></script><link rel="stylesheet" crossorigin="anonymous" href="https://me.kis.v2.scr.kaspersky-labs.com/E3E8934C-235A-4B0E-825A-35A08381A191/abn/main.css?attr=aHR0cHM6Ly90aGVtZXdhZ29uLmdpdGh1Yi5pby9jb3JvbmEtZnJlZS1kYXJrLWJvb3RzdHJhcC1hZG1pbi10ZW1wbGF0ZS9wYWdlcy9zYW1wbGVzL2xvZ2luLmh0bWw"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="assets/js/off-canvas.js"></script>
+    <script src="assets/js/hoverable-collapse.js"></script>
+    <script src="assets/js/misc.js"></script>
+    <script src="assets/js/settings.js"></script>
+    <script src="assets/js/todolist.js"></script>
+</head>
+<body>
+
+<div class="container-scroller">
+    <div class="container-fluid page-body-wrapper full-page-wrapper">
+        <div class="row w-100 m-0">
+            <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
+                <div class="card col-lg-4 mx-auto">
+                    <div class="row" style="font-size: 26px;">
+                        <?php
+                        if (!empty($import_status_message)) {
+                            echo '<div class="alert ' . $message_stauts_class . '">' . $import_status_message . '</div>';
+                        }
+                        ?>
                     </div>
-                    <h3 class="text-center">Login to your account</h3>
-                    <form action="#" class="login-form">
-                        <div class="form-group">
-                            <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-user"></span></div>
-                            <input type="text" class="form-control" name="user" id="user" placeholder="Username / Email" required="required" style="color:white;">
-                        </div>
-                        <div class="form-group">
-                            <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-lock"></span></div>
-                            <input type="password" name="pass" id="pass" class="form-control" placeholder="Password" required="">
-                            <span toggle="#password-field" onclick="myFunction()" class="fa fa-fw fa-eye field-icon toggle-password" style="margin-left: 381px;margin-top: -29px;"></span>
-                        </div>
-                        <div class="form-group d-md-flex">
-                            <div class="w-100 text-left">
-                                <label class="checkbox-wrap checkbox-primary mb-0">Remember Me
-                                    <input type="checkbox" checked="" wfd-id="id2">
-                                    <span class="checkmark"></span>
-                                </label>
+                    <div class="card-body px-5 py-5">
+                        <h3 class="card-title text-left mb-3">Login</h3>
+                        <form action="" class="form-validate" method="post">
+                            <div class="form-group">
+                                <label>Username or email *</label>
+                                <input type="text" name="user" id="user" class="form-control" placeholder="Username / Email" required="required">
                             </div>
-                            <div class="w-100 text-md-right">
-                                <a href="forgotpass.php">Forgot Password</a>
+                            <div class="form-group">
+                                <label>Password *</label>
+                                <input type="password" name="pass" id="pass" class="form-control" placeholder="Password" required="">
+                                <!--<span toggle="#password-field" onclick="myFunction()" style="margin-left: 319px;margin-top: 10px;"><i class="fa fa-eye"></i> </span>-->
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn form-control btn-primary rounded submit px-3" style="background-color:#1e73be;">Sign In</button>
-                        </div>
+                            <div class="form-group d-flex align-items-center justify-content-between" style="margin-left: 120px;">
+                                <!--  <div class="form-check">
+                                      <label class="form-check-label">
+                                          <input type="checkbox" class="form-check-input"> Remember me </label>
+                                  </div>-->
+                                <a href="forgotpass.php" class="forgot-pass">Forgot password</a>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary btn-block enter-btn">Login</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
+            <!-- content-wrapper ends -->
         </div>
-    </form>
+        <!-- row ends -->
     </div>
-</section>
+    <!-- page-body-wrapper ends -->
+</div>
+<!-- container-scroller -->
+<!-- plugins:js -->
 <script>
     function myFunction() {
         var x = document.getElementById("pass");
