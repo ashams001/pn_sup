@@ -118,47 +118,47 @@ if (count($_POST) > 0) {
 	<!-- Global stylesheets -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet"
 		  type="text/css">
-    <link href="../assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
-    <link href="../assets/css/bootstrap.css" rel="stylesheet" type="text/css">
-    <link href="../assets/css/core.css" rel="stylesheet" type="text/css">
-    <link href="../assets/css/components.css" rel="stylesheet" type="text/css">
-    <link href="../assets/css/colors.css" rel="stylesheet" type="text/css">
-    <link href="../assets/css/style_main.css" rel="stylesheet" type="text/css">
-    <script type="text/javascript" src="../assets/js/plugins/loaders/pace.min.js"></script>
-    <script type="text/javascript" src="../assets/js/core/libraries/jquery.min.js"></script>
-    <script type="text/javascript" src="../assets/js/core/libraries/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../assets/js/plugins/loaders/blockui.min.js"></script>
-    <script type="text/javascript" src="../assets/js/plugins/tables/datatables/datatables.min.js"></script>
-    <script type="text/javascript" src="../assets/js/plugins/forms/selects/select2.min.js"></script>
-    <script type="text/javascript" src="../assets/js/core/app.js"></script>
-    <script type="text/javascript" src="../assets/js/pages/datatables_basic.js"></script>
-    <script type="text/javascript" src="../assets/js/plugins/ui/ripple.min.js"></script>
-    <script type="text/javascript" src="../assets/js/plugins/notifications/sweet_alert.min.js"></script>
-    <script type="text/javascript" src="../assets/js/pages/components_modals.js"></script>
-	<!--<link href="<?php /*echo $siteURL . "/assets/css/icons/icomoon/styles.css" */?>" rel="stylesheet" type="text/css">
-	<link href="<?php /*echo $siteURL . "/assets/css/bootstrap.css" */?>" rel="stylesheet" type="text/css">
-	<link href="<?php /*echo $siteURL . "/assets/css/core.css" */?>" rel="stylesheet" type="text/css">
-	<link href="<?php /*echo $siteURL . "/assets/css/components.css" */?>" rel="stylesheet" type="text/css">
-	<link href="<?php /*echo $siteURL . "/assets/css/colors.css" */?>" rel="stylesheet" type="text/css">
-	<link href="<?php /*echo $siteURL . "/assets/css/style_main.css" */?>" rel="stylesheet" type="text/css">-->
+    <link href="../assets_old/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
+    <link href="../assets_old/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="../assets_old/css/core.css" rel="stylesheet" type="text/css">
+    <link href="../assets_old/css/components.css" rel="stylesheet" type="text/css">
+    <link href="../assets_old/css/colors.css" rel="stylesheet" type="text/css">
+    <link href="../assets_old/css/style_main.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="../assets_old/js/plugins/loaders/pace.min.js"></script>
+    <script type="text/javascript" src="../assets_old/js/core/libraries/jquery.min.js"></script>
+    <script type="text/javascript" src="../assets_old/js/core/libraries/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../assets_old/js/plugins/loaders/blockui.min.js"></script>
+    <script type="text/javascript" src="../assets_old/js/plugins/tables/datatables/datatables.min.js"></script>
+    <script type="text/javascript" src="../assets_old/js/plugins/forms/selects/select2.min.js"></script>
+    <script type="text/javascript" src="../assets_old/js/core/app.js"></script>
+    <script type="text/javascript" src="../assets_old/js/pages/datatables_basic.js"></script>
+    <script type="text/javascript" src="../assets_old/js/plugins/ui/ripple.min.js"></script>
+    <script type="text/javascript" src="../assets_old/js/plugins/notifications/sweet_alert.min.js"></script>
+    <script type="text/javascript" src="../assets_old/js/pages/components_modals.js"></script>
+	<!--<link href="<?php /*echo $siteURL . "/assets_old/css/icons/icomoon/styles.css" */?>" rel="stylesheet" type="text/css">
+	<link href="<?php /*echo $siteURL . "/assets_old/css/bootstrap.css" */?>" rel="stylesheet" type="text/css">
+	<link href="<?php /*echo $siteURL . "/assets_old/css/core.css" */?>" rel="stylesheet" type="text/css">
+	<link href="<?php /*echo $siteURL . "/assets_old/css/components.css" */?>" rel="stylesheet" type="text/css">
+	<link href="<?php /*echo $siteURL . "/assets_old/css/colors.css" */?>" rel="stylesheet" type="text/css">
+	<link href="<?php /*echo $siteURL . "/assets_old/css/style_main.css" */?>" rel="stylesheet" type="text/css">-->
 	<!-- /global stylesheets -->
 	<!-- Core JS files -->
-	<!--<script type="text/javascript" src="<?php /*echo $siteURL . "/assets/js/plugins/loaders/pace.min.js" */?>"></script>
-	<script type="text/javascript" src="<?php /*echo $siteURL . "/assets/js/core/libraries/jquery.min.js" */?>"></script>
-	<script type="text/javascript" src="<?php /*echo $siteURL . "/assets/js/core/libraries/bootstrap.min.js" */?>"></script>
-	<script type="text/javascript" src="<?php /*echo $siteURL . "/assets/js/plugins/loaders/blockui.min.js" */?>"></script>-->
+	<!--<script type="text/javascript" src="<?php /*echo $siteURL . "/assets_old/js/plugins/loaders/pace.min.js" */?>"></script>
+	<script type="text/javascript" src="<?php /*echo $siteURL . "/assets_old/js/core/libraries/jquery.min.js" */?>"></script>
+	<script type="text/javascript" src="<?php /*echo $siteURL . "/assets_old/js/core/libraries/bootstrap.min.js" */?>"></script>
+	<script type="text/javascript" src="<?php /*echo $siteURL . "/assets_old/js/plugins/loaders/blockui.min.js" */?>"></script>-->
 	<!-- /core JS files -->
 	<!-- Theme JS files -->
 	<!--<script type="text/javascript"
-			src="<?php /*echo $siteURL . "/assets/js/plugins/tables/datatables/datatables.min.js" */?>"></script>
+			src="<?php /*echo $siteURL . "/assets_old/js/plugins/tables/datatables/datatables.min.js" */?>"></script>
 	<script type="text/javascript"
-			src="<?php /*echo $siteURL . "/assets/js/plugins/forms/selects/select2.min.js" */?>"></script>
-	<script type="text/javascript" src="<?php /*echo $siteURL . "/assets/js/core/app.js" */?>"></script>
-	<script type="text/javascript" src="<?php /*echo $siteURL . "/assets/js/pages/datatables_basic.js" */?>"></script>
-	<script type="text/javascript" src="<?php /*echo $siteURL . "/assets/js/plugins/ui/ripple.min.js" */?>"></script>
+			src="<?php /*echo $siteURL . "/assets_old/js/plugins/forms/selects/select2.min.js" */?>"></script>
+	<script type="text/javascript" src="<?php /*echo $siteURL . "/assets_old/js/core/app.js" */?>"></script>
+	<script type="text/javascript" src="<?php /*echo $siteURL . "/assets_old/js/pages/datatables_basic.js" */?>"></script>
+	<script type="text/javascript" src="<?php /*echo $siteURL . "/assets_old/js/plugins/ui/ripple.min.js" */?>"></script>
 	<script type="text/javascript"
-			src="<?php /*echo $siteURL . "/assets/js/plugins/notifications/sweet_alert.min.js" */?>"></script>
-	<script type="text/javascript" src="<?php /*echo $siteURL . "/assets/js/pages/components_modals.js" */?>"></script>-->
+			src="<?php /*echo $siteURL . "/assets_old/js/plugins/notifications/sweet_alert.min.js" */?>"></script>
+	<script type="text/javascript" src="<?php /*echo $siteURL . "/assets_old/js/pages/components_modals.js" */?>"></script>-->
 	<!--chart -->
 	<style>
         html, body {
