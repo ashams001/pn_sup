@@ -160,7 +160,11 @@
             <li class="nav-item dropdown">
                 <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
                     <div class="navbar-profile">
-                        <img class="img-xs rounded-circle" src="user_images/<?php echo $_SESSION["uu_img"]; ?>" alt="">
+                        <?php if(!empty($_SESSION["uu_img"])) {?>
+                            <img class="img-xs rounded-circle" src="user_images/<?php echo $_SESSION["uu_img"]; ?>" alt="">
+                        <?php }else{?>
+                            <img class="img-xs rounded-circle" src="user_images/user.png" alt="">
+                        <?php }?>
                         <p class="mb-0 d-none d-sm-block navbar-profile-name"><?php echo $_SESSION['fullname']; ?></p>
                         <i class="fa-solid fa-chevron-down"></i>
                     </div>

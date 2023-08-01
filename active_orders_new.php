@@ -161,7 +161,7 @@ if (count($_POST) > 0) {
                                         <tbody>
                                         <?php
                                         $query = sprintf("SELECT * FROM  sup_order  where order_active = 1 order by created_on DESC ;  ");
-                                        $qur = mysqli_query($db, $query);
+                                        $qur = mysqli_query($sup_db, $query);
                                         while ($rowc = mysqli_fetch_array($qur)) {
                                         ?>
                                         <tr>
@@ -179,7 +179,7 @@ if (count($_POST) > 0) {
                                             <td> <?php echo $rowc['order_desc']; ?> </td>
                                             <?php
 
-                                            $qurtemp = mysqli_query($db, "SELECT * FROM  sup_order_status where sup_order_status_id  = '$order_status_id' ");
+                                            $qurtemp = mysqli_query($sup_db, "SELECT * FROM  sup_order_status where sup_order_status_id  = '$order_status_id' ");
                                             while ($rowctemp = mysqli_fetch_array($qurtemp)) {
                                                 $order_status = $rowctemp["sup_order_status"];
                                             }
