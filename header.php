@@ -10,17 +10,19 @@
 <link rel="stylesheet" href="assets/css/select2-bootstrap.min.css">
 <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet"
       type="text/css">
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <!-- End plugin css for this page -->
 <!-- inject:css -->
 <!-- endinject -->
 <!-- Layout styles -->
 <link rel="stylesheet" href="assets/css/style.css">
 <!-- End layout styles -->
+<link rel="shortcut icon" href="https://themewagon.github.io/corona-free-dark-bootstrap-admin-template/assets/images/favicon.png" />
+<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=OmOB4DhOzPFatrChQYzFYRjY1s3YZXbW7yOe9La6gSguULZJEgb4uy6vnIxt1maneNT4v8xlYn3ViXp0x9fNoywou51zoeXxBNGVlGqarQjJoKd6pv0EB3xqJO3_8ABb" charset="UTF-8"></script><link rel="stylesheet" crossorigin="anonymous" href="https://gc.kis.v2.scr.kaspersky-labs.com/E3E8934C-235A-4B0E-825A-35A08381A191/abn/main.css?attr=aHR0cHM6Ly90aGVtZXdhZ29uLmdpdGh1Yi5pby9jb3JvbmEtZnJlZS1kYXJrLWJvb3RzdHJhcC1hZG1pbi10ZW1wbGF0ZS8"/></head>
 
 <nav class="navbar p-0 fixed-top d-flex flex-row">
     <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo-mini" href="#"><img src="assets/images/site_logo.png" alt="logo" /></a>
+        <a class="navbar-brand brand-logo-mini" href="index.html"><img src="assets/images/site_logo.png" alt="logo" /></a>
     </div>
     <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
