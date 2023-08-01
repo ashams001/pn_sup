@@ -154,7 +154,7 @@ if(count($_POST) > 0) {
                                     //   $id = base64_decode( urldecode( $form_id));
 
                                     $querymain = sprintf("SELECT * FROM `sup_order` where order_id = '$id' ");
-                                    $qurmain = mysqli_query($db, $querymain);
+                                    $qurmain = mysqli_query($sup_db, $querymain);
                                     while ($rowcmain = mysqli_fetch_array($qurmain)) {
                                     $order_name = $rowcmain['order_name'];
                                     $ordr_id = $rowcmain['sup_order_id'];
@@ -162,7 +162,7 @@ if(count($_POST) > 0) {
                                     ?>
                                     <?php
 
-                                    $qurtemp = mysqli_query($db, "SELECT * FROM  sup_order_status where sup_order_status_id  = '$order_status_id'");
+                                    $qurtemp = mysqli_query($sup_db, "SELECT * FROM  sup_order_status where sup_order_status_id  = '$order_status_id'");
                                     while ($rowctemp = mysqli_fetch_array($qurtemp)) {
                                         $order_status = $rowctemp["sup_order_status"];
                                     }
@@ -205,7 +205,7 @@ if(count($_POST) > 0) {
                                                     $os_sa_access = 0;
                                                     if ($role == 3) {
                                                         $os_access = 1;
-                                                        $sql1 = mysqli_query($db, "SELECT * FROM `sup_order_status`  ORDER BY `sup_order_status_id` ASC ");
+                                                        $sql1 = mysqli_query($sup_db, "SELECT * FROM `sup_order_status`  ORDER BY `sup_order_status_id` ASC ");
 //												$result1 = mysqli_fetch_array($sql1);
                                                         $selected = "";
                                                         while ($row1 = mysqli_fetch_array($sql1)) {
@@ -253,7 +253,7 @@ if(count($_POST) > 0) {
                                                 <label for="exampleInputPassword2" class="col-sm-3 col-form-label">Attach Invoice</label>
                                                 <div class="col-sm-9">
                                                     <input type="file" name="invoice" id="invoice" class="form-control">
-                                                    <?php $qurimage = mysqli_query($db, "SELECT * FROM  order_files where file_type='invoice' and order_id = '$order_id'");
+                                                    <?php $qurimage = mysqli_query($sup_db, "SELECT * FROM  order_files where file_type='invoice' and order_id = '$order_id'");
                                                     while ($rowcimage = mysqli_fetch_array($qurimage)) {
                                                     $filename = $rowcimage['file_name'];
                                                     ?>
@@ -273,7 +273,7 @@ if(count($_POST) > 0) {
                                                 <div class="col-sm-9">
                                                     <input type="file" name="attachments[]" id="attachments"
                                                            class="form-control" multiple>
-                                                    <?php $qurimage = mysqli_query($db, "SELECT * FROM  order_files where file_type='attachment' and order_id = '$order_id'");
+                                                    <?php $qurimage = mysqli_query($sup_db, "SELECT * FROM  order_files where file_type='attachment' and order_id = '$order_id'");
                                                     while ($rowcimage = mysqli_fetch_array($qurimage)) {
                                                         $filename = $rowcimage['file_name'];
                                                         ?>

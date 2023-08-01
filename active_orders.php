@@ -1,4 +1,4 @@
-<?php
+<?php include("sup_config.php");
 include("config.php");
 if (!isset($_SESSION['user'])) {
     header('location: logout.php');
@@ -132,24 +132,24 @@ if (count($_POST) > 0) {
     <title><?php echo $sitename; ?> |Active Orders</title>
     <!-- Global stylesheets -->
 
-    <link href="../assets/css/core.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/core.css" rel="stylesheet" type="text/css">
     <!-- /global stylesheets -->
     <!-- Core JS files -->
     <!--    <script type="text/javascript" src="../assets/js/libs/jquery-3.6.0.min.js"> </script>-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script type="text/javascript" src="../assets/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../assets/js/plugins/loaders/pace.min.js"></script>
-    <script type="text/javascript" src="../assets/js/plugins/loaders/blockui.min.js"></script>
+    <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/loaders/pace.min.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/loaders/blockui.min.js"></script>
     <!-- Theme JS files -->
-    <script type="text/javascript" src="../assets/js/plugins/tables/datatables/datatables.min.js"></script>
-    <script type="text/javascript" src="../assets/js/core/libraries/jquery_ui/interactions.min.js"></script>
-    <script type="text/javascript" src="../assets/js/plugins/forms/selects/select2.min.js"></script>
-    <script type="text/javascript" src="../assets/js/pages/datatables_basic.js"></script>
-    <script type="text/javascript" src="../assets/js/plugins/forms/selects/select2.min.js"></script>
-    <script type="text/javascript" src="../assets/js/plugins/forms/selects/bootstrap_select.min.js"></script>
-    <script type="text/javascript" src="../assets/js/pages/form_bootstrap_select.js"></script>
-    <script type="text/javascript" src="../assets/js/pages/form_layouts.js"></script>
-    <script type="text/javascript" src="../assets/js/plugins/ui/ripple.min.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/tables/datatables/datatables.min.js"></script>
+    <script type="text/javascript" src="assets/js/core/libraries/jquery_ui/interactions.min.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/forms/selects/select2.min.js"></script>
+    <script type="text/javascript" src="assets/js/pages/datatables_basic.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/forms/selects/select2.min.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/forms/selects/bootstrap_select.min.js"></script>
+    <script type="text/javascript" src="assets/js/pages/form_bootstrap_select.js"></script>
+    <script type="text/javascript" src="assets/js/pages/form_layouts.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/ui/ripple.min.js"></script>
 
     <!--Internal  Datetimepicker-slider css -->
     <link href="<?php echo $siteURL; ?>assets/css/form_css/amazeui.datetimepicker.css" rel="stylesheet">
