@@ -76,6 +76,22 @@
                 <span class="menu-title">Historical Orders</span>
             </a>
         </li>
+        <li class="nav-item menu-items">
+            <a class="nav-link" href="#">
+              <span class="menu-icon">
+                  <i class="fa-sharp fa-solid fa-truck-fast"></i>
+              </span>
+                <span class="menu-title">Shipment Details</span>
+            </a>
+        </li>
+        <li class="nav-item menu-items">
+            <a class="nav-link" href="#">
+              <span class="menu-icon">
+                   <i class="fa-solid fa-file-lines"></i>
+              </span>
+                <span class="menu-title">Invoice Details</span>
+            </a>
+        </li>
 
     </ul>
 </nav>

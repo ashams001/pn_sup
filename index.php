@@ -35,7 +35,7 @@ if (count($_POST) > 0) {
         }
     }
     if ($is_error == 0) {
-        header("Location:active_orders_new.php");
+        header("Location:active_orders.php");
     }
 }
 $tmp = $_SESSION['temp'];
@@ -56,7 +56,6 @@ if ($tmp == "forgotpass_success") {
     <script src="assets/js/vendor.bundle.base.js"></script>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="shortcut icon" href="assets/images/favicon.png" />
-    <script type="text/javascript" src="https://me.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=f_ih03-Npe_Oc5RtvAXPhVWocsz4JbBKQLiLedfRZ0VUIHNxMCRnyYJgP-HMTgk-tgR4MnLQxyywnR5X_4W4q-3_fVo5EHg952pr_ADO3RO46XlQW1wybYI0Y5wS1teDPcj9HBrGRbArwGWLwSUTvUlAD_2F-cn1pRLKHJalJiQ" charset="UTF-8"></script><link rel="stylesheet" crossorigin="anonymous" href="https://me.kis.v2.scr.kaspersky-labs.com/E3E8934C-235A-4B0E-825A-35A08381A191/abn/main.css?attr=aHR0cHM6Ly90aGVtZXdhZ29uLmdpdGh1Yi5pby9jb3JvbmEtZnJlZS1kYXJrLWJvb3RzdHJhcC1hZG1pbi10ZW1wbGF0ZS9wYWdlcy9zYW1wbGVzL2xvZ2luLmh0bWw"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="assets/js/off-canvas.js"></script>
     <script src="assets/js/hoverable-collapse.js"></script>
@@ -88,13 +87,8 @@ if ($tmp == "forgotpass_success") {
                             <div class="form-group">
                                 <label>Password *</label>
                                 <input type="password" name="pass" id="pass" class="form-control" placeholder="Password" required="">
-                                <!--<span toggle="#password-field" onclick="myFunction()" style="margin-left: 319px;margin-top: 10px;"><i class="fa fa-eye"></i> </span>-->
                             </div>
                             <div class="form-group d-flex align-items-center justify-content-between" style="margin-left: 120px;">
-                                <!--  <div class="form-check">
-                                      <label class="form-check-label">
-                                          <input type="checkbox" class="form-check-input"> Remember me </label>
-                                  </div>-->
                                 <a href="forgotpass.php" class="forgot-pass">Forgot password</a>
                             </div>
                             <div class="text-center">
