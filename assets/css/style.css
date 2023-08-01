@@ -9787,7 +9787,7 @@ input[type="button"].btn-block {
     color: #ffffff;
     text-align: left;
     list-style: none;
-    background-color: #191c24;
+    background-color: #e4e9f7;
     background-clip: padding-box;
     border: 1px solid #2c2e33;
     border-radius: 0.25rem; }
@@ -9921,7 +9921,7 @@ input[type="button"].btn-block {
     padding: 0.25rem 1.5rem;
     clear: both;
     font-weight: 400;
-    color: #ffffff;
+    color: #000;
     text-align: inherit;
     white-space: nowrap;
     background-color: transparent;
@@ -9929,7 +9929,7 @@ input[type="button"].btn-block {
 .dropdown-item:hover, .dropdown-item:focus {
     color: #16181b;
     text-decoration: none;
-    background-color: #13151b; }
+    background-color: #e4eaec; }
 .dropdown-item.active, .dropdown-item:active {
     color: #fff;
     text-decoration: none;
@@ -12863,7 +12863,7 @@ button.bg-light:focus {
     background-color: #e6e6e6 !important; }
 
 .bg-dark {
-    background-color: #0d0d0d !important; }
+    background-color: #e2e3e9  !important; }
 
 a.bg-dark:hover, a.bg-dark:focus,
 button.bg-dark:hover,
@@ -13659,7 +13659,10 @@ button.bg-dark:focus {
     width: 75% !important; }
 
 .w-100 {
-    width: 100% !important; }
+    width: 100% !important;
+    color: #000;
+    text-align: center;
+}
 
 .w-auto {
     width: auto !important; }
@@ -15210,7 +15213,7 @@ a.text-dark:hover, a.text-dark:focus {
     color: #ffffff !important; }
 
 .text-muted, .preview-list .preview-item .preview-item-content p .content-category {
-    color: #6c7293 !important; }
+    color: #fff!important; }
 
 .text-black-50 {
     color: rgba(0, 0, 0, 0.5) !important; }
@@ -15761,7 +15764,7 @@ code {
 
 /* Footer */
 .footer {
-    background: #e4eaec;
+    background: #999;
     padding: 20px 1rem;
     transition: all 0.25s ease;
     -moz-transition: all 0.25s ease;
@@ -20534,7 +20537,7 @@ div.tagsinput span.tag a {
     padding: 11px 13px;
     cursor: pointer; }
 .navbar .navbar-menu-wrapper .navbar-nav .nav-item.dropdown .dropdown-menu.navbar-dropdown .dropdown-item:hover {
-    color: #fff; }
+    color: #000; }
 .navbar .navbar-menu-wrapper .navbar-nav .nav-item.dropdown .dropdown-menu.navbar-dropdown .dropdown-item i {
     font-size: 17px; }
 .navbar .navbar-menu-wrapper .navbar-nav .nav-item.dropdown .dropdown-menu.navbar-dropdown .dropdown-item .ellipsis {
@@ -21130,7 +21133,7 @@ div.tagsinput span.tag a {
         width: 100%; } }
 
 .content-wrapper {
-    background: #fff;
+    background: #e4eaec;
     padding: 1.875rem 1.75rem;
     width: 100%;
     -webkit-flex-grow: 1;

@@ -121,6 +121,7 @@ if (count($_POST) > 0) {
         }
     }
 }
+$heading = "Active Orders"
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -161,7 +162,7 @@ if (count($_POST) > 0) {
                                         <tbody>
                                         <?php
                                         $query = sprintf("SELECT * FROM  sup_order  where order_active = 1 order by created_on DESC ;  ");
-                                        $qur = mysqli_query($sup_db, $query);
+                                        $qur = mysqli_query($db, $query);
                                         while ($rowc = mysqli_fetch_array($qur)) {
                                         ?>
                                         <tr>
