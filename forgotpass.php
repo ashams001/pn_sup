@@ -5,12 +5,12 @@ $message = "";
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
-require './vendor/autoload.php';
+require 'vendor/autoload.php';
 
 include("config.php");
 if (count($_POST) > 0) {
     $email = $_POST['email'];
-    $result = mysqli_query($db, "SELECT * FROM sup_account_users WHERE u_email='" . $_POST["email"] . "'");
+    $result = mysqli_query($sup_db, "SELECT * FROM sup_account_users WHERE u_email='" . $_POST["email"] . "'");
     $row = mysqli_fetch_array($result);
     if (is_array($row)) {
         $id = $row['u_id'];
@@ -24,9 +24,9 @@ if (count($_POST) > 0) {
         $msg .= "<br>";
         $msg .= "Click to login the page :-" .$link;
         $sql = "update `sup_account_users` set `u_password` = '$pp' where `u_id`='$id'";
-        mysqli_query($db, $sql);
+        mysqli_query($sup_db, $sql);
         $sql1 = "update `sup_account_users` set u_status = '1' where `u_id`='$id'";
-        mysqli_query($db, $sql1);
+        mysqli_query($sup_db, $sql1);
         $mail = new PHPMailer();
         $mail->isSMTP();
         //$mail->SMTPDebug = SMTP::DEBUG_SERVER;
