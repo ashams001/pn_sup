@@ -8,7 +8,7 @@ $message = date("Y-m-d H:i:s");
 $chicagotime = date("Y-m-d H:i:s");
 $role = $_SESSION['role_id'];
 $user_id = $_SESSION["id"];
-if(count($_POST) > 0) {
+if (count($_POST) > 0) {
     $edit_order_name = $_POST['edit_order_name'];
     $edit_order_id = $_POST['edit_order_id'];
     $edit_order_desc = $_POST['edit_order_desc'];
@@ -19,7 +19,7 @@ if(count($_POST) > 0) {
         $e_order_status = $_POST['e_order_status'];
         $order_id = $_POST['edit_order_id'];
         if (!is_null($order_status_id) && !empty($order_status_id)) {
-            $sql = "update sup_order set order_status_id='$order_status_id', modified_on='$chicagotime', modified_by='$user_id' where  order_id = '$order_id'";
+            $sql = "update sup_order set order_status_id='$order_status_id', modified_on='$chicagotime', modified_by='$user_id' where  sup_order_id = '$order_id'";
             $result1 = mysqli_query($sup_db, $sql);
             if ($result1) {
                 $sql_ses_log = "INSERT INTO `supplier_session_log`(`order_id`, `c_id`, `order_status_id`, `created_by`, `created_on`) VALUES ('$order_id','','$order_status_id','$user_id','$chicagotime')";
@@ -31,7 +31,7 @@ if(count($_POST) > 0) {
                 $import_status_message = 'Error: Please Insert valid data';
             }
         }
-    } else {
+    }else {
         $order_status_id = $_POST['edit_order_status_id'];
         $order_up_status_id = $_POST['edit_order_status'];
         $e_order_status = $_POST['e_order_status'];
@@ -40,7 +40,7 @@ if(count($_POST) > 0) {
         if (null != $order_id) {
             $ship_det = $_POST['edit_ship_details'];
             if (null != $ship_det) {
-                $sql = "update sup_order set order_status_id='$order_up_status_id',shipment_details = '$ship_det' , modified_on = '$message', modified_by='$user_id' where  order_id = '$order_id'";
+                $sql = "update sup_order set order_status_id='$order_up_status_id',shipment_details = '$ship_det' , modified_on = '$message', modified_by='$user_id' where  sup_order_id = '$order_id'";
                 $result1 = mysqli_query($sup_db, $sql);
                 if (!$result1) {
                     $is_updated = false;
@@ -71,7 +71,7 @@ if(count($_POST) > 0) {
                 }
                 if (empty($errors) == true) {
                     $file_name = $order_id . '__' . $file_name;
-                    move_uploaded_file($file_tmp, "./order_invoices/" . $file_name);
+                    move_uploaded_file($file_tmp, "order_invoices/" . $file_name);
                     $sql = "INSERT INTO `order_files`(`order_id`, `file_type`, `file_name`, `created_at`) VALUES ('$order_id' ,'invoice','$file_name','$chicagotime' )";
                     $result1 = mysqli_query($sup_db, $sql);
                 }
@@ -100,7 +100,7 @@ if(count($_POST) > 0) {
                     }
                     if (empty($errors) == true) {
                         $file_name = $order_id . '__' . $file_name;
-                        move_uploaded_file($file_tmp, "./order_invoices/" . $file_name);
+                        move_uploaded_file($file_tmp, "order_invoices/" . $file_name);
                         $sql = "INSERT INTO `order_files`(`order_id`, `file_type`, `file_name`, `created_at`) VALUES ('$order_id' ,'attachment','$file_name','$chicagotime' )";
                         $result1 = mysqli_query($sup_db, $sql);
 
@@ -167,8 +167,9 @@ if(count($_POST) > 0) {
                                         $order_status = $rowctemp["sup_order_status"];
                                     }
                                     ?>
-                                    <form class="forms-sample">
-                                        <input type="hidden" name="hidden_id" id="hidden_id" value="<?php echo $id; ?>">
+                                    <form action="" method="post" id="order_edit" enctype="multipart/form-data">
+                                        <input type="hidden" name="edit_id" id="edit_id" value="<?php echo $ordr_id; ?>">
+                                        <input type="hidden" name="edit_order_status_id" id="edit_order_status_id" value="<?php echo $order_status_id; ?>">
                                         <input hidden id="e_order_status" name="e_order_status"
                                                value="<?php echo $order_status_id; ?>">
                                         <div class="form-group row">
@@ -180,19 +181,19 @@ if(count($_POST) > 0) {
                                         <div class="form-group row">
                                             <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Order Id</label>
                                             <div class="col-sm-9">
-                                                <input type="email" class="form-control" name="edit_order_id" id="edit_order_id" placeholder="Order Id" value="<?php echo $ordr_id; ?>">
+                                                <input type="text" class="form-control" name="edit_order_id" id="edit_order_id" placeholder="Order Id" value="<?php echo $ordr_id; ?>" style="pointer-events: none">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="exampleInputMobile" class="col-sm-3 col-form-label">Order Description</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" name="edit_order_desc" id="edit_order_desc" placeholder="Order Description" value="<?php echo $rowcmain['order_desc']; ?>">
+                                                <input type="text" class="form-control" name="edit_order_desc" id="edit_order_desc" placeholder="Order Description" value="<?php echo $rowcmain['order_desc']; ?>" style="pointer-events: none">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="exampleInputPassword2" class="col-sm-3 col-form-label">Order Current Status</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" value="<?php echo $order_status; ?>" placeholder="Password">
+                                                <input type="text" class="form-control" value="<?php echo $order_status; ?>" placeholder="Password" style="pointer-events: none">
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -246,7 +247,8 @@ if(count($_POST) > 0) {
                                                 <div class="col-sm-9">
                                                        <textarea required id="edit_ship_details" name="edit_ship_details" rows="3"
                                                                  placeholder="Enter Shipment Details..."
-                                                                 class="form-control"></textarea>
+                                                                 class="form-control">
+                                                       </textarea>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -288,9 +290,9 @@ if(count($_POST) > 0) {
                                                     <?php } ?>
                                                 </div>
                                             </div>
-
-                                            <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                                            <button class="btn btn-dark">Cancel</button>
+                                        </div>
+                                        <button type="submit" name="submit_btn" id="submit_btn" class="btn btn-primary mr-2">Submit</button>
+                                        <button class="btn btn-dark">Cancel</button>
                                     </form>
                                 <?php } ?>
                             </div>
