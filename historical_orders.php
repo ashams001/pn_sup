@@ -172,9 +172,11 @@ if (count($_POST) > 0) {
                                                     echo $rowc34["sup_order_status"]; ?>
                                                 </td>
                                                 <td>
-                                                    <a href="view_historical_data.php?id=<?php echo $order_id; ?>" class="btn btn-info btn-xs" style="background-color:#1e73be;" target="_blank"><i class="fa fa-eye"></i></a>
+                                                    <a class="link-opacity-10-hover" href="view_historical_data.php?id=<?php echo $order_id ?>">View</a>
                                                 </td>
-
+                                             <!--   <td>
+                                                    <a href="view_historical_data.php?id=<?php /*echo $order_id; */?>" class="btn btn-info btn-xs" style="background-color:#1e73be;" target="_blank"><i class="fa fa-eye"></i></a>
+                                                </td>-->
                                             </tr>
                                         <?php } ?>
                                         </tbody>
