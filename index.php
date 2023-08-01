@@ -35,7 +35,7 @@ if (count($_POST) > 0) {
         }
     }
     if ($is_error == 0) {
-        header("Location:active_orders_new.php");
+        header("Location:active_orders.php");
     }
 }
 $tmp = $_SESSION['temp'];
