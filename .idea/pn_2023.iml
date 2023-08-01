@@ -5,21 +5,22 @@
       <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/dompdf/dompdf" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/firebase/php-jwt" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/khanamiryan/qrcode-detector-decoder" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/libern/qr-code-reader" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/masterminds/html5" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/paragonie/constant_time_encoding" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/paragonie/random_compat" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/paragonie/sodium_compat" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/phenx/php-font-lib" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/phenx/php-svg-lib" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpmailer/phpmailer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpseclib/phpseclib" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/paragonie/random_compat" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/paragonie/constant_time_encoding" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/paragonie/sodium_compat" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/firebase/php-jwt" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/sabberworm/php-css-parser" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/dompdf/dompdf" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/phenx/php-font-lib" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/khanamiryan/qrcode-detector-decoder" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/phenx/php-svg-lib" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/masterminds/html5" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/libern/qr-code-reader" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="api_pn" />
   </component>
 </module>
