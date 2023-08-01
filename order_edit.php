@@ -8,6 +8,7 @@ $message = date("Y-m-d H:i:s");
 $chicagotime = date("Y-m-d H:i:s");
 $role = $_SESSION['role_id'];
 $user_id = $_SESSION["id"];
+$heading = 'Order Edit';
 if (count($_POST) > 0) {
     $edit_order_name = $_POST['edit_order_name'];
     $edit_order_id = $_POST['edit_order_id'];

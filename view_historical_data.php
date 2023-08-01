@@ -1,4 +1,5 @@
 <?php include("config.php");
+$heading = 'View Historical data';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -91,7 +92,7 @@
                                             <div class="col-sm-9">
                                                 <?php
                                                 $sql2 = sprintf("SELECT * FROM cam_users where users_id = '$created_by' and is_deleted != 1");
-                                                $qur2 = mysqli_query($sup_db, $sql2);
+                                                $qur2 = mysqli_query($db, $sql2);
                                                 $row2 = mysqli_fetch_array($qur2);
                                                 $full_name = $row2['firstname'] . ' ' . $row2['lastname'];
                                                 ?>
@@ -116,12 +117,12 @@
                                             <label for="exampleInputMobile" class="col-sm-3 col-form-label">Attach Invoice : </label>
                                             <div class="col-sm-9">
                                                 <?php
-                                                $sql3 = sprintf("SELECT * FROM order_files where order_id = '$id' and file_type = 'invoice'");
+                                                $sql3 = sprintf("SELECT * FROM order_files where order_id = '$sup_order_id' and file_type = 'invoice'");
                                                 $qur3 = mysqli_query($sup_db, $sql3);
                                                 $row3 = mysqli_fetch_array($qur3);
                                                 $file_name = $row3['file_name'];
                                                 ?>
-                                                <a href="../order_invoices/<?php echo $file_name; ?>" target="_blank">
+                                                <a href="order_invoices/<?php echo $file_name; ?>" target="_blank">
                                                     <input type="text" name="att_voice" class="form-control pn_none" id="att_voice"
                                                            value="<?php echo $file_name; ?>">
                                                 </a>
@@ -131,12 +132,12 @@
                                             <label for="exampleInputMobile" class="col-sm-3 col-form-label">Other Attachments : </label>
                                             <div class="col-sm-9">
                                                 <?php
-                                                $sql4 = sprintf("SELECT * FROM order_files where order_id = '$id' and file_type = 'attachment'");
+                                                $sql4 = sprintf("SELECT * FROM order_files where order_id = '$sup_order_id' and file_type = 'attachment'");
                                                 $qur4 = mysqli_query($sup_db, $sql4);
                                                 $row4 = mysqli_fetch_array($qur4);
                                                 $file_name4 = $row4['file_name'];
                                                 ?>
-                                                <a href="../order_invoices/<?php echo $file_name4; ?>" target="_blank">
+                                                <a href="order_invoices/<?php echo $file_name4; ?>" target="_blank">
                                                     <input type="text" name="att_doc" class="form-control pn_none" id="att_doc"
                                                            value="<?php echo $file_name4; ?>">
                                                 </a>
