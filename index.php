@@ -81,11 +81,11 @@ if ($tmp == "forgotpass_success") {
                         <h3 class="card-title text-left mb-3">Login</h3>
                         <form action="" class="form-validate" method="post">
                             <div class="form-group">
-                                <label>Username or email *</label>
+                                <label  style="margin-left: -269px;"  >Username or email *</label>
                                 <input type="text" name="user" id="user" class="form-control" placeholder="Username / Email" required="required">
                             </div>
                             <div class="form-group">
-                                <label>Password *</label>
+                                <label  style="margin-left: -340px;" >Password *</label>
                                 <input type="password" name="pass" id="pass" class="form-control" placeholder="Password" required="">
                             </div>
                             <div class="form-group d-flex align-items-center justify-content-between" style="margin-left: 120px;">
