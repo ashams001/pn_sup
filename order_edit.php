@@ -27,6 +27,7 @@ if (count($_POST) > 0) {
                 $result_log = mysqli_query($sup_db, $sql_ses_log);
                 $message_stauts_class = 'alert-success';
                 $import_status_message = 'Order status Updated successfully.';
+                header("Location:create_users.php");
             } else {
                 $message_stauts_class = 'alert-danger';
                 $import_status_message = 'Error: Please Insert valid data';
@@ -113,6 +114,7 @@ if (count($_POST) > 0) {
         }
         $message_stauts_class = 'alert-success';
         $import_status_message = 'Order status Updated successfully.';
+        header("Location:create_users.php");
     }
 }
 ?>
