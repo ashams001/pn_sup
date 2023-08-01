@@ -9,6 +9,8 @@ $message = date("Y-m-d H:i:s");
 $chicagotime = date("Y-m-d H:i:s");
 $role = $_SESSION['role_id'];
 $user_id = $_SESSION["id"];
+
+$heading = 'Active Orders';
 ?>
 <!DOCTYPE html>
 <html lang="en">
