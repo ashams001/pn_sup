@@ -32,143 +32,116 @@
                     <div class="col-md-10 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Order Details</h4>
-                                    <?php
-                                    $id = $_GET['id'];
+                                <?php
+                                $id = $_GET['id'];
 
-                                    $sql = sprintf("SELECT * FROM sup_order where order_id = '$id' ");
-                                    $qur = mysqli_query($sup_db, $sql);
-                                    $row = mysqli_fetch_array($qur);
-                                    $order_name = $row['order_name'];
-                                    $order_desc = $row['order_desc'];
-                                    $order_status_id = $row['order_status_id'];
-                                    $created_on = $row['created_on'];
-                                    $created_by = $row['created_by'];
-                                    $shipment_details = $row['shipment_details'];
-                                    $c_id = $row['c_id'];
-                                    ?>
+                                $sql = sprintf("SELECT * FROM sup_order where order_id = '$id' ");
+                                $qur = mysqli_query($sup_db, $sql);
+                                $row = mysqli_fetch_array($qur);
+                                $sup_order_id = $row['sup_order_id'];
+                                $order_name = $row['order_name'];
+                                $order_desc = $row['order_desc'];
+                                $order_status_id = $row['order_status_id'];
+                                $created_on = $row['created_on'];
+                                $created_by = $row['created_by'];
+                                $shipment_details = $row['shipment_details'];
+                                $c_id = $row['c_id'];
+                                ?>
+                                <h4 class="card-title">Order Id - <?php echo $sup_order_id; ?></h4>
                                     <form class="forms-sample">
                                         <input type="hidden" name="hidden_id" id="hidden_id" value="<?php echo $id; ?>">
                                         <div class="form-group row">
-                                            <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Order Name</label>
+                                            <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Supplier Name : </label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" name="edit_order_name" id="edit_order_name" placeholder="Order Name" value="<?php echo $order_name; ?>" style="pointer-events: none">
+                                                <?php
+                                                $sql5 = sprintf("SELECT * FROM sup_account where c_id = '$c_id'");
+                                                $qur5 = mysqli_query($sup_db, $sql5);
+                                                $row5 = mysqli_fetch_array($qur5);
+                                                $c_name = $row5['c_name'];
+                                                ?>
+                                                <input type="text" name="s_name" id="s_name" class="form-control" value="<?php echo $c_name; ?>" style="pointer-events: none">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Order Id</label>
+                                            <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Order Name : </label>
                                             <div class="col-sm-9">
-                                                <input type="email" class="form-control" name="edit_order_id" id="edit_order_id" placeholder="Order Id" value="<?php echo $ordr_id; ?>">
+                                                <input type="text" name="o_name" id="o_name" class="form-control" value="<?php echo $order_name; ?>" style="pointer-events: none">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="exampleInputMobile" class="col-sm-3 col-form-label">Order Description</label>
+                                            <label for="exampleInputMobile" class="col-sm-3 col-form-label">Order Description : </label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" name="edit_order_desc" id="edit_order_desc" placeholder="Order Description" value="<?php echo $rowcmain['order_desc']; ?>">
+                                                <input type="text" name="o_desc" id="o_desc" class="form-control" value="<?php echo $order_desc; ?>" style="pointer-events: none">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="exampleInputPassword2" class="col-sm-3 col-form-label">Order Current Status</label>
+                                            <label for="exampleInputPassword2" class="col-sm-3 col-form-label">Order Status : </label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" value="<?php echo $order_status; ?>" placeholder="Password">
+                                                <?php
+                                                $sql1 = sprintf("SELECT * FROM sup_order_status where sup_order_status_id = '$order_status_id' ");
+                                                $qur1 = mysqli_query($sup_db, $sql1);
+                                                $row1 = mysqli_fetch_array($qur1);
+                                                $sup_order_status = $row1['sup_order_status'];
+                                                ?>
+                                                <input type="text" name="o_status" id="o_status" class="form-control" value="<?php echo $sup_order_status; ?>" style="pointer-events: none">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="exampleInputConfirmPassword2" class="col-sm-3 col-form-label">Order Status</label>
+                                            <label for="exampleInputMobile" class="col-sm-3 col-form-label">Created By : </label>
                                             <div class="col-sm-9">
-                                                <select name="edit_order_status" id="edit_order_status" class="form-control form-select select2" data-bs-placeholder="Select Order Status" onchange = "ShowHideDiv()">
-                                                    <option value="" selected disabled> Select Order Status </option>
-                                                    <?php
-                                                    $os_access = 0;
-                                                    $os_sa_access = 0;
-                                                    if ($role == 3) {
-                                                        $os_access = 1;
-                                                        $sql1 = mysqli_query($sup_db, "SELECT * FROM `sup_order_status`  ORDER BY `sup_order_status_id` ASC ");
-//												$result1 = mysqli_fetch_array($sql1);
-                                                        $selected = "";
-                                                        while ($row1 = mysqli_fetch_array($sql1)) {
-                                                            if ($row1['sup_order_status_id'] == $order_status_id) {
-                                                                $selected = "selected";
-                                                            } else {
-                                                                $selected = "";
-                                                            }
-                                                            if ($row1['sup_sa_os_access'] == 1) {
-                                                                //echo "<option " . $selected . " disabled=\"disabled\" value='" . $row1['sup_order_status_id'] . "' >" . $row1['sup_order_status'] . "</option>";
-                                                            } else {
-                                                                echo "<option " . $selected . " value='" . $row1['sup_order_status_id'] . "'  >" . $row1['sup_order_status'] . "</option>";
-                                                            }
-                                                        }
-                                                    } else if ($role == 2) {
-                                                        $os_sa_access = 1;
-                                                        $sql1 = mysqli_query($sup_db, "SELECT * FROM `sup_order_status`  ORDER BY `sup_order_status_id` ASC ");
-                                                        while ($row1 = mysqli_fetch_array($sql1)) {
-                                                            if ($row1['sup_order_status_id'] == $order_status_id) {
-                                                                $selected = "selected";
-                                                            } else {
-                                                                $selected = "";
-                                                            }
-                                                            if ($row1['sup_os_access'] == 1) {
-                                                                // echo "<option " . $selected . " disabled=\"disabled\" value='" . $row1['sup_order_status_id'] . "'  >" . $row1['sup_order_status'] . "</option>";
-                                                            } else {
-                                                                echo "<option " . $selected . " value='" . $row1['sup_order_status_id'] . "'  >" . $row1['sup_order_status'] . "</option>";
-                                                            }
-                                                        }
-                                                    }
-                                                    ?>
-                                                </select>
+                                                <?php
+                                                $sql2 = sprintf("SELECT * FROM cam_users where users_id = '$created_by' and is_deleted != 1");
+                                                $qur2 = mysqli_query($sup_db, $sql2);
+                                                $row2 = mysqli_fetch_array($qur2);
+                                                $full_name = $row2['firstname'] . ' ' . $row2['lastname'];
+                                                ?>
+                                                <input type="text" name="c_by" id="c_by" class="form-control" value="<?php echo $full_name; ?>" style="pointer-events: none">
                                             </div>
                                         </div>
-                                        <div id="dvPassport" style="display: none">
-                                            <div class="form-group row">
-                                                <label for="exampleInputPassword2" class="col-sm-3 col-form-label">Shipment Details</label>
-                                                <div class="col-sm-9">
-                                                       <textarea required id="edit_ship_details" name="edit_ship_details" rows="3"
-                                                                 placeholder="Enter Shipment Details..."
-                                                                 class="form-control"></textarea>
-                                                </div>
+                                        <div class="form-group row">
+                                            <label for="exampleInputMobile" class="col-sm-3 col-form-label">Created On : </label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="c_date" id="c_date" class="form-control" value="<?php echo $created_on; ?>" style="pointer-events: none">
                                             </div>
-                                            <div class="form-group row">
-                                                <label for="exampleInputPassword2" class="col-sm-3 col-form-label">Attach Invoice</label>
-                                                <div class="col-sm-9">
-                                                    <input type="file" name="invoice" id="invoice" class="form-control">
-                                                    <?php $qurimage = mysqli_query($sup_db, "SELECT * FROM  order_files where file_type='invoice' and order_id = '$order_id'");
-                                                    while ($rowcimage = mysqli_fetch_array($qurimage)) {
-                                                        $filename = $rowcimage['file_name'];
-                                                        ?>
-                                                        <div class="input-group col-xs-12">
-                                                            <a target="_blank" href='./order_invoices/<?php echo $filename; ?>'><?php echo $filename; ?></a>
-                                                            <button id="file_del" onClick="file_del('$order_id','$filename')">
-                                                                <input type="hidden" name="order_id" id="order_id" value="<?php echo $order_id; ?>">
-                                                                <input type="hidden" name="file_name" id="file_name" value="<?php echo $filename; ?>">
-                                                                <input type="hidden" name="file_type" id="file_type" value="invoice">
-                                                                <span id="close_bt">&times;</span></button>
-                                                        </div>
-                                                    <?php } ?>
-                                                </div>
+                                        </div>
+                                        <h4 style="margin-top: 20px;margin-left: 10px;">Shipment Details : </h4>
+                                        <hr>
+                                        <div class="form-group row">
+                                            <label for="exampleInputMobile" class="col-sm-3 col-form-label">Shipment Name : </label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="ship_name" id="ship_name" class="form-control" value="<?php echo $shipment_details; ?>" style="pointer-events: none">
                                             </div>
-                                            <div class="form-group row">
-                                                <label for="exampleInputPassword2" class="col-sm-3 col-form-label">Other Attachments</label>
-                                                <div class="col-sm-9">
-                                                    <input type="file" name="attachments[]" id="attachments"
-                                                           class="form-control" multiple>
-                                                    <?php $qurimage = mysqli_query($sup_db, "SELECT * FROM  order_files where file_type='attachment' and order_id = '$order_id'");
-                                                    while ($rowcimage = mysqli_fetch_array($qurimage)) {
-                                                        $filename = $rowcimage['file_name'];
-                                                        ?>
-                                                        <div class="input-group col-xs-12">
-                                                            <a target="_blank" href='./order_invoices/<?php echo $filename; ?>'><?php echo $filename; ?></a>
-                                                            <button id="file_del" onClick="file_del('$order_id','$filename')">
-                                                                <input type="hidden" name="order_id" id="order_id" value="<?php echo $order_id; ?>">
-                                                                <input type="hidden" name="file_name" id="file_name" value="<?php echo $filename; ?>">
-                                                                <input type="hidden" name="file_type" id="file_type" value="attachment">
-                                                                <span id="close_bt">&times;</span></button>
-                                                        </div>
-                                                    <?php } ?>
-                                                </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="exampleInputMobile" class="col-sm-3 col-form-label">Attach Invoice : </label>
+                                            <div class="col-sm-9">
+                                                <?php
+                                                $sql3 = sprintf("SELECT * FROM order_files where order_id = '$id' and file_type = 'invoice'");
+                                                $qur3 = mysqli_query($sup_db, $sql3);
+                                                $row3 = mysqli_fetch_array($qur3);
+                                                $file_name = $row3['file_name'];
+                                                ?>
+                                                <a href="../order_invoices/<?php echo $file_name; ?>" target="_blank">
+                                                    <input type="text" name="att_voice" class="form-control pn_none" id="att_voice"
+                                                           value="<?php echo $file_name; ?>">
+                                                </a>
                                             </div>
-
-                                            <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                                            <button class="btn btn-dark">Cancel</button>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="exampleInputMobile" class="col-sm-3 col-form-label">Other Attachments : </label>
+                                            <div class="col-sm-9">
+                                                <?php
+                                                $sql4 = sprintf("SELECT * FROM order_files where order_id = '$id' and file_type = 'attachment'");
+                                                $qur4 = mysqli_query($sup_db, $sql4);
+                                                $row4 = mysqli_fetch_array($qur4);
+                                                $file_name4 = $row4['file_name'];
+                                                ?>
+                                                <a href="../order_invoices/<?php echo $file_name4; ?>" target="_blank">
+                                                    <input type="text" name="att_doc" class="form-control pn_none" id="att_doc"
+                                                           value="<?php echo $file_name4; ?>">
+                                                </a>
+                                            </div>
+                                        </div>
                                     </form>
                             </div>
                         </div>
