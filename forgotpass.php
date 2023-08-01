@@ -6,6 +6,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 require './vendor/autoload.php';
+
 include("config.php");
 if (count($_POST) > 0) {
     $email = $_POST['email'];
@@ -70,65 +71,58 @@ if (count($_POST) > 0) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?php echo $sitename; ?> |Forgot Password</title>
-    <link rel="shortcut icon" href="assets/images/favicon.jpg">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
-    <link href="assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
-    <link href="assets/css/bootstrap.css" rel="stylesheet" type="text/css">
-    <link href="assets/css/core.css" rel="stylesheet" type="text/css">
-    <link href="assets/css/components.css" rel="stylesheet" type="text/css">
-    <link href="assets/css/colors.css" rel="stylesheet" type="text/css">
-    <link href="assets/css/style_main.css" rel="stylesheet" type="text/css">
-    <script type="text/javascript" src="assets/js/plugins/loaders/pace.min.js"></script>
-    <script type="text/javascript" src="assets/js/core/libraries/jquery.min.js"></script>
-    <script type="text/javascript" src="assets/js/core/libraries/bootstrap.min.js"></script>
-    <script type="text/javascript" src="assets/js/plugins/loaders/blockui.min.js"></script>
-    <script type="text/javascript" src="assets/js/plugins/ui/ripple.min.js"></script>
-    <script type="text/javascript" src="assets/js/plugins/notifications/sweet_alert.min.js"></script>
-    <script type="text/javascript" src="assets/js/plugins/forms/selects/bootstrap_select.min.js"></script>
-    <script type="text/javascript" src="assets/js/pages/form_bootstrap_select.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .form-gap {
+            padding-top: 70px;
+        }
+        </style>
 </head>
-<body class="login-container login-cover">
-<!-- Page container -->
-<div class="page-container">
-    <!-- Page content -->
-    <div class="page-content">
-        <!-- Main content -->
-        <div class="content-wrapper">
-            <!-- Content area -->
-            <div style="float:right;padding: 20px;background-color: #333c;margin-right: 50px;"><a href="<?php echo $siteURL;?>" style="background-color: #1e73be;" class="btn btn-primary legitRipple" role="button">Login<span class="legitRipple-ripple" style="left: 70.8955%; top: 84.2105%; transform: translate3d(-50%, -50%, 0px); transition-duration: 0.2s, 0.5s; width: 207.886%;"></span></a></div>
 
-            <form action="" name="form" id="form" class="form-validate" method="post">
-                <div class="panel panel-body login-form" style="background-color:#333c;color:white;">
-                    <?php
-                    if (!empty($import_status_message)) {
-                        echo '<div class="alert ' . $message_stauts_class . '">' . $import_status_message . '</div>';
-                    }
-                    ?>
-                    <div class="text-center" >
-                        <div class="icon-object border-slate-300 text-slate-300" style="background-color:white;"><img src="assets/img/site_logo.png" alt=""  style="width:100px;"/></div>
-                        <h5 class="content-group">Forgot Password</h5>
-                    </div>
-                    <div class="form-group has-feedback has-feedback-left">
-                        <input type="email" class="form-control" placeholder="Enter your Email" name="email" id="email" required="required" style="color:white;">
-                        <div class="form-control-feedback">
-                            <i class="icon-user text-muted"></i>
+    <div class="form-gap"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="text-center">
+                            <h3><i class="fa fa-lock fa-4x"></i></h3>
+                            <h2 class="text-center">Forgot Password?</h2>
+                            <p>You can reset your password here.</p>
+                            <div class="panel-body">
+
+                                <form id="form"  role="form"  class="form-validate" method="post">
+                                    <?php
+                                    if (!empty($import_status_message)) {
+                                        echo '<div class="alert ' . $message_stauts_class . '">' . $import_status_message . '</div>';
+                                    }
+                                    ?>
+
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope color-blue"></i></span>
+                                            <input id="email" name="email" placeholder="email address" class="form-control"  type="email">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input name="recover-submit" class="btn btn-lg btn-primary btn-block" value="Reset Password" type="submit">
+                                    </div>
+
+                                    <p>Note: If you don't have email kindly contact your admin to change password</p>
+
+
+                                </form>
+
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <button type="submit" name="log" class="btn bg-pink-200 btn-block" style="background-color:#1e73be;">Send Password<i class="icon-arrow-right14 position-right"></i></button>
-                    </div>
-                    <div class="text-center" >
-                        <h8 class="content-group"><u>Note:</u> If you don't have email kindly contact your admin to change password</h8>
-                    </div>
                 </div>
-            </form>
-            <!-- /content area -->
+            </div>
         </div>
-        <!-- /main content -->
     </div>
-    <!-- /page content -->
-</div>
-<!-- /page container -->
+
+
 <script>
     window.onload = function () {
         history.replaceState("", "", "<?php echo $scriptName; ?>forgotpass.php");
@@ -143,5 +137,5 @@ if (count($_POST) > 0) {
         });
     });
 </script>
-</body>
+
 </html>
