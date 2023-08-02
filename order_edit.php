@@ -126,7 +126,12 @@ if (count($_POST) > 0) {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>PN</title>
     <!-- plugins:css -->
-
+</head>
+<style>
+    .collapse.in {
+        display: block!important;
+    }
+</style>
 <body>
 <div class="container-scroller">
     <?php include ('admin_menu.php'); ?>
@@ -256,7 +261,7 @@ if (count($_POST) > 0) {
                                             </div>
                                             <div class="form-group row">
                                                 <label for="exampleInputPassword2" class="col-sm-3 col-form-label">Attach Invoice</label>
-                                                <div class="col-sm-9">
+                                                <div class="col-sm-4">
                                                     <input type="file" name="invoice" id="invoice" class="form-control">
                                                     <?php $qurimage = mysqli_query($sup_db, "SELECT * FROM  order_files where file_type='invoice' and order_id = '$order_id'");
                                                     while ($rowcimage = mysqli_fetch_array($qurimage)) {
@@ -272,10 +277,22 @@ if (count($_POST) > 0) {
                                                         </div>
                                                     <?php } ?>
                                                 </div>
+                                                <div class="col-sm-4">
+                                                    <input type="text" class="form-control" placeholder="Amount">
+
+                                                </div>
+
+                                                <div class="col-sm-1">
+                                                    <button type="button" class="btn btn-primary btn-rounded btn-icon" name="add_more" id="add_more"><i class="fa fa-plus"></i></button>
+                                                </div>
+                                            </div>
+                                            <input type="hidden" id="collapse_id" value="1">
+                                            <div class="query_rows">
+
                                             </div>
                                             <div class="form-group row">
                                                 <label for="exampleInputPassword2" class="col-sm-3 col-form-label">Other Attachments</label>
-                                                <div class="col-sm-9">
+                                                <div class="col-sm-5">
                                                     <input type="file" name="attachments[]" id="attachments"
                                                            class="form-control" multiple>
                                                     <?php $qurimage = mysqli_query($sup_db, "SELECT * FROM  order_files where file_type='attachment' and order_id = '$order_id'");
@@ -291,6 +308,10 @@ if (count($_POST) > 0) {
                                                                 <span id="close_bt">&times;</span></button>
                                                         </div>
                                                     <?php } ?>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <input type="text" class="form-control" placeholder="Amount">
+
                                                 </div>
                                             </div>
                                         </div>
@@ -329,6 +350,42 @@ if (count($_POST) > 0) {
         var dvPassport = document.getElementById("dvPassport");
         dvPassport.style.display = ddlPassport.value == "4" ? "block" : "none";
     }
+</script>
+<script>
+    $(document).on("click","#add_more",function() {
+        var i = $('#collapse_id').val();
+        var pa = $('#part_number').val();
+
+        var collapse_id = "collapse"+i;
+        var count = i;
+
+        $("#click_id").val(count);
+        var html_content = '<div id="'+collapse_id+'" class="collapse in"><div class="form-group row part_rem_' + count + '" id="section_' + count + '"><label for="exampleInputPassword2" class="col-sm-3 col-form-label">Attach Invoice</label><div class="col-sm-4"> <input type="file" name="invoice" id="invoice_extra' + count + '" class="form-control"></div><div class="col-sm-4"><input type="text" class="form-control" id="amount_extra_' + count + '" placeholder="Amount"></div><button type="button" name="remove_btn" class="btn btn-danger btn-rounded btn-icon remove_btn" id="btn_id_' + count + '" data-id="' + count + '" fdprocessedid="7w26pm"><i class="fa fa-trash"></i></button></a></div></div></div></div>';
+        $( ".query_rows" ).append( html_content );
+        var part_count = count - 1;
+        var pa_ex = $('#part_number_extra' + part_count).val();
+        $.ajax({
+            url: "retrive_part_number.php?part_number=" + pa + "&part_number_extra=" + pa_ex,
+            dataType: 'Json',
+            data: {},
+            success: function (data) {
+                // $('select[name="item_name[]"]').empty();
+                // $('#'+select_id).append('<option value="" selected disabled>Select Your Item</option>');
+                $.each(data, function (key, value) {
+                    $('#part_number_extra' + count).append('<option value="' + value.id + '">' + value.name + '</option>');
+                });
+            }
+        });
+        document.getElementById("collapse_id").value = parseInt(i) + 1;
+    });
+
+    $(document).on("click",".remove_btn",function() {
+
+        var row_id = $(this).attr("data-id");
+        $(".part_rem_"+row_id).remove();
+
+    });
+
 </script>
 <!-- End custom js for this page -->
 </body>
