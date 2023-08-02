@@ -91,225 +91,98 @@ if (count($_POST) > 0) {
         }
     }
 }
+$heading = 'Profile';
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Required meta tags -->
     <meta charset="utf-8">
-    <title><?php echo $sitename; ?> | Profile</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
-    <link href="<?php echo $siteURL; ?>assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo $siteURL; ?>assets/css/bootstrap.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo $siteURL; ?>assets/css/core.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo $siteURL; ?>assets/css/components.css" rel="stylesheet" type="text/css">
-
-    <!-- Core JS files -->
-    <script type="text/javascript" src="<?php echo $siteURL; ?>assets/js/plugins/loaders/pace.min.js"></script>
-    <script type="text/javascript" src="<?php echo $siteURL; ?>assets/js/libs/jquery-3.6.0.min.js"> </script>
-
-    <!-- /core JS files -->
-
-    <style type="text/css">
-        body{
-            margin-top:20px;
-            color: #1a202c;
-            text-align: left;
-            background-color: #e2e8f0;
-            font-size: medium;
-        }
-        .main-body {
-            padding: 15px;
-        }
-        .card {
-            box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
-        }
-
-        .card {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            min-width: 0;
-            word-wrap: break-word;
-            background-color: #fff;
-            background-clip: border-box;
-            border: 0 solid rgba(0,0,0,.125);
-            border-radius: .25rem;
-        }
-
-        .card-body {
-            flex: 1 1 auto;
-            min-height: 1px;
-            padding: 2rem!important;
-        }
-
-        .gutters-sm {
-            margin-right: -8px;
-            margin-left: -8px;
-        }
-
-        .gutters-sm>.col, .gutters-sm>[class*=col-] {
-            padding-right: 8px;
-            padding-left: 8px;
-        }
-        .mb-3, .my-3 {
-            margin-bottom: 1rem!important;
-        }
-
-        .col-md-4 {
-            width: 20.333333%;
-        }
-        #ic .menu ul{
-            margin-top: -2.5rem;
-        }
-        .header{
-            margin-top: -20px;
-        }
-        input.form-control {
-            border: solid 1px #ddd;
-            padding: 12px;
-        }
-
-    </style>
-</head>
-<?php
-$cam_page_header = "Profile";
-?>
-<!-- /main navbar -->
-<!-- Main navigation -->
-<?php if(($is_tab_login || $is_cell_login)){include("tab_menu.php");}else{
-    include("admin_menu.php");}  ?>
-<body>
-<div class="container">
-    <?php
-    if (!empty($import_status_message)) {
-        echo '<div class="alert ' . $message_stauts_class . '">' . $import_status_message . '</div><br/>';
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>PN</title>
+    <!-- plugins:css -->
+<style>
+    .page-body-wrapper{
+        width: 100%!important;
     }
-    ?>
-    <div class="main-body">
-        <?php
-        $query = sprintf("SELECT * FROM sup_account_users where user_name = '$usr'");
-        $qur = mysqli_query($db, $query);
-        while ($rowc = mysqli_fetch_array($qur)) {
-            ?>
-            <div class="row gutters-sm">
-                <div class="col-md-4 mb-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="d-flex flex-column align-items-center text-center" style="display: block!important;">
-                                <img src="user_images/<?php echo $rowc["u_profile_pic"]; ?>" alt="" style="height: 180px;width: 189px;">
-                                <div class="mt-3" style="margin-top: 3rem!important;margin-left: 80px;">
-
-
-                                </div>
-
+    .navbar{
+        left: 0!important;
+    }
+    </style>
+<body>
+<div class="container-scroller">
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+        <!-- partial:partials/_navbar.html -->
+        <?php include ('header.php'); ?>
+        <!-- partial -->
+        <div class="main-panel">
+            <div class="content-wrapper">
+                <div class="row">
+                    <div class="col-md-10 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <?php
+                                $query = sprintf("SELECT * FROM sup_account_users where user_name = '$usr'");
+                                $qur = mysqli_query($sup_db, $query);
+                                while ($rowc = mysqli_fetch_array($qur)) {
+                                ?>
+                                <form class="forms-sample">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">User Name : </label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="username" value="<?php echo $rowc["user_name"]; ?>" class="form-control" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">First Name : </label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="firstname" value="<?php echo $rowc["u_firstname"]; ?>" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Last Name : </label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="lastname" value="<?php echo $rowc["u_lastname"]; ?>" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Mobile : </label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="mobile" value="<?php echo $rowc["u_mobile"]; ?>" class="form-control" >
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Email : </label>
+                                        <div class="col-sm-9">
+                                            <input type="email" name="email" value="<?php echo $rowc["u_email"]; ?>" class="form-control" >
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Password : </label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="password" value="<?php echo $rowc["u_password"]; ?>" class="form-control" >
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Upload New Image : </label>
+                                        <div class="col-sm-9">
+                                            <input type="file" name="file" id="file" class="form-control" >
+                                        </div>
+                                    </div>
+                                </form>
+                                <?php } ?>
                             </div>
                         </div>
-
-                    </div>
-                    <div class="text-left" style="margin-top: 10px;">
-                        <a href="<?php echo $siteURL; ?>change_pass.php"> <button type="submit" class="btn btn-primary" style="background-color: #191e3a;">Change Password</button></a>
-                    </div>
-                    <div class="text-left" style="margin-top: 10px;">
-                        <a href="<?php echo $siteURL; ?>change_pin.php"> <button type="submit" class="btn btn-primary" style="background-color: #191e3a;">Change Password Pin</button></a>
-                    </div>
-                </div>
-                <div class="col-md-8">
-                    <div class="card mb-3">
-                        <form action="" id="user_form" class="form-horizontal" method="post" enctype="multipart/form-data">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0">User Name</h6>
-                                    </div>
-                                    <div class="col-sm-9 text-secondary">
-                                        <input type="text" name="username" value="<?php echo $rowc["user_name"]; ?>" class="form-control" disabled>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0">First Name</h6>
-                                    </div>
-                                    <div class="col-sm-9 text-secondary">
-                                        <input type="text" name="firstname" value="<?php echo $rowc["u_firstname"]; ?>" class="form-control" required>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0">Last Name</h6>
-                                    </div>
-                                    <div class="col-sm-9 text-secondary">
-                                        <input type="text" name="lastname" value="<?php echo $rowc["u_lastname"]; ?>" class="form-control">
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0">Contact Number</h6>
-                                    </div>
-                                    <div class="col-sm-9 text-secondary">
-                                        <input type="text" name="mobile" value="<?php echo $rowc["u_mobile"]; ?>" class="form-control" >
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0">Email</h6>
-                                    </div>
-                                    <div class="col-sm-9 text-secondary">
-                                        <input type="email" name="email" value="<?php echo $rowc["u_email"]; ?>" class="form-control" >
-                                    </div>
-                                </div>
-                                <hr>
-                                <?php
-                                $qur1 = mysqli_query($db, "SELECT role_name FROM cam_role where role_id = '$rowc[role]' ");
-                                $rowc1 = mysqli_fetch_array($qur1);
-                                $rl = $rowc1["role_name"];
-                                ?>
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0">Role</h6>
-                                    </div>
-                                    <div class="col-sm-9 text-secondary">
-                                        <input type="text" name="role" value="<?php echo $rl; ?>" class="form-control" disabled>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0">Upload New Image</h6>
-                                    </div>
-                                    <div class="col-sm-9 text-secondary">
-                                        <input type="file" name="file" id="file" />
-                                        <input type="hidden" name="rotation" id="rotation" value="0"/>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-9 text-secondary" >
-                                        <div class="img-preview" style="display: none;">
-                                            <button type="button" id="rleft">Left</button>
-                                            <button type="button" id="rright">Right</button><br/><br/>
-                                        </div>
-                                        <div id="imgPreview"></div>
-
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <button type="submit" class="btn btn-info ">Update</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
                     </div>
                 </div>
             </div>
-        <?php } ?>
+        </div>
+        <!-- main-panel ends -->
     </div>
+    <!-- page-body-wrapper ends -->
 </div>
+<!-- container-scroller -->
 <script>
     function filePreview(input) {
         if (input.files && input.files[0]) {
@@ -355,3 +228,4 @@ $cam_page_header = "Profile";
 </script>
 </body>
 </html>
+
