@@ -60,19 +60,19 @@ $heading = 'View Historical data';
                                                 $row5 = mysqli_fetch_array($qur5);
                                                 $c_name = $row5['c_name'];
                                                 ?>
-                                                <input type="text" name="s_name" id="s_name" class="form-control" value="<?php echo $c_name; ?>" style="pointer-events: none">
+                                                <input type="text" name="s_name" id="s_name" class="form-control" value="<?php echo $c_name; ?>" style="pointer-events: none;background: #d8dbe1;">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Order Name : </label>
                                             <div class="col-sm-9">
-                                                <input type="text" name="o_name" id="o_name" class="form-control" value="<?php echo $order_name; ?>" style="pointer-events: none">
+                                                <input type="text" name="o_name" id="o_name" class="form-control" value="<?php echo $order_name; ?>" style="pointer-events: none;background: #d8dbe1;">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="exampleInputMobile" class="col-sm-3 col-form-label">Order Description : </label>
                                             <div class="col-sm-9">
-                                                <input type="text" name="o_desc" id="o_desc" class="form-control" value="<?php echo $order_desc; ?>" style="pointer-events: none">
+                                                <input type="text" name="o_desc" id="o_desc" class="form-control" value="<?php echo $order_desc; ?>" style="pointer-events: none;background: #d8dbe1;">
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -84,7 +84,7 @@ $heading = 'View Historical data';
                                                 $row1 = mysqli_fetch_array($qur1);
                                                 $sup_order_status = $row1['sup_order_status'];
                                                 ?>
-                                                <input type="text" name="o_status" id="o_status" class="form-control" value="<?php echo $sup_order_status; ?>" style="pointer-events: none">
+                                                <input type="text" name="o_status" id="o_status" class="form-control" value="<?php echo $sup_order_status; ?>" style="pointer-events: none;background: #d8dbe1;">
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -96,13 +96,13 @@ $heading = 'View Historical data';
                                                 $row2 = mysqli_fetch_array($qur2);
                                                 $full_name = $row2['firstname'] . ' ' . $row2['lastname'];
                                                 ?>
-                                                <input type="text" name="c_by" id="c_by" class="form-control" value="<?php echo $full_name; ?>" style="pointer-events: none">
+                                                <input type="text" name="c_by" id="c_by" class="form-control" value="<?php echo $full_name; ?>" style="pointer-events: none;background: #d8dbe1;">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="exampleInputMobile" class="col-sm-3 col-form-label">Created On : </label>
                                             <div class="col-sm-9">
-                                                <input type="text" name="c_date" id="c_date" class="form-control" value="<?php echo $created_on; ?>" style="pointer-events: none">
+                                                <input type="text" name="c_date" id="c_date" class="form-control" value="<?php echo $created_on; ?>" style="pointer-events: none;background: #d8dbe1;">
                                             </div>
                                         </div>
                                         <h4 style="margin-top: 20px;margin-left: 10px;">Shipment Details : </h4>
@@ -110,7 +110,7 @@ $heading = 'View Historical data';
                                         <div class="form-group row">
                                             <label for="exampleInputMobile" class="col-sm-3 col-form-label">Shipment Name : </label>
                                             <div class="col-sm-9">
-                                                <input type="text" name="ship_name" id="ship_name" class="form-control" value="<?php echo $shipment_details; ?>" style="pointer-events: none">
+                                                <input type="text" name="ship_name" id="ship_name" class="form-control" value="<?php echo $shipment_details; ?>" style="pointer-events: none;background: #d8dbe1;">
                                             </div>
                                         </div>
                                         <div class="form-group row">

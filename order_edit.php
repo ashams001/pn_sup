@@ -27,7 +27,7 @@ if (count($_POST) > 0) {
                 $result_log = mysqli_query($sup_db, $sql_ses_log);
                 $message_stauts_class = 'alert-success';
                 $import_status_message = 'Order status Updated successfully.';
-                header("Location:create_users.php");
+                header("Location:active_orders.php");
             } else {
                 $message_stauts_class = 'alert-danger';
                 $import_status_message = 'Error: Please Insert valid data';
@@ -114,7 +114,7 @@ if (count($_POST) > 0) {
         }
         $message_stauts_class = 'alert-success';
         $import_status_message = 'Order status Updated successfully.';
-        header("Location:create_users.php");
+        header("Location:active_orders.php");
     }
 }
 ?>
@@ -178,25 +178,25 @@ if (count($_POST) > 0) {
                                         <div class="form-group row">
                                             <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Order Name</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" name="edit_order_name" id="edit_order_name" placeholder="Order Name" value="<?php echo $order_name; ?>" style="pointer-events: none">
+                                                <input type="text" class="form-control" name="edit_order_name" id="edit_order_name" placeholder="Order Name" value="<?php echo $order_name; ?>" style="pointer-events: none;background: #d8dbe1;">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Order Id</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" name="edit_order_id" id="edit_order_id" placeholder="Order Id" value="<?php echo $ordr_id; ?>" style="pointer-events: none">
+                                                <input type="text" class="form-control" name="edit_order_id" id="edit_order_id" placeholder="Order Id" value="<?php echo $ordr_id; ?>" style="pointer-events: none;background: #d8dbe1;">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="exampleInputMobile" class="col-sm-3 col-form-label">Order Description</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" name="edit_order_desc" id="edit_order_desc" placeholder="Order Description" value="<?php echo $rowcmain['order_desc']; ?>" style="pointer-events: none">
+                                                <input type="text" class="form-control" name="edit_order_desc" id="edit_order_desc" placeholder="Order Description" value="<?php echo $rowcmain['order_desc']; ?>" style="pointer-events: none;background: #d8dbe1;">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="exampleInputPassword2" class="col-sm-3 col-form-label">Order Current Status</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" value="<?php echo $order_status; ?>" placeholder="Password" style="pointer-events: none">
+                                                <input type="text" class="form-control" value="<?php echo $order_status; ?>" placeholder="Password" style="pointer-events: none;background: #d8dbe1;">
                                             </div>
                                         </div>
                                         <div class="form-group row">
