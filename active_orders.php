@@ -42,6 +42,7 @@ $heading = 'Active Orders';
 
                                         <tr>
                                             <th> S.No </th>
+                                            <th> Order No </th>
                                             <th> Order Desc </th>
                                             <th> Ordered On </th>
                                             <th> Order Status </th>
@@ -58,6 +59,9 @@ $heading = 'Active Orders';
 
                                                 <td>
                                                     <span class="pl-2"><?php echo ++$counter; ?></span>
+                                                </td>
+                                                <td>
+                                                    <span class="pl-2"><?php echo $rowc['sup_order_id']; ?></span>
                                                 </td>
                                                 <?php $order_id = $rowc['order_id'];
                                                 $order_status_id = $rowc['order_status_id'];

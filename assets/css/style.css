@@ -20938,7 +20938,7 @@ div.tagsinput span.tag a {
 .sidebar .nav .menu-items:nth-child(5n+4) .nav-link .menu-icon i {
     color: #ffab00; }
 .sidebar .nav .menu-items:nth-child(5n+5) .nav-link .menu-icon i {
-    color: #fc424a; }
+    color: #000!important; }
 
 /* style for off-canvas menu*/
 @media screen and (max-width: 991px) {
