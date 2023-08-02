@@ -108,18 +108,36 @@ $heading = 'Profile';
     .navbar{
         left: 0!important;
     }
+    .img-lg {
+        width: 158px!important;
+        height: 158px!important;
+        float: right;
+    }
+    .navbar .navbar-menu-wrapper .navbar-toggler:not(.navbar-toggler-right) {
+        font-size: 0.875rem;
+        display: none;
+    }
+    .navbar .navbar-brand-wrapper {
+        width: 130px!important;
+    }
     </style>
 <body>
 <div class="container-scroller">
     <!-- partial -->
     <div class="container-fluid page-body-wrapper">
         <!-- partial:partials/_navbar.html -->
-        <?php include ('header.php'); ?>
+
+        <?php include ('s_header.php'); ?>
         <!-- partial -->
         <div class="main-panel">
             <div class="content-wrapper">
                 <div class="row">
-                    <div class="col-md-10 grid-margin stretch-card">
+                    <div class="col-md-2 grid-margin stretch-card">
+                    </div>
+                    <div class="col-md-2 grid-margin">
+                         <img class="img-lg rounded-circle" src="user_images/user.png" alt="">
+                    </div>
+                    <div class="col-md-6 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
                                 <?php

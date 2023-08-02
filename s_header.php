@@ -17,18 +17,24 @@
 <!-- Layout styles -->
 <link rel="stylesheet" href="assets/css/style.css">
 <!-- End layout styles -->
-<link rel="shortcut icon" href="https://themewagon.github.io/corona-free-dark-bootstrap-admin-template/assets/images/favicon.png" />
+<style>
+    img.site-img {
+        height: 50px;
+        width: 140px;
+    }
+</style>
 <nav class="navbar p-0 fixed-top d-flex flex-row">
-    <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo-mini" href="#"><img src="assets/images/site_logo.png" alt="logo" /></a>
-    </div>
+
     <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
             <i class="fa-sharp fa-solid fa-caret-right"></i>
         </button>
         <ul class="navbar-nav w-100">
+            <li class="nav-item">
+                <a class="navbar-brand brand-logo-desk" href="#"><img class="site-img" src="assets/images/site_logo.png" alt="logo" /></a>
+            </li>
             <li class="nav-item w-100">
-              <h2><?php echo $heading; ?></h2>
+                <h2><?php echo $heading; ?></h2>
             </li>
         </ul>
         <ul class="navbar-nav navbar-nav-right">
@@ -71,9 +77,9 @@
                     </a>
                     <a class="dropdown-item preview-item" href="<?php echo $siteURL; ?>logout.php">
                         <div class="preview-thumbnail">
-                        <div class="preview-icon bg-dark rounded-circle">
-                            <i class="fa fa-right-from-bracket"></i>
-                        </div>
+                            <div class="preview-icon bg-dark rounded-circle">
+                                <i class="fa fa-right-from-bracket"></i>
+                            </div>
                         </div>
                         <div class="preview-item-content">
                             <p class="preview-subject mb-1">Log out</p>
