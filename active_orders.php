@@ -51,7 +51,7 @@ $heading = 'Active Orders';
                                         </thead>
                                         <tbody>
                                         <?php
-                                        $query = sprintf("SELECT * FROM  sup_order  where order_active = 1 order by created_on DESC ;  ");
+                                        $query = sprintf("SELECT * FROM  sup_order  where order_active = 1 and c_id = '$user_id' order by created_on DESC");
                                         $qur = mysqli_query($sup_db, $query);
                                         while ($rowc = mysqli_fetch_array($qur)) {
                                             ?>
