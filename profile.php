@@ -64,7 +64,7 @@ if (count($_POST) > 0) {
         }
         if ($upload == 1) {
             $sql = "update sup_account_users set u_profile_pic='$fileName',u_firstname='$_POST[firstname]',u_lastname='$_POST[lastname]',u_mobile='$_POST[mobile]',u_email='$_POST[email]' where user_name='$usr'";
-            $result1 = mysqli_query($db, $sql);
+            $result1 = mysqli_query($sup_db, $sql);
             if ($result1) {
                 $_SESSION["fullname"] = $_POST['firstname'] . "&nbsp;" . $_POST['lastname'];
                 $message_stauts_class = 'alert-success';
@@ -80,7 +80,7 @@ if (count($_POST) > 0) {
     } else {
         $sql = "update sup_account_users set u_firstname='$_POST[firstname]',u_lastname='$_POST[lastname]',u_mobile='$_POST[mobile]',u_email='$_POST[email]' where user_name='$usr'";
         $_SESSION["fullname"] = $_POST['firstname'] . "&nbsp;" . $_POST['lastname'];
-        $result1 = mysqli_query($db, $sql);
+        $result1 = mysqli_query($sup_db, $sql);
         if ($result1) {
             $message_stauts_class = 'alert-success';
             $import_status_message = 'Success: Profile Updated Sucessfully.';
@@ -132,20 +132,24 @@ $heading = 'Profile';
         <div class="main-panel">
             <div class="content-wrapper">
                 <div class="row">
+                    <?php
+                    $query = sprintf("SELECT * FROM sup_account_users where user_name = '$usr'");
+                    $qur = mysqli_query($sup_db, $query);
+                    while ($rowc = mysqli_fetch_array($qur)) {
+                    ?>
                     <div class="col-md-2 grid-margin stretch-card">
                     </div>
                     <div class="col-md-2 grid-margin">
-                         <img class="img-lg rounded-circle" src="user_images/user.png" alt="">
+                        <?php if(!empty($rowc["u_profile_pic"])){ ?>
+                            <img class="img-lg rounded-circle" src="user_images/<?php echo $rowc["u_profile_pic"]; ?>" alt="">
+                        <?php }else{ ?>
+                            <img class="img-lg rounded-circle" src="user_images/user.png" alt="">
+                        <?php } ?>
                     </div>
                     <div class="col-md-6 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <?php
-                                $query = sprintf("SELECT * FROM sup_account_users where user_name = '$usr'");
-                                $qur = mysqli_query($sup_db, $query);
-                                while ($rowc = mysqli_fetch_array($qur)) {
-                                ?>
-                                <form class="forms-sample">
+                                <form action="" method="post" id="update_profile" enctype="multipart/form-data">
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">User Name : </label>
                                         <div class="col-sm-9">
@@ -176,23 +180,25 @@ $heading = 'Profile';
                                             <input type="email" name="email" value="<?php echo $rowc["u_email"]; ?>" class="form-control" >
                                         </div>
                                     </div>
-                                    <div class="form-group row">
+                                    <!--<div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Password : </label>
                                         <div class="col-sm-9">
-                                            <input type="text" name="password" value="<?php echo $rowc["u_password"]; ?>" class="form-control" >
+                                            <input type="text" name="password" value="<?php /*echo decryptIt($rowc["u_password"]); */?>" class="form-control" >
                                         </div>
-                                    </div>
+                                    </div>-->
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Upload New Image : </label>
                                         <div class="col-sm-9">
-                                            <input type="file" name="file" id="file" class="form-control" >
+                                            <input type="file" name="file" id="file" class="form-control">
+                                            <div id="imgPreview"></div>
                                         </div>
                                     </div>
+                                    <button type="submit" class="btn btn-primary mr-2">Update</button>
                                 </form>
-                                <?php } ?>
                             </div>
                         </div>
                     </div>
+                    <?php } ?>
                 </div>
             </div>
         </div>
