@@ -117,15 +117,17 @@ $heading = 'View Historical data';
                                             <label for="exampleInputMobile" class="col-sm-3 col-form-label">Attach Invoice : </label>
                                             <div class="col-sm-9">
                                                 <?php
-                                                $sql3 = sprintf("SELECT * FROM order_files where order_id = '$sup_order_id' and file_type = 'invoice'");
+                                                $sql3 = sprintf("SELECT * FROM sup_invoice where sup_order_id = '$sup_order_id'");
                                                 $qur3 = mysqli_query($sup_db, $sql3);
-                                                $row3 = mysqli_fetch_array($qur3);
-                                                $file_name = $row3['file_name'];
+                                                while($row3 = mysqli_fetch_array($qur3)){
+                                                $file_name = $row3['invoice_file'];
                                                 ?>
-                                                <a href="order_invoices/<?php echo $file_name; ?>" target="_blank">
+                                                <?php if(!empty($file_name)){ ?>
+                                                <a href="order_invoices/<?php echo $sup_order_id; ?>/<?php echo $file_name; ?>" target="_blank">
                                                     <input type="text" name="att_voice" class="form-control pn_none" id="att_voice"
                                                            value="<?php echo $file_name; ?>">
                                                 </a>
+                                                <?php } } ?>
                                             </div>
                                         </div>
                                         <div class="form-group row">
