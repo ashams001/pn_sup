@@ -52,22 +52,6 @@
                 <span class="menu-title">Active Orders</span>
             </a>
         </li>
-<!--        <li class="nav-item menu-items">-->
-<!--            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">-->
-<!--              <span class="menu-icon">-->
-<!--                <i class="mdi mdi-laptop"></i>-->
-<!--              </span>-->
-<!--                <span class="menu-title">Basic UI Elements</span>-->
-<!--                <i class="menu-arrow"></i>-->
-<!--            </a>-->
-<!--            <div class="collapse" id="ui-basic">-->
-<!--                <ul class="nav flex-column sub-menu">-->
-<!--                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>-->
-<!--                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Dropdowns</a></li>-->
-<!--                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>-->
-<!--                </ul>-->
-<!--            </div>-->
-<!--        </li>-->
         <li class="nav-item menu-items">
             <a class="nav-link" href="historical_orders.php">
               <span class="menu-icon">
@@ -77,7 +61,7 @@
             </a>
         </li>
         <li class="nav-item menu-items">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="order_shipment.php">
               <span class="menu-icon">
                   <i class="fa-sharp fa-solid fa-truck-fast"></i>
               </span>
@@ -92,6 +76,5 @@
                 <span class="menu-title">Invoice Details</span>
             </a>
         </li>
-
     </ul>
 </nav>

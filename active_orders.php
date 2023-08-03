@@ -43,6 +43,7 @@ $heading = 'Active Orders';
                                         <tr>
                                             <th> S.No </th>
                                             <th> Order No </th>
+                                            <th> Order Name </th>
                                             <th> Order Desc </th>
                                             <th> Ordered On </th>
                                             <th> Order Status </th>
@@ -70,6 +71,7 @@ $heading = 'Active Orders';
                                                        value="<?php echo $order_id; ?>">
                                                 <input hidden id="e_order_status" name="e_order_status"
                                                        value="<?php echo $order_status_id; ?>">
+                                                <td> <?php echo $rowc['order_name']; ?> </td>
                                                 <td> <?php echo $rowc['order_desc']; ?> </td>
                                                 <?php
                                                 $qurtemp = mysqli_query($sup_db, "SELECT * FROM  sup_order_status where sup_order_status_id  = '$order_status_id' ");
