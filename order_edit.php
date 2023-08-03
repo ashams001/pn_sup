@@ -23,7 +23,7 @@ if (count($_POST) > 0) {
         $click_id = $_POST['click_id'];
 
         if (!is_null($order_status_id) && !empty($order_status_id)) {
-            $sql = "update sup_order set order_status_id='$order_status_id', modified_on='$chicagotime', modified_by='$user_id' where  sup_order_id = '$order_id'";
+            $sql = "update sup_order set order_status_id='$order_status_id', sup_modified_on='$chicagotime', sup_modified_by='$user_id' where  sup_order_id = '$order_id'";
             $result1 = mysqli_query($sup_db, $sql);
             if ($result1) {
                 $sql_ses_log = "INSERT INTO `supplier_session_log`(`order_id`, `c_id`, `order_status_id`, `created_by`, `created_on`) VALUES ('$order_id','','$order_status_id','$user_id','$chicagotime')";
@@ -46,7 +46,7 @@ if (count($_POST) > 0) {
         if (null != $order_id) {
             $ship_det = $_POST['edit_ship_details'];
             if (null != $ship_det) {
-                $sql = "update sup_order set order_status_id='$order_up_status_id',shipment_details = '$ship_det' , modified_on = '$message', modified_by='$user_id' where  sup_order_id = '$order_id'";
+                $sql = "update sup_order set order_status_id='$order_up_status_id',shipment_details = '$ship_det' , sup_modified_on = '$message', sup_modified_by='$user_id' where  sup_order_id = '$order_id'";
                 $result1 = mysqli_query($sup_db, $sql);
                 if (!$result1) {
                     $is_updated = false;
@@ -103,14 +103,8 @@ if (count($_POST) > 0) {
 
                     }
                     $inv_extra .= ']';
-
-                  /*  $sql = "INSERT INTO `order_files`(`order_id`, `file_type`,`file_name`, `extra_invoice`, `created_at`) VALUES ('$order_id' ,'invoice','$file_name','$inv_extra','$chicagotime' )";
-                    $result1 = mysqli_query($sup_db, $sql);*/
-                   /* $sql2 = "INSERT INTO `sup_invoice`(`sup_order_id`, `invoice_name`, `invoice_extra`, `invoice_status`, `created_by`, `created_on`) VALUES ('$order_id' ,'$file_name','$inv_extra','1','$user_id','$chicagotime')";
-                    $result2 = mysqli_query($sup_db, $sql2);*/
                 }
             }
-
                   //  move the file to server
                     $total_count = count($_FILES['invoice_extra']['name']);
                     for( $i=0 ; $i < $total_count; $i++ ) {
