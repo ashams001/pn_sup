@@ -72,21 +72,18 @@ $heading = 'Active Orders';
                                                        value="<?php echo $order_status_id; ?>">
                                                 <td> <?php echo $rowc['order_desc']; ?> </td>
                                                 <?php
-
                                                 $qurtemp = mysqli_query($sup_db, "SELECT * FROM  sup_order_status where sup_order_status_id  = '$order_status_id' ");
                                                 while ($rowctemp = mysqli_fetch_array($qurtemp)) {
                                                     $order_status = $rowctemp["sup_order_status"];
                                                 }
                                                 ?>
                                                 <td> <?php echo dateReadFormat($rowc['created_on']); ?> </td>
-                                                <td>  <div class="badge badge-outline-success">  <?php echo $order_status; ?></div>
-                                                </td>
-                                                <a href="order_edit.php">
-                                                    <td>
-                                                        <a class="link-opacity-10-hover" href="order_edit.php?id=<?php echo $order_id ?>">Edit</a>
-                                                    </td>
-                                                </a>
-
+                                                <td>  <div class="badge badge-outline-success">  <?php echo $order_status; ?></div></td>
+                                                <?php if($order_status_id >= 4){ ?>
+                                                    <td></td>
+                                                <?php }else{ ?>
+                                                    <td><a class="link-opacity-10-hover" href="order_edit.php?id=<?php echo $order_id ?>">Edit</a></td>
+                                                <?php } ?>
                                             </tr>
                                         <?php } ?>
                                         </tbody>
