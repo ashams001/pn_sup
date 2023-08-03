@@ -8,7 +8,6 @@ $message = date("Y-m-d H:i:s");
 $chicagotime = date("Y-m-d H:i:s");
 $role = $_SESSION['role_id'];
 $user_id = $_SESSION["id"];
-
 $heading = 'Orders Invoice';
 ?>
 <!DOCTYPE html>
@@ -40,9 +39,8 @@ $heading = 'Orders Invoice';
                                         <thead>
                                         <tr>
                                             <th>S.No</th>
+                                            <th>Action</th>
                                             <th>Order Id</th>
-                                            <th>Invoice Name</th>
-                                            <th>Invoice Amount</th>
                                             <th>Invoice Status</th>
                                             <th>User</th>
                                             <th>Date</th>
@@ -50,17 +48,30 @@ $heading = 'Orders Invoice';
                                         </thead>
                                         <tbody>
                                         <?php
-                                        $query = sprintf("SELECT * FROM  sup_invoice  where is_deleted != 1 order by inv_id asc");
+                                        $query = sprintf("SELECT * FROM sup_invoice group by sup_order_id");
                                         $qur = mysqli_query($sup_db, $query);
                                         while ($rowc = mysqli_fetch_array($qur)) {
+                                            $invoice_status = $rowc['invoice_status'];
+                                            if($invoice_status == 1){
+                                                $inv = 'Active';
+                                            }else{
+                                                $inv = 'In-Active';
+                                            }
+                                            $created_by = $rowc['created_by'];
+                                            $q = sprintf("SELECT * FROM sup_account_users where u_id = '$created_by'");
+                                            $qurr = mysqli_query($sup_db, $q);
+                                            $row2 = mysqli_fetch_array($qurr);
+                                            $fullname = $row2['u_firstname'] . ' ' . $row2['u_lastname'];
+
                                             ?>
                                             <tr>
                                                 <td><?php echo ++$counter; ?></td>
+                                                <td>
+                                                    <a class="link-opacity-10-hover" href="view_invoice_data.php?id=<?php echo $rowc['sup_order_id'] ?>">View</a>
+                                                </td>
                                                 <td><?php echo $rowc['sup_order_id']; ?></td>
-                                                <td><?php echo $rowc['invoice_name']; ?></td>
-                                                <td><?php echo $rowc['invoice_amount']; ?></td>
-                                                <td><?php echo $rowc['invoice_status']; ?></td>
-                                                <td><?php echo $rowc['created_by']; ?></td>
+                                                <td><?php echo $inv; ?></td>
+                                                <td><?php echo $fullname; ?></td>
                                                 <td><?php echo dateReadFormat($rowc['created_on']); ?></td>
                                             </tr>
                                         <?php } ?>
