@@ -49,9 +49,9 @@ $heading = 'Orders Invoice';
                                             <th>S.No</th>
                                             <th>Action</th>
                                             <th>Order Id</th>
-                                            <th>Invoice Status</th>
-                                            <th>User</th>
+                                            <th>Total Invoice Amount</th>
                                             <th>Date</th>
+                                            <th>Invoice Status</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -61,7 +61,7 @@ $heading = 'Orders Invoice';
                                         while ($rowc = mysqli_fetch_array($qur)) {
                                             $invoice_status = $rowc['invoice_status'];
                                             if($invoice_status == 1){
-                                                $inv = 'Active';
+                                                $inv = 'Pending';
                                             }else{
                                                 $inv = 'In-Active';
                                             }
@@ -70,6 +70,11 @@ $heading = 'Orders Invoice';
                                             $qurr = mysqli_query($sup_db, $q);
                                             $row2 = mysqli_fetch_array($qurr);
                                             $fullname = $row2['u_firstname'] . ' ' . $row2['u_lastname'];
+                                            $sup_order_id = $rowc['sup_order_id'];
+                                            $q1 = sprintf("SELECT sum(invoice_amount) as invoice_amount FROM sup_invoice where sup_order_id = '$sup_order_id'");
+                                            $qurr1 = mysqli_query($sup_db, $q1);
+                                            $row21 = mysqli_fetch_array($qurr1);
+                                            $invoice_amount = $row21['invoice_amount'];
 
                                             ?>
                                             <tr>
@@ -78,9 +83,9 @@ $heading = 'Orders Invoice';
                                                     <a class="btn btn-success btn-sm br-5 me-2 legitRipple" href="view_invoice_data.php?id=<?php echo $rowc['sup_order_id'] ?>"><i class="fa fa-eye"></i></a>
                                                 </td>
                                                 <td><?php echo $rowc['sup_order_id']; ?></td>
-                                                <td><?php echo $inv; ?></td>
-                                                <td><?php echo $fullname; ?></td>
+                                                <td><?php echo $invoice_amount; ?></td>
                                                 <td><?php echo dateReadFormat($rowc['created_on']); ?></td>
+                                                <td><?php echo $inv; ?></td>
                                             </tr>
                                         <?php } ?>
                                         </tbody>
