@@ -42,7 +42,6 @@ $heading = 'Orders Shipment Details';
                                             <th>Order Id</th>
                                             <th>Order Name</th>
                                             <th>Shipment Status</th>
-                                            <th>User</th>
                                             <th>Date</th>
                                         </tr>
                                         </thead>
@@ -69,7 +68,6 @@ $heading = 'Orders Shipment Details';
                                                 <td><?php echo $rowc['sup_order_id']; ?></td>
                                                 <td><?php echo $rowc['ship_order_name']; ?></td>
                                                 <td><?php echo $ship; ?></td>
-                                                <td><?php echo $fullname; ?></td>
                                                 <td><?php echo dateReadFormat($rowc['created_on']); ?></td>
                                             </tr>
                                         <?php } ?>

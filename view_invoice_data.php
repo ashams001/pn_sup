@@ -38,7 +38,7 @@ $heading = 'View Invoice data';
                                     <div class="form-group row">
                                         <div class="col-sm-4">Invoice Files</div>
                                         <div class="col-sm-2">Amount</div>
-                                        <div class="col-sm-2">User</div>
+                                       <!-- <div class="col-sm-2">User</div>-->
                                         <div class="col-sm-2">Date</div>
                                     </div>
                                 <?php
@@ -66,9 +66,9 @@ $heading = 'View Invoice data';
                                         <div class="col-sm-2">
                                             <input type="text" name="o_name" id="o_name" class="form-control" value="<?php echo $invoice_amount; ?>" style="pointer-events: none;">
                                         </div>
-                                        <div class="col-sm-2">
-                                            <input type="text" name="o_name" id="o_name" class="form-control" value="<?php echo $fullname; ?>" style="pointer-events: none;">
-                                        </div>
+                                        <!--<div class="col-sm-2">
+                                            <input type="text" name="o_name" id="o_name" class="form-control" value="<?php /*echo $fullname; */?>" style="pointer-events: none;">
+                                        </div>-->
                                         <div class="col-sm-3">
                                             <input type="text" name="o_name" id="o_name" class="form-control" value="<?php echo dateReadFormat($row['created_on']); ?>" style="pointer-events: none;">
                                         </div>
