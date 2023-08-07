@@ -211,6 +211,12 @@ if (count($_POST) > 0) {
                         </ol>
                     </nav>
                 </div>
+                <?php
+                if (!empty($import_status_message)) {
+                    echo '<div class="alert ' . $message_stauts_class . '">' . $import_status_message . '</div>';
+                }
+                displaySFMessage();
+                ?>
                 <div class="row">
                     <div class="col-md-10 grid-margin stretch-card">
                         <div class="card">
@@ -371,7 +377,7 @@ if (count($_POST) > 0) {
                                             </div>
                                         </div>
                                         <button type="submit" name="submit_btn" id="submit_btn" class="btn btn-primary mr-2">Submit</button>
-                                        <button class="btn btn-dark">Cancel</button>
+                                        <a class="btn btn-dark" href="active_orders.php">Cancel</a>
                                         <input type="hidden" name="click_id" id="click_id" >
                                     </form>
                                 <?php } ?>
