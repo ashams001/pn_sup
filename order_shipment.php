@@ -56,7 +56,7 @@ $heading = 'Orders Shipment Details';
                                         </thead>
                                         <tbody>
                                         <?php
-                                        $query = sprintf("SELECT * FROM sup_shipment_details group by sup_order_id");
+                                        $query = sprintf("SELECT * FROM sup_shipment_details where  created_by = '$user_id' group by sup_order_id");
                                         $qur = mysqli_query($sup_db, $query);
                                         while ($rowc = mysqli_fetch_array($qur)) {
                                             $shipment_status = $rowc['shipment_status'];

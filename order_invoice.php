@@ -57,7 +57,7 @@ $heading = 'Orders Invoice';
                                         </thead>
                                         <tbody>
                                         <?php
-                                        $query = sprintf("SELECT * FROM sup_invoice group by sup_order_id");
+                                        $query = sprintf("SELECT * FROM sup_invoice where  created_by = '$user_id' group by sup_order_id");
                                         $qur = mysqli_query($sup_db, $query);
                                         while ($rowc = mysqli_fetch_array($qur)) {
                                             $invoice_status = $rowc['invoice_status'];
