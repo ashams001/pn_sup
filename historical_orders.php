@@ -48,6 +48,7 @@ $heading = 'Historical Orders';
                                         <thead>
                                         <tr>
                                             <th>S.No</th>
+                                            <th>Order No</th>
                                             <th>Order Desc</th>
                                             <th>Ordered On</th>
                                             <th>Order Status</th>
@@ -64,8 +65,10 @@ $heading = 'Historical Orders';
 
                                                 <td><?php echo ++$counter; ?></td>
                                                 <?php $order_id = $rowc['order_id'];
+                                                $sup_order_id = $rowc['sup_order_id'];
                                                 $order_status_id = $rowc['order_status_id'];
                                                 $ship_det = $rowc['shipment_details']; ?>
+                                                <td><?php echo $sup_order_id; ?></td>
                                                 <td><?php echo $rowc['order_desc']; ?></td>
                                                 <?php
 
