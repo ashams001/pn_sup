@@ -20,7 +20,10 @@ $heading = 'Active Orders';
    <style>
        .fa.fa-eye {
            color: #ffffff!important;
-           width: 30px;
+           width: 25px;
+       }
+       .fa-solid.fa-pen{
+           width: 25px;
        }
        .btn.btn-success{
            background: #1F5D96!important;
@@ -37,6 +40,12 @@ $heading = 'Active Orders';
         <!-- partial -->
         <div class="main-panel">
             <div class="content-wrapper">
+                <?php
+                if (!empty($import_status_message)) {
+                    echo '<div class="alert ' . $message_stauts_class . '">' . $import_status_message . '</div>';
+                }
+                displaySFMessage();
+                ?>
                 <div class="row ">
                     <div class="col-12 grid-margin">
                         <div class="card">
