@@ -88,7 +88,7 @@ $heading = 'Active Orders';
                                                 <td>  <div class="badge badge-outline-success">  <?php echo $order_status; ?></div></td>
                                                 <?php if($order_status_id >= 4){ ?>
                                                     <td>
-                                                        <a class="btn btn-success" href="view_order_data.php?id=<?php echo $order_id ?>"><i class="fa fa-eye"></i></a>
+                                                        <a class="btn btn-success" href="view_order_data.php?id=<?php echo $rowc['sup_order_id'] ?>"><i class="fa fa-eye"></i></a>
                                                     </td>
                                                 <?php }else{ ?>
                                                     <td>

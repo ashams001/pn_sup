@@ -36,7 +36,7 @@ $heading = 'View Historical data';
                                 <?php
                                 $id = $_GET['id'];
 
-                                $sql = sprintf("SELECT * FROM sup_order where order_id = '$id' ");
+                                $sql = sprintf("SELECT * FROM sup_order where sup_order_id = '$id' ");
                                 $qur = mysqli_query($sup_db, $sql);
                                 $row = mysqli_fetch_array($qur);
                                 $sup_order_id = $row['sup_order_id'];
