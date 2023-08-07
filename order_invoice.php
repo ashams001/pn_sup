@@ -18,7 +18,7 @@ $heading = 'Orders Invoice';
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>PN</title>
    <style>
-       .fa {
+       .fa.fa-eye {
            color: #ffffff!important;
            width: 30px;
        }
