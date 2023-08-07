@@ -221,7 +221,7 @@ if (count($_POST) > 0) {
 
                                 //   $id = base64_decode( urldecode( $form_id));
 
-                                $querymain = sprintf("SELECT * FROM `sup_order` where order_id = '$id' ");
+                                $querymain = sprintf("SELECT * FROM `sup_order` where order_id = '$id' and is_deleted != 1");
                                 $qurmain = mysqli_query($sup_db, $querymain);
                                 while ($rowcmain = mysqli_fetch_array($qurmain)) {
                                     $order_name = $rowcmain['order_name'];
