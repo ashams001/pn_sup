@@ -17,8 +17,16 @@ $heading = 'Orders Invoice';
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>PN</title>
-    <!-- plugins:css -->
-
+   <style>
+       .fa {
+           color: #ffffff!important;
+           width: 30px;
+       }
+       .btn.btn-success.btn-sm.br-5.me-2.legitRipple{
+           background: #1F5D96!important;
+           border-color: #1F5D96!important;
+       }
+   </style>
 <body>
 <div class="container-scroller">
     <?php include ('admin_menu.php'); ?>
@@ -67,7 +75,7 @@ $heading = 'Orders Invoice';
                                             <tr>
                                                 <td><?php echo ++$counter; ?></td>
                                                 <td>
-                                                    <a class="link-opacity-10-hover" href="view_invoice_data.php?id=<?php echo $rowc['sup_order_id'] ?>">View</a>
+                                                    <a class="btn btn-success btn-sm br-5 me-2 legitRipple" href="view_invoice_data.php?id=<?php echo $rowc['sup_order_id'] ?>"><i class="fa fa-eye"></i></a>
                                                 </td>
                                                 <td><?php echo $rowc['sup_order_id']; ?></td>
                                                 <td><?php echo $inv; ?></td>
