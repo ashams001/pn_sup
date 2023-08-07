@@ -1,5 +1,4 @@
-<?php
-include("config.php");
+<?php include("config.php");
 if (!isset($_SESSION['user'])) {
     header('location: logout.php');
 }
@@ -9,7 +8,6 @@ $message = date("Y-m-d H:i:s");
 $chicagotime = date("Y-m-d H:i:s");
 $role = $_SESSION['role_id'];
 $user_id = $_SESSION["id"];
-
 $heading = 'Active Orders';
 ?>
 <!DOCTYPE html>
@@ -19,8 +17,16 @@ $heading = 'Active Orders';
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>PN</title>
-    <!-- plugins:css -->
-
+   <style>
+       .fa.fa-eye {
+           color: #ffffff!important;
+           width: 30px;
+       }
+       .btn.btn-success{
+           background: #1F5D96!important;
+           border-color: #1F5D96!important;
+       }
+   </style>
 <body>
 <div class="container-scroller">
     <?php include ('admin_menu.php'); ?>
@@ -39,7 +45,6 @@ $heading = 'Active Orders';
                                 <div class="table-responsive">
                                     <table class="table">
                                         <thead>
-
                                         <tr>
                                             <th> S.No </th>
                                             <th> Order No </th>
@@ -82,9 +87,15 @@ $heading = 'Active Orders';
                                                 <td> <?php echo dateReadFormat($rowc['created_on']); ?> </td>
                                                 <td>  <div class="badge badge-outline-success">  <?php echo $order_status; ?></div></td>
                                                 <?php if($order_status_id >= 4){ ?>
-                                                    <td></td>
+                                                    <td>
+                                                        <a class="btn btn-success" href="view_order_data.php?id=<?php echo $order_id ?>"><i class="fa fa-eye"></i></a>
+                                                    </td>
                                                 <?php }else{ ?>
-                                                    <td><a class="link-opacity-10-hover" href="order_edit.php?id=<?php echo $order_id ?>">Edit</a></td>
+                                                    <td>
+                                                        <a class="btn btn-success" href="order_edit.php?id=<?php echo $order_id ?>">
+                                                            <i class="fa-solid fa-pen"></i>
+                                                        </a>
+                                                    </td>
                                                 <?php } ?>
                                             </tr>
                                         <?php } ?>
