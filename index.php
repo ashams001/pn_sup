@@ -62,6 +62,15 @@ if ($tmp == "forgotpass_success") {
     <script src="assets/js/misc.js"></script>
     <script src="assets/js/settings.js"></script>
     <script src="assets/js/todolist.js"></script>
+    <style>
+        .form-group {
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+        .form-group label {
+            vertical-align: revert!important;
+        }
+    </style>
 </head>
 <body>
 
@@ -70,7 +79,7 @@ if ($tmp == "forgotpass_success") {
         <div class="row w-100 m-0">
             <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
                 <div class="card col-lg-4 mx-auto">
-                    <div class="row" style="font-size: 26px;">
+                    <div class="row">
                         <?php
                         if (!empty($import_status_message)) {
                             echo '<div class="alert ' . $message_stauts_class . '">' . $import_status_message . '</div>';
@@ -81,11 +90,11 @@ if ($tmp == "forgotpass_success") {
                         <h3 class="card-title text-left mb-3">Login</h3>
                         <form action="" class="form-validate" method="post">
                             <div class="form-group">
-                                <label  style="margin-left: -269px;"  >Username or email *</label>
+                                <label >Username or email *</label>
                                 <input type="text" name="user" id="user" class="form-control" placeholder="Username / Email" required="required">
                             </div>
                             <div class="form-group">
-                                <label  style="margin-left: -340px;" >Password *</label>
+                                <label >Password *</label>
                                 <input type="password" name="pass" id="pass" class="form-control" placeholder="Password" required="">
                             </div>
                             <div class="form-group d-flex align-items-center justify-content-between" style="margin-left: 120px;">
