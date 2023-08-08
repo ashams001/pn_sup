@@ -29,6 +29,18 @@ $heading = 'Active Orders';
            background: #1F5D96!important;
            border-color: #1F5D96!important;
        }
+       .alert-success {
+           color: #0f5132!important;
+           background-color: #d1e7dd!important;
+           border-color: #badbcc!important;
+           font-size: 17px!important;
+       }
+       .alert-danger {
+           color: #721c24!important;
+           background-color: #f8d7da!important;
+           border-color: #f5c6cb!important;
+           font-size: 17px;
+       }
    </style>
 <body>
 <div class="container-scroller">
@@ -42,11 +54,17 @@ $heading = 'Active Orders';
             <div class="content-wrapper">
                 <?php
                 if (!empty($import_status_message)) {
-                    echo '<div class="alert ' . $message_stauts_class . '">' . $import_status_message . '</div>';
+                    echo '<br/><div class="alert ' . $message_stauts_class . '">' . $import_status_message . '</div>';
                 }
-                displaySFMessage();
                 ?>
-                <div class="row ">
+                <?php
+                if (!empty($_SESSION['import_status_message'])) {
+                    echo '<br/><div class="alert ' . $_SESSION['message_stauts_class'] . '">' . $_SESSION['import_status_message'] . '</div>';
+                    $_SESSION['message_stauts_class'] = '';
+                    $_SESSION['import_status_message'] = '';
+                }
+                ?>
+                <div class="row">
                     <div class="col-12 grid-margin">
                         <div class="card">
                             <div class="card-body">

@@ -28,12 +28,13 @@ if (count($_POST) > 0) {
             if ($result1) {
                 $sql_ses_log = "INSERT INTO `supplier_session_log`(`order_id`, `c_id`, `order_status_id`, `created_by`, `created_on`) VALUES ('$order_id','','$order_status_id','$user_id','$chicagotime')";
                 $result_log = mysqli_query($sup_db, $sql_ses_log);
-                $message_stauts_class = 'alert-success';
-                $import_status_message = 'Order status Updated successfully.';
+                $_SESSION['message_stauts_class'] = 'alert-success';
+                $_SESSION['import_status_message'] = 'Order status Updated successfully.';
                 header("Location:active_orders.php");
             } else {
-                $message_stauts_class = 'alert-danger';
-                $import_status_message = 'Error: Please Insert valid data';
+                $_SESSION['message_stauts_class'] = 'alert-danger';
+                $_SESSION['import_status_message'] = 'Error: Please Insert valid data';
+                header("Location:active_orders.php");
             }
         }
     }else {
@@ -45,17 +46,6 @@ if (count($_POST) > 0) {
         $is_updated = true;
         if (null != $order_id) {
             $ship_det = $_POST['edit_ship_details'];
-            if (null != $ship_det) {
-                $sql = "update sup_order set order_status_id='$order_up_status_id',shipment_details = '$ship_det' , sup_modified_on = '$message', sup_modified_by='$user_id' where  sup_order_id = '$order_id'";
-                $result1 = mysqli_query($sup_db, $sql);
-                if (!$result1) {
-                    $is_updated = false;
-                }
-            }
-            if (!$is_updated) {
-                $message_stauts_class = 'alert-danger';
-                $import_status_message = 'Error: Error updating  order. Try after sometime.';
-            }
             //invoice
             if (isset($_FILES['invoice']))
             {
@@ -68,13 +58,15 @@ if (count($_POST) > 0) {
                     $extensions = array("jpeg", "jpg", "png", "pdf");
                     if (in_array($file_ext, $extensions) === false) {
                         $errors[] = "extension not allowed, please choose a JPEG/PNG/PDF file.";
-                        $message_stauts_class = 'alert-danger';
-                        $import_status_message = 'Error: Extension not allowed, please choose a JPEG/PNG/PDF file.';
+                        $_SESSION['message_stauts_class'] = 'alert-danger';
+                        $_SESSION['import_status_message'] = 'Error: Extension not allowed, please choose a JPEG/PNG/PDF file.';
+                        header("Location:active_orders.php");
                     }
                     if ($file_size > 2097152) {
                         $errors[] = 'Max allowed file size is 2 MB';
-                        $message_stauts_class = 'alert-danger';
-                        $import_status_message = 'Error: File size must not exceed 2 MB';
+                        $_SESSION['message_stauts_class'] = 'alert-danger';
+                        $_SESSION['import_status_message'] = 'Error: File size must not exceed 2 MB';
+                        header("Location:active_orders.php");
                     }
                     if (empty($errors) == true) {
                         $file_name = $order_id . '__' . $file_name;
@@ -117,13 +109,15 @@ if (count($_POST) > 0) {
                         $extensions1 = array("jpeg", "jpg", "png", "pdf");
                         if (in_array($file_ext1, $extensions1) === false) {
                             $errors[] = "extension not allowed, please choose a JPEG/PNG/PDF file.";
-                            $message_stauts_class = 'alert-danger';
-                            $import_status_message = 'Error: Extension not allowed, please choose a JPEG/PNG/PDF file.';
+                            $_SESSION['message_stauts_class'] = 'alert-danger';
+                            $_SESSION['import_status_message'] = 'Error: Extension not allowed, please choose a JPEG/PNG/PDF file.';
+                            header("Location:active_orders.php");
                         }
                         if ($file_size > 2097152) {
                             $errors[] = 'Max allowed file size is 2 MB';
-                            $message_stauts_class = 'alert-danger';
-                            $import_status_message = 'Error: File size must not exceed 2 MB';
+                            $_SESSION['message_stauts_class'] = 'alert-danger';
+                            $_SESSION['import_status_message'] = 'Error: File size must not exceed 2 MB';
+                            header("Location:active_orders.php");
                         }
                         if (empty($errors) == true) {
                             if ($tmpFilePath != "") {
@@ -148,13 +142,15 @@ if (count($_POST) > 0) {
                     $extensions = array("jpeg", "jpg", "png", "pdf");
                     if (in_array($file_ext, $extensions) === false) {
                         $errors[] = "extension not allowed, please choose a JPEG/PNG/PDF file.";
-                        $message_stauts_class = 'alert-danger';
-                        $import_status_message = 'Error: Extension not allowed, please choose a JPEG/PNG/PDF file.';
+                        $_SESSION['message_stauts_class'] = 'alert-danger';
+                        $_SESSION['import_status_message'] = 'Error: Extension not allowed, please choose a JPEG/PNG/PDF file.';
+                        header("Location:active_orders.php");
                     }
                     if ($file_size > 2097152) {
                         $errors[] = 'Max allowed file size is 2 MB';
-                        $message_stauts_class = 'alert-danger';
-                        $import_status_message = 'Error: File size must not exceed 2 MB';
+                        $_SESSION['message_stauts_class'] = 'alert-danger';
+                        $_SESSION['import_status_message'] = 'Error: File size must not exceed 2 MB';
+                        header("Location:active_orders.php");
                     }
                     if (empty($errors) == true) {
                         $file_name = $order_id . '__' . $file_name;
@@ -165,6 +161,18 @@ if (count($_POST) > 0) {
                     }
                 }
             }
+            if (null != $ship_det) {
+                $sql = "update sup_order set order_status_id='$order_up_status_id',shipment_details = '$ship_det' , sup_modified_on = '$message', sup_modified_by='$user_id' where  sup_order_id = '$order_id'";
+                $result1 = mysqli_query($sup_db, $sql);
+                if (!$result1) {
+                    $is_updated = false;
+                }
+            }
+            if (!$is_updated) {
+                $_SESSION['message_stauts_class'] = 'alert-danger';
+                $_SESSION['import_status_message'] = 'Error: Error updating  order. Try after sometime.';
+                header("Location:active_orders.php");
+            }
             //insert data after shipment
             $sql_log = "INSERT INTO `sup_shipment_details`(`sup_order_id`, `ship_order_name`, `shipment_status`, `created_by`, `created_on`)  VALUES ('$order_id','$edit_order_name','1','$user_id','$chicagotime')";
             $res_log = mysqli_query($sup_db, $sql_log);
@@ -172,8 +180,8 @@ if (count($_POST) > 0) {
             $sql_ses_log = "INSERT INTO `supplier_session_log`(`order_id`, `c_id`, `order_status_id`, `created_by`, `created_on`) VALUES ('$order_id','','$order_status_id','$user_id','$chicagotime')";
             $result_log = mysqli_query($sup_db, $sql_ses_log);
         }
-        $message_stauts_class = 'alert-success';
-        $import_status_message = 'Order status Updated successfully.';
+        $_SESSION['message_stauts_class'] = 'alert-success';
+        $_SESSION['import_status_message'] = 'Order status Updated successfully.';
         header("Location:active_orders.php");
     }
 }
@@ -213,9 +221,15 @@ if (count($_POST) > 0) {
                 </div>
                 <?php
                 if (!empty($import_status_message)) {
-                    echo '<div class="alert ' . $message_stauts_class . '">' . $import_status_message . '</div>';
+                    echo '<br/><div class="alert ' . $message_stauts_class . '">' . $import_status_message . '</div>';
                 }
-                displaySFMessage();
+                ?>
+                <?php
+                if (!empty($_SESSION['import_status_message'])) {
+                    echo '<br/><div class="alert ' . $_SESSION['message_stauts_class'] . '">' . $_SESSION['import_status_message'] . '</div>';
+                  //  $_SESSION['message_stauts_class'] = '';
+                  //  $_SESSION['import_status_message'] = '';
+                }
                 ?>
                 <div class="row">
                     <div class="col-md-10 grid-margin stretch-card">
