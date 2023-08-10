@@ -38,12 +38,6 @@ if (count($_POST) > 0) {
         header("Location:active_orders.php");
     }
 }
-$tmp = $_SESSION['temp'];
-$_SESSION['temp'] = "";
-if ($tmp == "forgotpass_success") {
-    $message_stauts_class = $_SESSION["alert_success_class"];
-    $import_status_message = $_SESSION["error_2"];
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
