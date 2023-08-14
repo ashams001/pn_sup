@@ -113,19 +113,25 @@ $heading = 'Active Orders';
                                                 ?>
                                                 <td> <?php echo dateReadFormat($rowc['created_on']); ?> </td>
                                                 <td>  <div class="badge badge-outline-success">  <?php echo $order_status; ?></div></td>
-                                                <?php if($order_status_id >= 4){ ?>
+                                                <?php if($order_status_id < 4){ ?>
                                                     <td>
-                                                        <a class="btn btn-success" href="view_order_data.php?id=<?php echo $rowc['sup_order_id'] ?>"><i class="fa fa-eye"></i></a>
-                                                    </td>
-                                                <?php }else{ ?>
+                                                            <a class="btn btn-success" href="order_edit.php?id=<?php echo $order_id ?>">
+                                                                <i class="fa-solid fa-pen"></i>
+                                                            </a>
                                                     <td>
-                                                        <a class="btn btn-success" href="order_edit.php?id=<?php echo $order_id ?>">
+                                                <?php }elseif($order_status_id == 4){ ?>
+                                                    <td>
+                                                        <a class="btn btn-success" href="edit_shipped_file.php?id=<?php echo $order_id ?>">
                                                             <i class="fa-solid fa-pen"></i>
                                                         </a>
                                                     </td>
+                                                <?php }else{ ?>
+                                                    <td>
+                                                        <a class="btn btn-success" href="view_order_data.php?id=<?php echo $rowc['sup_order_id'] ?>"><i class="fa fa-eye"></i></a>
+                                                    </td>
                                                 <?php } ?>
-                                            </tr>
-                                        <?php } ?>
+                                                </tr>
+                                            <?php } ?>
                                         </tbody>
                                     </table>
                                 </div>
