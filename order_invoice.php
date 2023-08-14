@@ -61,11 +61,10 @@ $heading = 'Orders Invoice';
                                         $qur = mysqli_query($sup_db, $query);
                                         while ($rowc = mysqli_fetch_array($qur)) {
                                             $invoice_status = $rowc['invoice_status'];
-                                            if($invoice_status == 1){
-                                                $inv = 'Pending';
-                                            }else{
-                                                $inv = 'In-Active';
-                                            }
+                                            $q13 = sprintf("SELECT * FROM sup_invoice_status where invoice_status_id = '$invoice_status'");
+                                            $qurr13 = mysqli_query($sup_db, $q13);
+                                            $row213 = mysqli_fetch_array($qurr13);
+                                            $invoice_status_name = $row213['invoice_status_name'];
                                             $created_by = $rowc['created_by'];
                                             $q = sprintf("SELECT * FROM sup_account_users where u_id = '$created_by'");
                                             $qurr = mysqli_query($sup_db, $q);
@@ -91,7 +90,7 @@ $heading = 'Orders Invoice';
                                                 <td><?php echo $order_name; ?></td>
                                                 <td><?php echo $invoice_amount; ?></td>
                                                 <td><?php echo dateReadFormat($rowc['created_on']); ?></td>
-                                                <td><?php echo $inv; ?></td>
+                                                <td><?php echo $invoice_status_name; ?></td>
                                             </tr>
                                         <?php } ?>
                                         </tbody>
