@@ -7,7 +7,7 @@ $heading = 'View Historical data';
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>PN</title>
+    <title><?php echo $sitename ?></title>
     <!-- plugins:css -->
 
 <body>
@@ -21,10 +21,10 @@ $heading = 'View Historical data';
         <div class="main-panel">
             <div class="content-wrapper">
                 <div class="page-header">
-                    <h3 class="page-title"> View Order </h3>
+<!--                    <h3 class="page-title"> View Order </h3>-->
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#">Order</a></li>
+                            <li class="breadcrumb-item"><a href="historical_orders.php">Historical Orders</a></li>
                             <li class="breadcrumb-item active" aria-current="page">View Order</li>
                         </ol>
                     </nav>

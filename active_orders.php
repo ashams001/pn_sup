@@ -74,12 +74,13 @@ $heading = 'Active Orders';
                                         <thead>
                                         <tr>
                                             <th> S.No </th>
+                                            <th> Actions </th>
                                             <th> Order No </th>
                                             <th> Order Name </th>
                                             <th> Order Desc </th>
                                             <th> Ordered On </th>
                                             <th> Order Status </th>
-                                            <th> Actions </th>
+                                            
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -87,18 +88,31 @@ $heading = 'Active Orders';
                                         $query = sprintf("SELECT * FROM  sup_order  where order_active = 1 and c_id = '$user_id' and is_deleted != 1 order by created_on DESC");
                                         $qur = mysqli_query($sup_db, $query);
                                         while ($rowc = mysqli_fetch_array($qur)) {
-                                            ?>
+											$order_id = $rowc['order_id'];
+											$order_status_id = $rowc['order_status_id'];
+											$ship_det = $rowc['shipment_details'];
+											?>
                                             <tr>
 
                                                 <td>
-                                                    <span class="pl-2"><?php echo ++$counter; ?></span>
+                                                    <span><?php echo ++$counter; ?></span>
                                                 </td>
                                                 <td>
-                                                    <span class="pl-2"><?php echo $rowc['sup_order_id']; ?></span>
+												<?php if($order_status_id < 4){ ?>
+                                                        <a class="btn btn-success" href="order_edit.php?id=<?php echo $order_id ?>">
+                                                            <i class="fa-solid fa-pen"></i>
+                                                        </a>
+												<?php }elseif($order_status_id == 4){ ?>
+                                                        <a class="btn btn-success" href="edit_shipped_file.php?id=<?php echo $order_id ?>">
+                                                            <i class="fa-solid fa-pen"></i>
+                                                        </a>
+												<?php }else{ ?>
+                                                        <a class="btn btn-success" href="view_order_data.php?id=<?php echo $rowc['sup_order_id'] ?>">
+                                                            <i class="fa fa-eye"></i>
+                                                        </a>
+												<?php } ?>
                                                 </td>
-                                                <?php $order_id = $rowc['order_id'];
-                                                $order_status_id = $rowc['order_status_id'];
-                                                $ship_det = $rowc['shipment_details']; ?>
+                                                <td><?php echo $rowc['sup_order_id']; ?></td>
                                                 <input hidden id="edit_order_id" name="edit_order_id"
                                                        value="<?php echo $order_id; ?>">
                                                 <input hidden id="e_order_status" name="e_order_status"
@@ -113,23 +127,6 @@ $heading = 'Active Orders';
                                                 ?>
                                                 <td> <?php echo dateReadFormat($rowc['created_on']); ?> </td>
                                                 <td>  <div class="badge badge-outline-success">  <?php echo $order_status; ?></div></td>
-                                                <?php if($order_status_id < 4){ ?>
-                                                    <td>
-                                                            <a class="btn btn-success" href="order_edit.php?id=<?php echo $order_id ?>">
-                                                                <i class="fa-solid fa-pen"></i>
-                                                            </a>
-                                                    <td>
-                                                <?php }elseif($order_status_id == 4){ ?>
-                                                    <td>
-                                                        <a class="btn btn-success" href="edit_shipped_file.php?id=<?php echo $order_id ?>">
-                                                            <i class="fa-solid fa-pen"></i>
-                                                        </a>
-                                                    </td>
-                                                <?php }else{ ?>
-                                                    <td>
-                                                        <a class="btn btn-success" href="view_order_data.php?id=<?php echo $rowc['sup_order_id'] ?>"><i class="fa fa-eye"></i></a>
-                                                    </td>
-                                                <?php } ?>
                                                 </tr>
                                             <?php } ?>
                                         </tbody>
