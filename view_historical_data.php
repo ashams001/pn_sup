@@ -36,7 +36,7 @@ $heading = 'View Historical data';
                                 <?php
                                 $id = $_GET['id'];
 
-                                $sql = sprintf("SELECT * FROM sup_order where order_id = '$id' ");
+                                $sql = sprintf("SELECT * FROM sup_order where order_id = '$id' and is_deleted != 1");
                                 $qur = mysqli_query($sup_db, $sql);
                                 $row = mysqli_fetch_array($qur);
                                 $sup_order_id = $row['sup_order_id'];
@@ -114,21 +114,24 @@ $heading = 'View Historical data';
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="exampleInputMobile" class="col-sm-3 col-form-label">Attach Invoice : </label>
-                                            <div class="col-sm-9">
-                                                <?php
-                                                $sql3 = sprintf("SELECT * FROM sup_invoice where sup_order_id = '$sup_order_id'");
-                                                $qur3 = mysqli_query($sup_db, $sql3);
-                                                while($row3 = mysqli_fetch_array($qur3)){
+                                            <?php
+                                            $sql3 = sprintf("SELECT * FROM sup_invoice where sup_order_id = '$sup_order_id'");
+                                            $qur3 = mysqli_query($sup_db, $sql3);
+                                            while($row3 = mysqli_fetch_array($qur3)){
                                                 $file_name = $row3['invoice_file'];
+                                                $invoice_amount = $row3['invoice_amount'];
                                                 ?>
                                                 <?php if(!empty($file_name)){ ?>
-                                                <a href="order_invoices/<?php echo $sup_order_id; ?>/<?php echo $file_name; ?>" target="_blank">
-                                                    <input type="text" name="att_voice" class="form-control pn_none" id="att_voice"
-                                                           value="<?php echo $file_name; ?>">
-                                                </a>
+                                                    <label for="exampleInputMobile" class="col-sm-3 col-form-label">Attach Invoice : </label>
+                                                    <div class="col-sm-6">
+                                                        <a href="order_invoices/<?php echo $sup_order_id; ?>/<?php echo $file_name; ?>" target="_blank">
+                                                            <input type="text" name="att_voice" class="form-control pn_none" value="<?php echo $file_name; ?>">
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <input type="text" name="att_amount" class="form-control pn_none" value="<?php echo $invoice_amount; ?>">
+                                                    </div>
                                                 <?php } } ?>
-                                            </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="exampleInputMobile" class="col-sm-3 col-form-label">Other Attachments : </label>

@@ -76,5 +76,13 @@
                 <span class="menu-title">Invoice Details</span>
             </a>
         </li>
+        <li class="nav-item menu-items">
+            <a class="nav-link" href="supplier_log.php">
+              <span class="menu-icon">
+                  <i class="fa-solid fa-calendar"></i>
+              </span>
+                <span class="menu-title">Supplier Log</span>
+            </a>
+        </li>
     </ul>
 </nav>

@@ -49,6 +49,7 @@ $heading = 'Orders Invoice';
                                             <th>S.No</th>
                                             <th>Action</th>
                                             <th>Order Id</th>
+                                            <th>Order Name</th>
                                             <th>Total Invoice Amount</th>
                                             <th>Date</th>
                                             <th>Invoice Status</th>
@@ -56,15 +57,14 @@ $heading = 'Orders Invoice';
                                         </thead>
                                         <tbody>
                                         <?php
-                                        $query = sprintf("SELECT * FROM sup_invoice group by sup_order_id");
+                                        $query = sprintf("SELECT * FROM sup_invoice where  created_by = '$user_id' group by sup_order_id");
                                         $qur = mysqli_query($sup_db, $query);
                                         while ($rowc = mysqli_fetch_array($qur)) {
                                             $invoice_status = $rowc['invoice_status'];
-                                            if($invoice_status == 1){
-                                                $inv = 'Pending';
-                                            }else{
-                                                $inv = 'In-Active';
-                                            }
+                                            $q13 = sprintf("SELECT * FROM sup_invoice_status where invoice_status_id = '$invoice_status'");
+                                            $qurr13 = mysqli_query($sup_db, $q13);
+                                            $row213 = mysqli_fetch_array($qurr13);
+                                            $invoice_status_name = $row213['invoice_status_name'];
                                             $created_by = $rowc['created_by'];
                                             $q = sprintf("SELECT * FROM sup_account_users where u_id = '$created_by'");
                                             $qurr = mysqli_query($sup_db, $q);
@@ -75,6 +75,10 @@ $heading = 'Orders Invoice';
                                             $qurr1 = mysqli_query($sup_db, $q1);
                                             $row21 = mysqli_fetch_array($qurr1);
                                             $invoice_amount = $row21['invoice_amount'];
+                                            $q12 = sprintf("SELECT * FROM sup_order where sup_order_id = '$sup_order_id'");
+                                            $qurr12 = mysqli_query($sup_db, $q12);
+                                            $row212 = mysqli_fetch_array($qurr12);
+                                            $order_name = $row212['order_name'];
 
                                             ?>
                                             <tr>
@@ -83,9 +87,10 @@ $heading = 'Orders Invoice';
                                                     <a class="btn btn-success btn-sm br-5 me-2 legitRipple" href="view_invoice_data.php?id=<?php echo $rowc['sup_order_id'] ?>"><i class="fa fa-eye"></i></a>
                                                 </td>
                                                 <td><?php echo $rowc['sup_order_id']; ?></td>
+                                                <td><?php echo $order_name; ?></td>
                                                 <td><?php echo $invoice_amount; ?></td>
                                                 <td><?php echo dateReadFormat($rowc['created_on']); ?></td>
-                                                <td><?php echo $inv; ?></td>
+                                                <td><?php echo $invoice_status_name; ?></td>
                                             </tr>
                                         <?php } ?>
                                         </tbody>
