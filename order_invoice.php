@@ -87,8 +87,8 @@ $heading = 'Orders Invoice';
                                                     <a class="btn btn-success btn-sm br-5 me-2 legitRipple" href="view_invoice_data.php?id=<?php echo $rowc['sup_order_id'] ?>"><i class="fa fa-eye"></i></a>
                                                 </td>
                                                 <td><?php echo $rowc['sup_order_id']; ?></td>
-                                                <td><?php echo $order_name; ?></td>
-                                                <td><?php echo $invoice_amount; ?></td>
+                                                <td><?php echo $order_name; ?> </td>
+                                                <td><?php echo $invoice_amount; ?><?php echo "(" . payment_currency . ")"; ?></td>
                                                 <td><?php echo dateReadFormat($rowc['created_on']); ?></td>
                                                 <td><?php echo $invoice_status_name; ?></td>
                                             </tr>
