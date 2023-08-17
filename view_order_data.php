@@ -126,13 +126,17 @@ $heading = 'View Historical Order';
                                         ?>
                                         <?php if(!empty($file_name)){ ?>
                                                 <label for="exampleInputMobile" class="col-sm-3 col-form-label">Invoice : </label>
-                                        <div class="col-sm-6">
+                                        <div class="col-sm-5">
                                                     <a href="order_invoices/<?php echo $sup_order_id; ?>/<?php echo $file_name; ?>" target="_blank">
                                                         <input type="text" name="att_voice" class="form-control pn_none" value="<?php echo $file_name; ?>" style="pointer-events: none!important;">
                                                     </a>
                                         </div>
+                                                <label for="exampleInputMobile" class="col-sm-1 col-form-label">Amount  </label>
                                         <div class="col-sm-2">
                                             <input type="text" name="att_amount" class="form-control pn_none" value="<?php echo $invoice_amount; ?>" style="pointer-events: none!important;">
+                                        </div>
+                                        <div class="col-sm-1" style="font-size: 20px!important;text-align: center;margin-left: -39px;margin-top: 4px;">
+                                            <?php echo "(" . payment_currency . ")"; ?>
                                         </div>
                                             <?php } } ?>
                                     </div>

@@ -291,7 +291,7 @@ if (count($_POST) > 0) {
                                                    <input type="file" name="edit_invoice" id="edit_invoice" class="form-control">
                                                 </div>
                                             <div class="col-sm-4">
-                                                <input type="text" class="form-control" name="edit_bill_amount" id="edit_bill_amount" placeholder="Enter Bill Amount">
+                                                <input type="text" class="form-control" name="edit_bill_amount" id="edit_bill_amount" placeholder="Enter Bill Amount" maxlength="4" pattern="^0[1-9]|[1-9]\d$">
                                             </div>
                                             <div class="col-sm-1">
                                                 <button type="button" class="btn btn-primary btn-rounded btn-icon" name="add_more" id="add_more"><i class="fa fa-plus"></i></button>
@@ -380,6 +380,17 @@ if (count($_POST) > 0) {
 </div>
 <!-- container-scroller -->
 <script>
+    $( document ).ready(function() {
+        $('#edit_bill_amount').blur(function(e){
+            var first_char = $("#edit_bill_amount").val().substring(a, b);
+            if (first_char == 0){
+                alert('please enter only numbers!..');
+
+            }
+        });
+    });
+</script>
+<script>
     $(document).on('click', '#att_del', function () {
         var order_id1 = $(this)[0].children.order_id.value;
         var file_name1 = $(this)[0].children.file_name.value;
@@ -418,7 +429,7 @@ if (count($_POST) > 0) {
         var count = i;
 
         $("#click_id").val(count);
-        var html_content = '<div id="'+edit_collapse_id+'" class="collapse in"><div class="form-group row part_rem_' + count + '" id="section_' + count + '"><label for="exampleInputPassword2" class="col-sm-3 col-form-label">Attach Invoice</label><div class="col-sm-4"> <input type="file" name="edit_invoice_extra[]" id="edit_invoice_extra' + count + '" class="form-control"></div><div class="col-sm-4"><input type="text" class="form-control" name="edit_amount_extra[]" id="edit_amount_extra_' + count + '" placeholder="Enter Bill Amount"></div><button type="button" name="remove_btn" class="btn btn-danger btn-rounded btn-icon remove_btn" id="btn_id_' + count + '" data-id="' + count + '" fdprocessedid="7w26pm"><i class="fa fa-trash"></i></button></a></div></div></div></div>';
+        var html_content = '<div id="'+edit_collapse_id+'" class="collapse in"><div class="form-group row part_rem_' + count + '" id="section_' + count + '"><label for="exampleInputPassword2" class="col-sm-3 col-form-label">Attach Invoice</label><div class="col-sm-4"> <input type="file" name="edit_invoice_extra[]" id="edit_invoice_extra' + count + '" class="form-control"></div><div class="col-sm-4"><input type="text" class="form-control" maxlength="4" pattern="^0[1-9]|[1-9]\d$" name="edit_amount_extra[]" id="edit_amount_extra_' + count + '" placeholder="Enter Bill Amount"></div><button type="button" name="remove_btn" class="btn btn-danger btn-rounded btn-icon remove_btn" id="btn_id_' + count + '" data-id="' + count + '" fdprocessedid="7w26pm"><i class="fa fa-trash"></i></button></a></div></div></div></div>';
         $( ".query_rows" ).append( html_content );
         var invc_count = count - 1;
         var inv_ex = $('#edit_invoice_extra' + invc_count).val();
