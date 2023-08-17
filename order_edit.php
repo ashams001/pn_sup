@@ -96,38 +96,38 @@ if (count($_POST) > 0) {
                     }
                     $inv_extra .= ']';
                 }
-            }
-                  //  move the file to server
-                    $total_count = count($_FILES['invoice_extra']['name']);
-                    for( $i=0 ; $i < $total_count; $i++ ) {
-                        $tmpFilePath = $_FILES['invoice_extra']['tmp_name'][$i];
-                        $file_name1 = $_FILES['invoice_extra']['name'][$i];
-                        $file_size1 = $_FILES['invoice_extra']['size'][$i];
-                        $file_tmp1 = $_FILES['invoice_extra']['tmp_name'][$i];
-                        $file_type1 = $_FILES['invoice_extra']['type'][$i];
-                        $file_ext1 = strtolower(end(explode('.', $file_name1)));
-                        $extensions1 = array("jpeg", "jpg", "png", "pdf");
-                        if (in_array($file_ext1, $extensions1) === false) {
-                            $errors[] = "extension not allowed, please choose a JPEG/PNG/PDF file.";
-                            $_SESSION['message_stauts_class'] = 'alert-danger';
-                            $_SESSION['import_status_message'] = 'Error: Extension not allowed, please choose a JPEG/PNG/PDF file.';
-                            header("Location:active_orders.php");
-                        }
-                        if ($file_size > 2097152) {
-                            $errors[] = 'Max allowed file size is 2 MB';
-                            $_SESSION['message_stauts_class'] = 'alert-danger';
-                            $_SESSION['import_status_message'] = 'Error: File size must not exceed 2 MB';
-                            header("Location:active_orders.php");
-                        }
-                        if (empty($errors) == true) {
-                            if ($tmpFilePath != "") {
-                                $newFilePath = "order_invoices/" . $order_id . '/' . $order_id . '__' . $_FILES['invoice_extra']['name'][$i];
-                                //File is uploaded to temp dir
-                                if (move_uploaded_file($tmpFilePath, $newFilePath)) {
-                                }
+                //  move the file to server
+                $total_count = count($_FILES['invoice_extra']['name']);
+                for( $i=0 ; $i < $total_count; $i++ ) {
+                    $tmpFilePath = $_FILES['invoice_extra']['tmp_name'][$i];
+                    $file_name1 = $_FILES['invoice_extra']['name'][$i];
+                    $file_size1 = $_FILES['invoice_extra']['size'][$i];
+                    $file_tmp1 = $_FILES['invoice_extra']['tmp_name'][$i];
+                    $file_type1 = $_FILES['invoice_extra']['type'][$i];
+                    $file_ext1 = strtolower(end(explode('.', $file_name1)));
+                    $extensions1 = array("jpeg", "jpg", "png", "pdf");
+                    if (in_array($file_ext1, $extensions1) === false) {
+                        $errors[] = "extension not allowed, please choose a JPEG/PNG/PDF file.";
+                        $_SESSION['message_stauts_class'] = 'alert-danger';
+                        $_SESSION['import_status_message'] = 'Error: Extension not allowed, please choose a JPEG/PNG/PDF file.';
+                        header("Location:active_orders.php");
+                    }
+                    if ($file_size > 2097152) {
+                        $errors[] = 'Max allowed file size is 2 MB';
+                        $_SESSION['message_stauts_class'] = 'alert-danger';
+                        $_SESSION['import_status_message'] = 'Error: File size must not exceed 2 MB';
+                        header("Location:active_orders.php");
+                    }
+                    if (empty($errors) == true) {
+                        if ($tmpFilePath != "") {
+                            $newFilePath = "order_invoices/" . $order_id . '/' . $order_id . '__' . $_FILES['invoice_extra']['name'][$i];
+                            //File is uploaded to temp dir
+                            if (move_uploaded_file($tmpFilePath, $newFilePath)) {
                             }
                         }
                     }
+                }
+            }
 
             //attachments
             if (isset($_FILES['attachments'])) {
