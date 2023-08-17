@@ -45,6 +45,14 @@
         </li>
 
         <li class="nav-item menu-items">
+            <a class="nav-link" href="supplier_dashboard.php">
+              <span class="menu-icon">
+                  <i class="fa-solid fa-file-lines"></i>
+              </span>
+                <span class="menu-title">Dashboard</span>
+            </a>
+        </li>
+        <li class="nav-item menu-items">
             <a class="nav-link" href="active_orders.php">
               <span class="menu-icon">
                   <i class="fa fa-cart-shopping"></i>
