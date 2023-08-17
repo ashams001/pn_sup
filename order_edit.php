@@ -361,7 +361,7 @@ if (count($_POST) > 0) {
                                                     <?php } ?>
                                                 </div>
                                                 <div class="col-sm-4">
-                                                    <input type="text" class="form-control" name="bill_amount" id="bill_amount" placeholder="Enter Bill Amount">
+                                                    <input type="text" class="form-control" name="bill_amount" id="bill_amount" placeholder="Enter Bill Amount" maxlength="4" pattern="^0[1-9]|[1-9]\d$" >
                                                 </div>
 
                                                 <div class="col-sm-1">
@@ -439,7 +439,7 @@ if (count($_POST) > 0) {
         var count = i;
 
         $("#click_id").val(count);
-        var html_content = '<div id="'+collapse_id+'" class="collapse in"><div class="form-group row part_rem_' + count + '" id="section_' + count + '"><label for="exampleInputPassword2" class="col-sm-3 col-form-label">Attach Invoice</label><div class="col-sm-4"> <input type="file" name="invoice_extra[]" id="invoice_extra' + count + '" class="form-control"></div><div class="col-sm-4"><input type="text" class="form-control" name="amount_extra[]" id="amount_extra_' + count + '" placeholder="Enter Bill Amount"></div><button type="button" name="remove_btn" class="btn btn-danger btn-rounded btn-icon remove_btn" id="btn_id_' + count + '" data-id="' + count + '" fdprocessedid="7w26pm"><i class="fa fa-trash"></i></button></a></div></div></div></div>';
+        var html_content = '<div id="'+collapse_id+'" class="collapse in"><div class="form-group row part_rem_' + count + '" id="section_' + count + '"><label for="exampleInputPassword2" class="col-sm-3 col-form-label">Attach Invoice</label><div class="col-sm-4"> <input type="file" name="invoice_extra[]" id="invoice_extra' + count + '" class="form-control"></div><div class="col-sm-4"><input type="text" class="form-control" maxlength="4" pattern="^0[1-9]|[1-9]\d$" name="amount_extra[]" id="amount_extra_' + count + '" placeholder="Enter Bill Amount"></div><button type="button" name="remove_btn" class="btn btn-danger btn-rounded btn-icon remove_btn" id="btn_id_' + count + '" data-id="' + count + '" fdprocessedid="7w26pm"><i class="fa fa-trash"></i></button></a></div></div></div></div>';
         $( ".query_rows" ).append( html_content );
         var invc_count = count - 1;
         var inv_ex = $('#invoice_extra' + invc_count).val();
