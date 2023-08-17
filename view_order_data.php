@@ -1,5 +1,5 @@
 <?php include("config.php");
-$heading = 'View Historical data';
+$heading = 'View Historical Order';
 ?>
 <!DOCTYPE html>
 <html lang="en">
