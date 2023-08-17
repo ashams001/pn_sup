@@ -8,7 +8,7 @@ $message = date("Y-m-d H:i:s");
 $chicagotime = date("Y-m-d H:i:s");
 $role = $_SESSION['role_id'];
 $user_id = $_SESSION["id"];
-$heading = 'Active Orders';
+$heading = 'Edit Active Orders';
 if (count($_POST) > 0) {
     if (!empty($_POST['op_type']) && $_POST['op_type'] == "del_file") {
         $file_name = $_POST['file_name'];
@@ -212,7 +212,7 @@ if (count($_POST) > 0) {
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="active_orders.php">Active Orders</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Edit Shipment</li>
+                            <li class="breadcrumb-item active" aria-current="page">Edit Active Orders</li>
                         </ol>
                     </nav>
                     <div  style="text-align: end;" class="col-sm-2">
