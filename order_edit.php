@@ -218,6 +218,9 @@ if (count($_POST) > 0) {
                             <li class="breadcrumb-item active" aria-current="page">Edit Order</li>
                         </ol>
                     </nav>
+                    <div  style="text-align: end;" class="col-sm-5">
+                        <a href="active_orders.php" class="btn btn-menu text-white">Back</a>
+                    </div>
                 </div>
                 <?php
                 if (!empty($import_status_message)) {

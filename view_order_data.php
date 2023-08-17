@@ -28,6 +28,9 @@ $heading = 'View Historical data';
                             <li class="breadcrumb-item active" aria-current="page">View Order</li>
                         </ol>
                     </nav>
+                    <div  style="text-align: end;" class="col-sm-2">
+                        <a href="active_orders.php" class="btn btn-primary text-white">Back</a>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-md-10 grid-margin stretch-card">
