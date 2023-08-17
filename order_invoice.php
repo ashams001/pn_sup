@@ -16,7 +16,7 @@ $heading = 'Orders Invoice';
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>PN</title>
+    <title>Order Invoice</title>
    <style>
        .fa.fa-eye {
            color: #ffffff!important;
@@ -41,7 +41,7 @@ $heading = 'Orders Invoice';
                     <div class="col-12 grid-margin">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Order Status</h4>
+                                <!--<h4 class="card-title">Order Status</h4>-->
                                 <div class="table-responsive">
                                     <table class="table">
                                         <thead>
