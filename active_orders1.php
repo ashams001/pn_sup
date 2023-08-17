@@ -77,6 +77,10 @@
 										$order_id = $rowc['order_id'];
 										$order_status_id = $rowc['order_status_id'];
 										$ship_det = $rowc['shipment_details'];
+										$qurtemp = mysqli_query($sup_db, "SELECT * FROM  sup_order_status where sup_order_status_id  = '$order_status_id' ");
+										while ($rowctemp = mysqli_fetch_array($qurtemp)) {
+											$order_status = $rowctemp["sup_order_status"];
+										}
 										?>
 										<input hidden id="edit_order_id" name="edit_order_id"
 											   value="<?php echo $order_id; ?>">
@@ -84,10 +88,23 @@
 											   value="<?php echo $order_status_id; ?>">
 										<div class="container px-1 px-md-4 py-5 mx-auto">
 											<div class="card">
-												<div class="row d-flex justify-content-between px-3 top">
-													<div class="d-flex">
-														<h5>ORDER <span class="text-primary font-weight-bold"><?php echo $rowc['sup_order_id']; ?></span></h5>
-													</div>
+<!--												<div class="row d-flex justify-content-between px-3 top">-->
+                                                <div class="row justify-content-between top">
+													
+                                                        <div class="d-flex flex-column">
+														<h5>ORDER ID : <span class="text-primary font-weight-bold"><?php echo $rowc['sup_order_id']; ?></span></h5>
+                                                        </div>
+                                                        <div class="d-flex flex-column">
+                                                        <p><?php echo $rowc['order_name']; ?> </p>
+                                                        </div>
+                                                        <div class="d-flex flex-column">
+                                                        <p><?php echo $rowc['order_desc']; ?> </p>
+                                                        </div>
+                                                    <div class="d-flex flex-column">
+														<p><?php echo dateReadFormat($rowc['created_on']); ?></p>
+                                                        <!--                                                        <div class="badge badge-outline-success">  --><?php //echo $order_status; ?><!--</div>-->
+                                                    </div>
+													
 													<!--                                            <div class="d-flex flex-column text-sm-right">-->
 													<!--                                                <p class="mb-0">Expected Arrival <span>01/12/19</span></p>-->
 													<!--                                                <p>USPS <span class="font-weight-bold">234094567242423422898</span></p>-->
@@ -98,19 +115,19 @@
 													<div class="col-12">
 														<ul id="progressbar" class="text-center">
 															<li class="active step0"></li>
-															<li class="active step0"></li>
-															<li class="active step0"></li>
-															<li class="active step0"></li>
-															<li class="step0"></li>
+															<li class="<?php if($order_status_id >= 2 ) echo 'active '?> step0"></li>
+															<li class="<?php if($order_status_id >= 3 ) echo 'active '?> step0"></li>
+															<li class="<?php if($order_status_id >= 4 ) echo 'active '?> step0"></li>
+															<li class="<?php if($order_status_id >= 5 ) echo 'active '?>step0"></li>
 														</ul>
 													</div>
 												</div>
 												<div class="row justify-content-between top">
 													<div class="row d-flex icon-content">
 														<img class="icon" src="https://i.imgur.com/9nnc9Et.png">
-														<div class="d-flex flex-column">
-															<p class="font-weight-bold">Order<br>Placed</p>
-														</div>
+                                                        <div class="d-flex flex-column">
+                                                            <p class="font-weight-bold">Order<br>Placed</p>
+                                                        </div>
 													</div>
 													<div class="row d-flex icon-content">
 														<img class="icon" src="https://i.imgur.com/9nnc9Et.png">
@@ -118,18 +135,18 @@
 															<p class="font-weight-bold">Order<br>Acknowledged</p>
 														</div>
 													</div>
-													<div class="row d-flex icon-content">
-														<img class="icon" src="https://i.imgur.com/u1AzR7w.png">
-														<div class="d-flex flex-column">
-															<p class="font-weight-bold">Order<br>Processed</p>
-														</div>
-													</div>
-													<div class="row d-flex icon-content">
-														<img class="icon" src="https://i.imgur.com/TkPm63y.png">
-														<div class="d-flex flex-column">
-															<p class="font-weight-bold">Order<br>Shipped</p>
-														</div>
-													</div>
+                                                    <div class="row d-flex icon-content">
+                                                        <img class="icon" src="https://i.imgur.com/u1AzR7w.png">
+                                                        <div class="d-flex flex-column">
+                                                            <p class="font-weight-bold">Order<br>Processed</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row d-flex icon-content">
+                                                        <img class="icon" src="https://i.imgur.com/TkPm63y.png">
+                                                        <div class="d-flex flex-column">
+                                                            <p class="font-weight-bold">Order<br>Shipped</p>
+                                                        </div>
+                                                    </div>
 													<div class="row d-flex icon-content">
 														<img class="icon" src="https://i.imgur.com/HdsziHP.png">
 														<div class="d-flex flex-column">
@@ -137,6 +154,23 @@
 														</div>
 													</div>
 												</div>
+                                                <div class="row justify-content-between top">
+                                                    <div class="d-flex flex-column">
+														<?php if($order_status_id < 4){ ?>
+                                                            <a class="btn btn-success" href="order_edit.php?id=<?php echo $order_id ?>">
+                                                                <i class="fa-solid fa-pen"></i>
+                                                            </a>
+														<?php }elseif($order_status_id == 4){ ?>
+                                                            <a class="btn btn-success" href="edit_shipped_file.php?id=<?php echo $order_id ?>">
+                                                                <i class="fa-solid fa-pen"></i>
+                                                            </a>
+														<?php }else{ ?>
+                                                            <a class="btn btn-success" href="view_order_data.php?id=<?php echo $rowc['sup_order_id'] ?>">
+                                                                <i class="fa fa-eye"></i>
+                                                            </a>
+														<?php } ?>
+                                                    </div>
+                                                </div>
 											</div>
 										</div>
 									<?php } ?>
