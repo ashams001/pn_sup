@@ -21,10 +21,10 @@ $heading = 'View Historical data';
         <div class="main-panel">
             <div class="content-wrapper">
                 <div class="page-header">
-                    <h3 class="page-title"> View Order </h3>
+                  <!--  <h3 class="page-title"> View Order </h3>-->
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#">Order</a></li>
+                            <li class="breadcrumb-item"><a href="active_orders.php">Active Orders</a></li>
                             <li class="breadcrumb-item active" aria-current="page">View Order</li>
                         </ol>
                     </nav>

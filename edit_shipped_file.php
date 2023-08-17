@@ -8,7 +8,7 @@ $message = date("Y-m-d H:i:s");
 $chicagotime = date("Y-m-d H:i:s");
 $role = $_SESSION['role_id'];
 $user_id = $_SESSION["id"];
-$heading = 'Edit Shipped Files And Attachments';
+$heading = 'Active Orders';
 if (count($_POST) > 0) {
     if (!empty($_POST['op_type']) && $_POST['op_type'] == "del_file") {
         $file_name = $_POST['file_name'];
@@ -190,7 +190,7 @@ if (count($_POST) > 0) {
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Edit Shipped File</title>
+    <title>Edit Active Order</title>
 </head>
 <style>
     .collapse.in {
@@ -208,11 +208,11 @@ if (count($_POST) > 0) {
         <div class="main-panel">
             <div class="content-wrapper">
                 <div class="page-header">
-                    <h3 class="page-title"> Edit Shipped Files </h3>
+                    <!--                    <h3 class="page-title"> View Order </h3>-->
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#">Order</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Edit Shipped Files</li>
+                            <li class="breadcrumb-item"><a href="active_orders.php">Active Orders</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Edit Shipment</li>
                         </ol>
                     </nav>
                 </div>
