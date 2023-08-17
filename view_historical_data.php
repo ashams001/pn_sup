@@ -125,19 +125,19 @@ $heading = 'View Historical Order';
                                                 $invoice_amount = $row3['invoice_amount'];
                                                 ?>
                                                 <?php if(!empty($file_name)){ ?>
-                                                    <label for="exampleInputMobile" class="col-sm-3 col-form-label">Attach Invoice : </label>
+                                                    <label for="exampleInputMobile" class="col-sm-3 col-form-label">Invoice : </label>
                                                     <div class="col-sm-6">
                                                         <a href="order_invoices/<?php echo $sup_order_id; ?>/<?php echo $file_name; ?>" target="_blank">
-                                                            <input type="text" name="att_voice" class="form-control pn_none" value="<?php echo $file_name; ?>">
+                                                            <input type="text" name="att_voice" class="form-control pn_none" value="<?php echo $file_name; ?>" style="pointer-events: none!important;">
                                                         </a>
                                                     </div>
                                                     <div class="col-sm-2">
-                                                        <input type="text" name="att_amount" class="form-control pn_none" value="<?php echo $invoice_amount; ?>">
+                                                        <input type="text" name="att_amount" class="form-control pn_none" value="<?php echo $invoice_amount; ?>" style="pointer-events: none!important;">
                                                     </div>
                                                 <?php } } ?>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="exampleInputMobile" class="col-sm-3 col-form-label">Other Attachments : </label>
+                                            <label for="exampleInputMobile" class="col-sm-3 col-form-label">Attachments : </label>
                                             <div class="col-sm-9">
                                                 <?php
                                                 $sql4 = sprintf("SELECT * FROM order_files where order_id = '$sup_order_id' and file_type = 'attachment'");
@@ -147,7 +147,7 @@ $heading = 'View Historical Order';
                                                 ?>
                                                 <a href="order_invoices/<?php echo $file_name4; ?>" target="_blank">
                                                     <input type="text" name="att_doc" class="form-control pn_none" id="att_doc"
-                                                           value="<?php echo $file_name4; ?>">
+                                                           value="<?php echo $file_name4; ?>" style="pointer-events: none!important;">
                                                 </a>
                                             </div>
                                         </div>
