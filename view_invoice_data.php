@@ -1,5 +1,5 @@
 <?php include("config.php");
-$heading = 'View Invoice data';
+$heading = 'View Invoice';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -7,7 +7,7 @@ $heading = 'View Invoice data';
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>PN</title>
+    <title>View Invoice Order</title>
     <!-- plugins:css -->
 
 <body>
@@ -21,13 +21,16 @@ $heading = 'View Invoice data';
         <div class="main-panel">
             <div class="content-wrapper">
                 <div class="page-header">
-                    <h3 class="page-title"> View Invoice </h3>
+                   <!-- <h3 class="page-title"> View Invoice </h3>-->
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#">Order</a></li>
+                            <li class="breadcrumb-item"><a href="order_invoice.php">Invoice</a></li>
                             <li class="breadcrumb-item active" aria-current="page">View Invoice</li>
                         </ol>
                     </nav>
+                    <div  style="text-align: end;" class="col-sm-2">
+                        <a href="order_invoice.php" class="btn btn-primary text-white">Back</a>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-md-10 grid-margin stretch-card">
@@ -37,8 +40,8 @@ $heading = 'View Invoice data';
                                 <form class="forms-sample">
                                     <div class="form-group row">
                                         <div class="col-sm-4">Invoice Files</div>
-                                        <div class="col-sm-2">Amount</div>
-                                       <!-- <div class="col-sm-2">User</div>-->
+                                        <div class="col-sm-4"> Total Invoice Amount</div>
+                                        <div class="col-sm-1"></div>
                                         <div class="col-sm-2">Date</div>
                                     </div>
                                 <?php
@@ -60,15 +63,15 @@ $heading = 'View Invoice data';
                                         <div class="col-sm-4">
                                             <a href="order_invoices/<?php echo $row['sup_order_id']; ?>/<?php echo $invoice_file; ?>" target="_blank">
                                                 <input type="text" name="att_doc" class="form-control pn_none" id="att_doc"
-                                                       value="<?php echo $invoice_file; ?>">
+                                                       value="<?php echo $invoice_file; ?>" style="pointer-events: none;">
                                             </a>
                                         </div>
-                                        <div class="col-sm-2">
+                                        <div class="col-sm-4">
                                             <input type="text" name="o_name" id="o_name" class="form-control" value="<?php echo $invoice_amount; ?>" style="pointer-events: none;">
                                         </div>
-                                        <!--<div class="col-sm-2">
-                                            <input type="text" name="o_name" id="o_name" class="form-control" value="<?php /*echo $fullname; */?>" style="pointer-events: none;">
-                                        </div>-->
+                                        <div class="col-sm-1" style="font-size: 20px!important;text-align: center!important;margin-left: -42px!important;">
+                                            <?php echo payment_currency; ?>
+                                        </div>
                                         <div class="col-sm-3">
                                             <input type="text" name="o_name" id="o_name" class="form-control" value="<?php echo dateReadFormat($row['created_on']); ?>" style="pointer-events: none;">
                                         </div>

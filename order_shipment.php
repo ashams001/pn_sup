@@ -8,7 +8,7 @@ $message = date("Y-m-d H:i:s");
 $chicagotime = date("Y-m-d H:i:s");
 $role = $_SESSION['role_id'];
 $user_id = $_SESSION["id"];
-$heading = 'Orders Shipment Details';
+$heading = 'Shipment Details';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +16,7 @@ $heading = 'Orders Shipment Details';
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>PN</title>
+    <title>Shipment Details</title>
     <style>
         .fa.fa-eye {
             color: #ffffff!important;
@@ -41,7 +41,7 @@ $heading = 'Orders Shipment Details';
                     <div class="col-12 grid-margin">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Order Status</h4>
+                              <!--  <h4 class="card-title">Order Status</h4>-->
                                 <div class="table-responsive">
                                     <table class="table">
                                         <thead>
@@ -50,7 +50,7 @@ $heading = 'Orders Shipment Details';
                                             <th>Action</th>
                                             <th>Order Id</th>
                                             <th>Order Name</th>
-                                            <th>Shipment Status</th>
+                                           <!-- <th>Shipment Status</th>-->
                                             <th>Date</th>
                                         </tr>
                                         </thead>
@@ -75,11 +75,11 @@ $heading = 'Orders Shipment Details';
                                             <tr>
                                                 <td><?php echo ++$counter; ?></td>
                                                 <td>
-                                                    <a class="btn btn-success" href="view_order_data.php?id=<?php echo $rowc['sup_order_id']; ?>"><i class="fa fa-eye"></i></a>
+                                                    <a class="btn btn-success" href="view_shipped_data.php?id=<?php echo $rowc['sup_order_id']; ?>"><i class="fa fa-eye"></i></a>
                                                 </td>
                                                 <td><?php echo $rowc['sup_order_id']; ?></td>
                                                 <td><?php echo $rowc['ship_order_name']; ?></td>
-                                                <td><?php echo $ship; ?></td>
+                                                <!--<td><?php /*echo $ship; */?></td>-->
                                                 <td><?php echo dateReadFormat($rowc['created_on']); ?></td>
                                             </tr>
                                         <?php } ?>

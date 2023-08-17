@@ -1,5 +1,5 @@
 <?php include("config.php");
-$heading = 'View Historical Order';
+$heading = 'View Shipped Order';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,15 +21,15 @@ $heading = 'View Historical Order';
         <div class="main-panel">
             <div class="content-wrapper">
                 <div class="page-header">
-                  <!--  <h3 class="page-title"> View Order </h3>-->
+                    <!--  <h3 class="page-title"> View Order </h3>-->
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="active_orders.php">Active Orders</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">View Order</li>
+                            <li class="breadcrumb-item"><a href="order_shipment.php">Shipment details</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">View Shipped Order</li>
                         </ol>
                     </nav>
                     <div  style="text-align: end;" class="col-sm-2">
-                        <a href="active_orders.php" class="btn btn-primary text-white">Back</a>
+                        <a href="order_shipment.php" class="btn btn-primary text-white">Back</a>
                     </div>
                 </div>
                 <div class="row">
@@ -121,19 +121,19 @@ $heading = 'View Historical Order';
                                         $sql3 = sprintf("SELECT * FROM sup_invoice where sup_order_id = '$sup_order_id'");
                                         $qur3 = mysqli_query($sup_db, $sql3);
                                         while($row3 = mysqli_fetch_array($qur3)){
-                                        $file_name = $row3['invoice_file'];
-                                        $invoice_amount = $row3['invoice_amount'];
-                                        ?>
-                                        <?php if(!empty($file_name)){ ?>
+                                            $file_name = $row3['invoice_file'];
+                                            $invoice_amount = $row3['invoice_amount'];
+                                            ?>
+                                            <?php if(!empty($file_name)){ ?>
                                                 <label for="exampleInputMobile" class="col-sm-3 col-form-label">Attach Invoice : </label>
-                                        <div class="col-sm-6">
+                                                <div class="col-sm-6">
                                                     <a href="order_invoices/<?php echo $sup_order_id; ?>/<?php echo $file_name; ?>" target="_blank">
                                                         <input type="text" name="att_voice" class="form-control pn_none" value="<?php echo $file_name; ?>">
                                                     </a>
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <input type="text" name="att_amount" class="form-control pn_none" value="<?php echo $invoice_amount; ?>">
-                                        </div>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <input type="text" name="att_amount" class="form-control pn_none" value="<?php echo $invoice_amount; ?>">
+                                                </div>
                                             <?php } } ?>
                                     </div>
                                     <div class="form-group row">
