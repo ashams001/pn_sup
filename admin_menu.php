@@ -1,5 +1,5 @@
 <!-- partial:partials/_sidebar.html -->
-<nav class="sidebar sidebar-offcanvas" id="sidebar">
+<nav class="sidebar sidebar-offcanvas" id="sidebar" style=" float: left; position: fixed;">
     <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
         <a class="sidebar-brand brand-logo" href="supplier_dashboard.php"><img src="assets/images/site_logo.png" alt="logo" /></a>
         <a class="sidebar-brand brand-logo-mini" href="supplier_dashboard.php"><img src="assets/images/logo-mini.png" alt="logo" /></a>

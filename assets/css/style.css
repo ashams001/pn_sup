@@ -20640,7 +20640,8 @@ div.tagsinput span.tag a {
 /* Sidebar */
 .sidebar {
     min-height: calc(100vh - 70px);
-    background: #fff;
+    margin-top: 70px;
+    background: #f0f7ff;
     font-weight: normal;
     padding: 0;
     width: 244px;
@@ -20686,8 +20687,7 @@ div.tagsinput span.tag a {
     overflow: hidden;
     flex-wrap: nowrap;
     flex-direction: column;
-    margin-bottom: 60px;
-    padding-top: 70px; }
+    margin-bottom: 60px; }
 @media (max-width: 992px) {
     .sidebar .nav {
         padding-top: 0; } }
@@ -21134,6 +21134,7 @@ div.tagsinput span.tag a {
     padding-left: 0;
     padding-right: 0;
     transition: all 0.25s ease;
+    margin-left: 244px;
     width: calc(100% - 244px); }
 .page-body-wrapper.full-page-wrapper {
     width: 100%;
@@ -21161,7 +21162,7 @@ div.tagsinput span.tag a {
         width: 100%; } }
 
 .content-wrapper {
-    background: #e4eaec;
+    background: #f1f1f1;
     padding: 1.875rem 1.75rem;
     width: 100%;
     -webkit-flex-grow: 1;
