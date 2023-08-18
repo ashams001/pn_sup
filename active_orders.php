@@ -47,7 +47,7 @@
 <div class="container-scroller">
 	<?php include ('admin_menu.php'); ?>
 	<!-- partial -->
-	<div class="container-fluid page-body-wrapper">
+	<div class="container-fluid page-body-wrapper margin-244">
 		<!-- partial:partials/_navbar.html -->
 		<?php include ('header.php'); ?>
 		<!-- partial -->
@@ -104,7 +104,7 @@
                                                                             <span class="mdi mdi-alert-outline"></span>
                                                                         </div>
 
-                                                                        <p>Action Pending.Click here to Update.</p>
+                                                                        <p>Action Pending from your end.Click here to Update.</p>
                                                                                              <a class="mdi mdi-open-in-new open" href="order_edit.php?id=<?php echo $order_id ?>">
                                                                         </a></div>
 																						 <?php }elseif($order_status_id == 4){ ?>

@@ -21134,7 +21134,7 @@ div.tagsinput span.tag a {
     padding-left: 0;
     padding-right: 0;
     transition: all 0.25s ease;
-    margin-left: 244px;
+
     width: calc(100% - 244px); }
 .page-body-wrapper.full-page-wrapper {
     width: 100%;
@@ -21146,7 +21146,9 @@ div.tagsinput span.tag a {
 .container-scroller {
     display: flex;
     position: relative; }
-
+.margin-244{
+    margin-left: 244px;
+}
 .main-panel {
     transition: width 0.25s ease, margin 0.25s ease;
     width: 100%;
