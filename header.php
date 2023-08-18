@@ -8,9 +8,9 @@
 <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
 <link rel="stylesheet" href="assets/css/select2.min.css">
 <link rel="stylesheet" href="assets/css/select2-bootstrap.min.css">
-<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet"
+<link href="assets/css/Roboto.css" rel="stylesheet"
       type="text/css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="assets/fonts/fontawesome/css/all.min.css" />
 <!-- End plugin css for this page -->
 <!-- inject:css -->
 <!-- endinject -->
