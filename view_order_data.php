@@ -14,7 +14,7 @@ $heading = 'View Historical Order';
 <div class="container-scroller">
     <?php include ('admin_menu.php'); ?>
     <!-- partial -->
-    <div class="container-fluid page-body-wrapper">
+    <div class="container-fluid page-body-wrapper margin-244">
         <!-- partial:partials/_navbar.html -->
         <?php include ('header.php'); ?>
         <!-- partial -->
