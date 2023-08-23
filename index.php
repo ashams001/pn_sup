@@ -20,7 +20,7 @@ if (count($_POST) > 0) {
         $_SESSION["pin_flag"] = $row['pin_flag'];
         $pin = $row['pin'];
         $pin_flag = $row['pin_flag'];
-        mysqli_query($sup_db, "INSERT INTO `sup_session_log`(`u_id`,`created_at`) VALUES ('$logid','$chicagotime')");
+       // mysqli_query($sup_db, "INSERT INTO `sup_session_log`(`u_id`,`created_at`) VALUES ('$logid','$chicagotime')");
     } else {
         $result = mysqli_query($sup_db, "SELECT * FROM sup_account_users WHERE u_status = '0' AND user_name='" . $_POST["user"] . "' and u_password = '" . (md5($_POST["pass"])) . "'");
         $row = mysqli_fetch_array($result);
@@ -35,14 +35,8 @@ if (count($_POST) > 0) {
         }
     }
     if ($is_error == 0) {
-        header("Location:active_orders.php");
+        header("Location:orders/supplier_dashboard.php");
     }
-}
-$tmp = $_SESSION['temp'];
-$_SESSION['temp'] = "";
-if ($tmp == "forgotpass_success") {
-    $message_stauts_class = $_SESSION["alert_success_class"];
-    $import_status_message = $_SESSION["error_2"];
 }
 ?>
 <!DOCTYPE html>

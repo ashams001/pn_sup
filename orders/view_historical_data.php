@@ -1,332 +1,243 @@
-<?php include("./../../sup_config.php");
-include("./../../config.php");
-$id = $_GET['id'];
+<?php include("../config.php");
+$heading = 'View Historical Order';
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?php echo $sitename; ?> |View Historical Order</title>
-    <!-- Global stylesheets -->
-    <link href="../assets_old/css/core.css" rel="stylesheet" type="text/css">
-    <!-- /global stylesheets -->
-    <!-- Core JS files -->
-    <!--    <script type="text/javascript" src="../assets/js/libs/jquery-3.6.0.min.js"> </script>-->
-    <script type="text/javascript" src="../assets_old/js/form_js/jquery-min.js"></script>
-    <script type="text/javascript" src="../assets_old/js/libs/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="../assets_old/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../assets_old/js/plugins/loaders/pace.min.js"></script>
-    <script type="text/javascript" src="../assets_old/js/plugins/loaders/blockui.min.js"></script>
-    <!-- Theme JS files -->
-    <script type="text/javascript" src="../assets_old/js/plugins/tables/datatables/datatables.min.js"></script>
-    <script type="text/javascript" src="../assets_old/js/core/libraries/jquery_ui/interactions.min.js"></script>
-    <script type="text/javascript" src="../assets_old/js/plugins/forms/selects/select2.min.js"></script>
-    <script type="text/javascript" src="../assets_old/js/pages/datatables_basic.js"></script>
-    <script type="text/javascript" src="../assets_old/js/plugins/forms/selects/select2.min.js"></script>
-    <script type="text/javascript" src="../assets_old/js/plugins/forms/selects/bootstrap_select.min.js"></script>
-    <script type="text/javascript" src="../assets_old/js/pages/form_bootstrap_select.js"></script>
-    <script type="text/javascript" src="../assets_old/js/pages/form_layouts.js"></script>
-    <script type="text/javascript" src="../assets_old/js/plugins/ui/ripple.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="../assets/css/pages/order_timeline.css">
+    <title><?php echo $sitename ?></title>
+    <!-- plugins:css -->
 
-    <!--Internal  Datetimepicker-slider css -->
-    <link href="<?php echo $siteURL; ?>assets/css/form_css/amazeui.datetimepicker.css" rel="stylesheet">
-    <link href="<?php echo $siteURL; ?>assets/css/form_css/jquery.simple-dtpicker.css" rel="stylesheet">
-    <link href="<?php echo $siteURL; ?>assets/css/form_css/picker.min.css" rel="stylesheet">
-    <!--Bootstrap-datepicker css-->
-    <link rel="stylesheet" href="<?php echo $siteURL; ?>assets/css/form_css/bootstrap-datepicker.css">
-    <!-- Internal Select2 css -->
-    <link href="<?php echo $siteURL; ?>assets/css/form_css/select2.min.css" rel="stylesheet">
-    <!-- STYLES CSS -->
-    <link href="<?php echo $siteURL; ?>assets/css/form_css/style.css" rel="stylesheet">
-    <link href="<?php echo $siteURL; ?>assets/css/form_css/style-dark.css" rel="stylesheet">
-    <link href="<?php echo $siteURL; ?>assets/css/form_css/style-transparent.css" rel="stylesheet">
-    <!---Internal Fancy uploader css-->
-    <link href="<?php echo $siteURL; ?>assets/css/form_css/fancy_fileupload.css" rel="stylesheet" />
-    <!--Internal  Datepicker js -->
-    <script src="<?php echo $siteURL; ?>assets/js/form_js/datepicker.js"></script>
-    <!-- Internal Select2.min js -->
-    <!--Internal  jquery.maskedinput js -->
-    <script src="<?php echo $siteURL; ?>assets/js/form_js/jquery.maskedinput.js"></script>
-    <!--Internal  spectrum-colorpicker js -->
-    <script src="<?php echo $siteURL; ?>assets/js/form_js/spectrum.js"></script>
-    <!--Internal  jquery-simple-datetimepicker js -->
-    <script src="<?php echo $siteURL; ?>assets/js/form_js/datetimepicker.min.js"></script>
-    <!-- Ionicons js -->
-    <script src="<?php echo $siteURL; ?>assets/js/form_js/jquery.simple-dtpicker.js"></script>
-    <!--Internal  pickerjs js -->
-    <script src="<?php echo $siteURL; ?>assets/js/form_js/picker.min.js"></script>
-    <!--internal color picker js-->
-    <script src="<?php echo $siteURL; ?>assets/js/form_js/pickr.es5.min.js"></script>
-    <script src="<?php echo $siteURL; ?>assets/js/form_js/colorpicker.js"></script>
-    <!--Bootstrap-datepicker js-->
-    <script src="<?php echo $siteURL; ?>assets/js/form_js/bootstrap-datepicker.js"></script>
-    <script src="<?php echo $siteURL; ?>assets/js/form_js/select2.min.js"></script>
-    <!-- Internal form-elements js -->
-    <script src="<?php echo $siteURL; ?>assets/js/form_js/form-elements.js"></script>
-    <link href="<?php echo $siteURL; ?>assets/css/form_css/demo.css" rel="stylesheet"/>
+<body>
+<div class="container-scroller">
+    <?php include ('../admin_menu.php'); ?>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper margin-244">
+        <!-- partial:partials/_navbar.html -->
+        <?php include ('../header.php'); ?>
+        <!-- partial -->
+        <div class="main-panel">
+            <div class="content-wrapper">
+                <div class="page-header">
+<!--                    <h3 class="page-title"> View Order </h3>-->
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="historical_orders.php">Historical Orders</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">View Order</li>
+                        </ol>
+                    </nav>
+                    <div  style="text-align: end;" class="col-sm-2">
+                        <a href="../orders/historical_orders.php" class="btn btn-primary text-white">Back</a>
+                    </div>
+                </div>
+				<?php
+					$id = $_GET['id'];
+					
+					$sql = sprintf("SELECT * FROM sup_order where order_id = '$id' and is_deleted != 1");
+					$qur = mysqli_query($sup_db, $sql);
+					$row = mysqli_fetch_array($qur);
+					$sup_order_id = $row['sup_order_id'];
+					$order_name = $row['order_name'];
+					$order_desc = $row['order_desc'];
+					$order_status_id = $row['order_status_id'];
+					$created_on = $row['created_on'];
+					$created_by = $row['created_by'];
+					$shipment_details = $row['shipment_details'];
+					$c_id = $row['c_id'];
+				?>
+                <div class="row">
+                    <div class="col-md-12 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="card">
+                                                <div class="card-body" style="padding: .8rem !important;">
+                                                    <?php
+                                                    $query = sprintf("SELECT * FROM  supplier_session_log  where order_id = '$sup_order_id' ORDER BY `supplier_session_log`.`order_status_id` ASC");
+                                                    $qur = mysqli_query($sup_db, $query);
+                                                    while ($rowc = mysqli_fetch_array($qur)) {
+                                                        $osid = $rowc['order_status_id'];
+                                                        if($osid != 6){
+														$sql1 = sprintf("SELECT * FROM sup_order_status where sup_order_status_id =  '$osid'");
+														$qur1 = mysqli_query($sup_db, $sql1);
+														$row1 = mysqli_fetch_array($qur1);
+														$sup_order_status = $row1['sup_order_status'];
+                                                        $o_status = explode(' ' ,  $sup_order_status);
+                                                        ?>
+                                                        <div class="hori-timeline" dir="ltr">
+                                                        <ul class="list-inline events">
+                                                            <li class="list-inline-item event-list">
+                                                                <div class="px-4">
+                                                                    <div class="event-date bg-soft-primary"><?php echo $o_status[0] ?> <br> <?php echo $o_status[1] ?></div>
+                                                                    <h6><?php echo $rowc['created_on'] ?></h6>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                        </div>
+                                                        
+                                                    <?php }else{?>
+                                                </div>
+                                                            <div class="top_row rr">
+                                                                <div class="cdiv"> <p class="font-weight-bold">Order Number : <span class="text-primary font-weight-bold"><?php echo $sup_order_id; ?></span></p>
+                                                                </div>
+                                                                <div class="cdiv"><p class="font-weight-bold">Order Close Date : <span class="text-primary font-weight-bold"><?php echo dateReadFormat($rowc['created_on']); ?></span></p>
+                                                                </div>
+                                                            </div>
+                                                       <?php }
+													} ?>
+<!--                                                    <h4 class="card-title mb-5">Order Number : <span class="text-primary font-weight-bold">--><?php //echo $sup_order_id; ?><!--</span></p></h4>-->
+                                                    
 
-    <style>
-        .navbar {
-
-            padding-top: 0px!important;
-        }
-        .dropdown .arrow {
-
-            margin-top: -25px!important;
-            width: 1.5rem!important;
-        }
-        #ic .arrow {
-            margin-top: -22px!important;
-            width: 1.5rem!important;
-        }
-        .fs-6 {
-            font-size: 1rem!important;
-        }
-
-        .mt-4 {
-            margin-top: 0rem!important;
-        }
-
-
-        .content_img {
-            width: 113px;
-            float: left;
-            margin-right: 5px;
-            border: 1px solid gray;
-            border-radius: 3px;
-            padding: 5px;
-            margin-top: 10px;
-        }
-
-        .text-center {
-            text-align: center!important;
-            background-image: none!important;
-            font-size: large;
-        }
-
-        /* Delete */
-        .content_img span {
-            border: 2px solid red;
-            display: inline-block;
-            width: 99%;
-            text-align: center;
-            color: red;
-        }
-        .remove_btn{
-            float: right;
-        }
-        .contextMenu{ position:absolute;  width:min-content; left: 204px; background:#e5e5e5; z-index:999;}
-        .collapse.in {
-            display: block!important;
-        }
-        .mt-4 {
-            margin-top: 0rem!important;
-        }
-
-        table.dataTable thead .sorting:after {
-            content: ""!important;
-            top: 49%;
-        }
-        .card-title:before{
-            width: 0;
-
-        }
-        .main-content .container, .main-content .container-fluid {
-            padding-left: 20px;
-            padding-right: 238px;
-        }
-        .main-footer {
-            margin-left: -127px;
-            margin-right: 112px;
-            display: block;
-        }
-
-        a.btn.btn-success.btn-sm.br-5.me-2.legitRipple {
-            height: 32px;
-            width: 32px;
-        }
-        .badge {
-            padding: 0.5em 0.5em!important;
-            width: 100px;
-            height: 23px;
-        }
-    </style>
-</head>
-<!-----body-------->
-<body class="ltr main-body app horizontal">
-<!-- Main navbar -->
-<?php
-//$cust_cam_page_header = "Job Title";
-include("../../header.php");
-include("../../admin_menu.php");
-?>
-<!-----main content----->
-<div class="main-content app-content">
-    <!---container--->
-    <div class="main-container container">
-        <!---breadcrumb--->
-        <div class="breadcrumb-header justify-content-between">
-            <div class="left-content">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item tx-15"><a href="javascript:void(0);">Supplier</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">View Historical Data</li>
-                </ol>
-            </div>
-        </div>
-        <?php
-        $sql = sprintf("SELECT * FROM sup_order where order_id = '$id' ");
-        $qur = mysqli_query($sup_db, $sql);
-        $row = mysqli_fetch_array($qur);
-        $order_name = $row['order_name'];
-        $order_desc = $row['order_desc'];
-        $order_status_id = $row['order_status_id'];
-        $created_on = $row['created_on'];
-        $created_by = $row['created_by'];
-        $shipment_details = $row['shipment_details'];
-        $c_id = $row['c_id'];
-        ?>
-        <form action="" id="" enctype="multipart/form-data" class="form-horizontal" method="post">
-            <div class="row">
-                <div class="col-lg-12 col-md-12">
-                    <div class="card">
-                        <div class="">
-                            <div class="card-header">
-                                <span class="main-content-title mg-b-0 mg-b-lg-1">ORDER DETAILS</span>
-                            </div>
-                            <div class="pd-30 pd-sm-20">
-                                <div class="row row-xs align-items-center mg-b-20">
-                                    <div class="col-md-2">
-                                        <label class="form-label mg-b-0">Supplier Name</label>
-                                    </div>
-                                    <div class="col-md-8 mg-t-5 mg-md-t-0">
-                                        <?php
-                                        $sql5 = sprintf("SELECT * FROM sup_account where c_id = '$c_id'");
-                                        $qur5 = mysqli_query($sup_db, $sql5);
-                                        $row5 = mysqli_fetch_array($qur5);
-                                        $c_name = $row5['c_name'];
-                                        ?>
-                                        <input type="text" name="s_name" id="s_name" class="form-control" value="<?php echo $c_name; ?>" disabled>
+                                            
+                                            </div>
+                                            <!-- end card -->
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="row row-xs align-items-center mg-b-20">
-                                    <div class="col-md-2">
-                                        <label class="form-label mg-b-0">Order Name</label>
-                                    </div>
-                                    <div class="col-md-8 mg-t-5 mg-md-t-0">
-                                        <input type="text" name="o_name" id="o_name" class="form-control" value="<?php echo $order_name; ?>" disabled>
-                                    </div>
-                                </div>
-
-                                <div class="row row-xs align-items-center mg-b-20">
-                                    <div class="col-md-2">
-                                        <label class="form-label mg-b-0">Order Description</label>
-                                    </div>
-                                    <div class="col-md-8 mg-t-5 mg-md-t-0">
-                                        <input type="text" name="o_desc" id="o_desc" class="form-control" value="<?php echo $order_desc; ?>" disabled>
-                                    </div>
-                                </div>
-                                <div class="row row-xs align-items-center mg-b-20">
-                                    <div class="col-md-2">
-                                        <label class="form-label mg-b-0">Order Status</label>
-                                    </div>
-                                    <div class="col-md-8 mg-t-5 mg-md-t-0">
-                                        <?php
-                                        $sql1 = sprintf("SELECT * FROM sup_order_status where sup_order_status_id = '$order_status_id' ");
-                                        $qur1 = mysqli_query($sup_db, $sql1);
-                                        $row1 = mysqli_fetch_array($qur1);
-                                        $sup_order_status = $row1['sup_order_status'];
-                                        ?>
-                                        <input type="text" name="o_status" id="o_status" class="form-control" value="<?php echo $sup_order_status; ?>" disabled>
-                                    </div>
-                                </div>
-                                <div class="row row-xs align-items-center mg-b-20">
-                                    <div class="col-md-2">
-                                        <label class="form-label mg-b-0">Created By</label>
-                                    </div>
-                                    <div class="col-md-8 mg-t-5 mg-md-t-0">
-                                        <?php
-                                        $sql2 = sprintf("SELECT * FROM cam_users where users_id = '$created_by' and is_deleted != 1");
-                                        $qur2 = mysqli_query($db, $sql2);
-                                        $row2 = mysqli_fetch_array($qur2);
-                                        $full_name = $row2['firstname'] . ' ' . $row2['lastname'];
-                                        ?>
-                                        <input type="text" name="c_by" id="c_by" class="form-control" value="<?php echo $full_name; ?>" disabled>
-                                    </div>
-                                </div>
-                                <div class="row row-xs align-items-center mg-b-20">
-                                    <div class="col-md-2">
-                                        <label class="form-label mg-b-0">Created On</label>
-                                    </div>
-                                    <div class="col-md-8 mg-t-5 mg-md-t-0">
-                                        <input type="text" name="c_date" id="c_date" class="form-control" value="<?php echo dateReadFormat($created_on); ?>" disabled>
-                                    </div>
-                                </div>
+                                
+                                <h4 class="card-title">Order Id - <?php echo $sup_order_id; ?></h4>
+                                    <form class="forms-sample">
+                                        <input type="hidden" name="hidden_id" id="hidden_id" value="<?php echo $id; ?>">
+                                        <div class="form-group row">
+                                            <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Supplier Name : </label>
+                                            <div class="col-sm-9">
+                                                <?php
+                                                $sql5 = sprintf("SELECT * FROM sup_account where c_id = '$c_id'");
+                                                $qur5 = mysqli_query($sup_db, $sql5);
+                                                $row5 = mysqli_fetch_array($qur5);
+                                                $c_name = $row5['c_name'];
+                                                ?>
+                                                <input type="text" name="s_name" id="s_name" class="form-control" value="<?php echo $c_name; ?>" style="pointer-events: none;background: #d8dbe1;">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Order Name : </label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="o_name" id="o_name" class="form-control" value="<?php echo $order_name; ?>" style="pointer-events: none;background: #d8dbe1;">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="exampleInputMobile" class="col-sm-3 col-form-label">Order Description : </label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="o_desc" id="o_desc" class="form-control" value="<?php echo $order_desc; ?>" style="pointer-events: none;background: #d8dbe1;">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="exampleInputPassword2" class="col-sm-3 col-form-label">Order Status : </label>
+                                            <div class="col-sm-9">
+                                                <?php
+                                                $sql1 = sprintf("SELECT * FROM sup_order_status where sup_order_status_id = '$order_status_id' ");
+                                                $qur1 = mysqli_query($sup_db, $sql1);
+                                                $row1 = mysqli_fetch_array($qur1);
+                                                $sup_order_status = $row1['sup_order_status'];
+                                                ?>
+                                                <input type="text" name="o_status" id="o_status" class="form-control" value="<?php echo $sup_order_status; ?>" style="pointer-events: none;background: #d8dbe1;">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="exampleInputMobile" class="col-sm-3 col-form-label">Created By : </label>
+                                            <div class="col-sm-9">
+                                                <?php
+                                                $sql2 = sprintf("SELECT * FROM cam_users where users_id = '$created_by' and is_deleted != 1");
+                                                $qur2 = mysqli_query($db, $sql2);
+                                                $row2 = mysqli_fetch_array($qur2);
+                                                $full_name = $row2['firstname'] . ' ' . $row2['lastname'];
+                                                ?>
+                                                <input type="text" name="c_by" id="c_by" class="form-control" value="<?php echo $full_name; ?>" style="pointer-events: none;background: #d8dbe1;">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="exampleInputMobile" class="col-sm-3 col-form-label">Created On : </label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="c_date" id="c_date" class="form-control" value="<?php echo $created_on; ?>" style="pointer-events: none;background: #d8dbe1;">
+                                            </div>
+                                        </div>
+                                        <h4 style="margin-top: 20px;margin-left: 10px;">Shipment Details : </h4>
+                                        <hr>
+                                        <div class="form-group row">
+                                            <label for="exampleInputMobile" class="col-sm-3 col-form-label">Shipment Name : </label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="ship_name" id="ship_name" class="form-control" value="<?php echo $shipment_details; ?>" style="pointer-events: none;background: #d8dbe1;">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <?php
+                                            $sql3 = sprintf("SELECT * FROM sup_invoice where sup_order_id = '$sup_order_id'");
+                                            $qur3 = mysqli_query($sup_db, $sql3);
+                                            while($row3 = mysqli_fetch_array($qur3)){
+                                                $file_name = $row3['invoice_file'];
+                                                $invoice_amount = $row3['invoice_amount'];
+                                                ?>
+                                                <?php if(!empty($file_name)){ ?>
+                                                    <label for="exampleInputMobile" class="col-sm-3 col-form-label">Invoice : </label>
+                                                    <div class="col-sm-5">
+                                                        <a href="order_invoices/<?php echo $sup_order_id; ?>/<?php echo $file_name; ?>" target="_blank">
+                                                            <input type="text" name="att_voice" class="form-control pn_none" value="<?php echo $file_name; ?>" style="pointer-events: none!important;">
+                                                        </a>
+                                                    </div>
+                                                    <label for="exampleInputMobile" class="col-sm-1 col-form-label">Amount  </label>
+                                                    <div class="col-sm-2">
+                                                        <input type="text" name="att_amount" class="form-control pn_none" value="<?php echo $invoice_amount; ?>" style="pointer-events: none!important;">
+                                                    </div>
+                                                    <div class="col-sm-1" style="font-size: 20px!important;text-align: center;margin-left: -39px;margin-top: 4px;">
+                                                        <?php echo "(" . payment_currency . ")"; ?>
+                                                    </div>
+                                                <?php } } ?>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="exampleInputMobile" class="col-sm-3 col-form-label">Attachments : </label>
+                                            <div class="col-sm-9">
+                                                <?php
+                                                $sql4 = sprintf("SELECT * FROM order_files where order_id = '$sup_order_id' and file_type = 'attachment'");
+                                                $qur4 = mysqli_query($sup_db, $sql4);
+                                                $row4 = mysqli_fetch_array($qur4);
+                                                $file_name4 = $row4['file_name'];
+                                                ?>
+                                                <a href="order_invoices/<?php echo $file_name4; ?>" target="_blank">
+                                                    <input type="text" name="att_doc" class="form-control pn_none" id="att_doc"
+                                                           value="<?php echo $file_name4; ?>" style="pointer-events: none!important;">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </form>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <div class="row">
-                <div class="col-lg-12 col-md-12">
-                    <div class="card">
-                        <div class="">
-                            <div class="card-header">
-                                <span class="main-content-title mg-b-0 mg-b-lg-1">Shipment Details</span>
-                            </div>
-
-                            <div class="pd-30 pd-sm-20">
-                                <div class="row row-xs align-items-center mg-b-20">
-                                    <div class="col-md-2">
-                                        <label class="form-label mg-b-0">Shipment Name</label>
-                                    </div>
-                                    <div class="col-md-8 mg-t-5 mg-md-t-0">
-                                        <input type="text" name="ship_name" id="ship_name" class="form-control" value="<?php echo $shipment_details; ?>" disabled>
-                                    </div>
-                                </div>
-
-                                <div class="row row-xs align-items-center mg-b-20">
-                                    <div class="col-md-2">
-                                        <label class="form-label mg-b-0">Attach Invoice</label>
-                                    </div>
-                                    <?php
-                                    $sql3 = sprintf("SELECT * FROM order_files where order_id = '$id' and file_type = 'invoice'");
-                                    $qur3 = mysqli_query($sup_db, $sql3);
-                                    $row3 = mysqli_fetch_array($qur3);
-                                    $file_name = $row3['file_name'];
-                                    ?>
-                                    <div class="col-md-8 mg-t-5 mg-md-t-0">
-                                        <a href="<?php echo $siteURL; ?>supplier/order_invoices/<?php echo $file_name; ?>" target="_blank">
-                                            <input type="text" name="att_voice" class="form-control pn_none" id="att_voice"
-                                                   value="<?php echo $file_name; ?>">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="row row-xs align-items-center mg-b-20">
-                                    <div class="col-md-2">
-                                        <label class="form-label mg-b-0">Other Attachments</label>
-                                    </div>
-                                    <?php
-                                    $sql4 = sprintf("SELECT * FROM order_files where order_id = '$id' and file_type = 'attachment'");
-                                    $qur4 = mysqli_query($sup_db, $sql4);
-                                    $row4 = mysqli_fetch_array($qur4);
-                                    $file_name4 = $row4['file_name'];
-                                    ?>
-                                    <div class="col-md-8 mg-t-5 mg-md-t-0">
-                                        <a href="<?php echo $siteURL; ?>supplier/order_invoices/<?php echo $file_name4; ?>" target="_blank">
-                                            <input type="text" name="att_doc" class="form-control pn_none" id="att_doc"
-                                                   value="<?php echo $file_name4; ?>">
-                                        </a>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-        </form>
+        </div>
+        <!-- main-panel ends -->
     </div>
+    <!-- page-body-wrapper ends -->
 </div>
-<?php include('./../../footer1.php') ?>
+<!-- container-scroller -->
+<script>
+    $("#checkAll").click(function () {
+        $('input:checkbox').not(this).prop('checked', this.checked);
+    });
+</script>
+<script>
+
+    $('.select2').select2();
+
+    $(".js-example-placeholder-single").select2({
+        placeholder: "Select Stations",
+        allowClear: true
+    });
+</script>
+<script>
+    function ShowHideDiv() {
+        var ddlPassport = document.getElementById("edit_order_status");
+        var dvPassport = document.getElementById("dvPassport");
+        dvPassport.style.display = ddlPassport.value == "4" ? "block" : "none";
+    }
+</script>
+<!-- End custom js for this page -->
 </body>
+</html>
+
