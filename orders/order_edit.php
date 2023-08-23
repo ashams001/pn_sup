@@ -27,7 +27,7 @@ if (count($_POST) > 0) {
             $sql = "update sup_order set order_status_id='$order_status_id', sup_modified_on='$chicagotime', sup_modified_by='$user_id' where  sup_order_id = '$order_id'";
             $result1 = mysqli_query($sup_db, $sql);
             if ($result1) {
-                $sql_ses_log = "INSERT INTO `supplier_session_log`(`order_id`, `c_id`, `order_status_id`, `created_by`, `created_on`) VALUES ('$order_id',$c_id,'$order_status_id','$user_id','$chicagotime')";
+                $sql_ses_log = "INSERT INTO `supplier_session_log`(`order_id`, `c_id`, `order_status_id`, `created_by`, `created_on`) VALUES ('$order_id','$c_id','$order_status_id','$user_id','$chicagotime')";
                 $result_log = mysqli_query($sup_db, $sql_ses_log);
                 $_SESSION['message_stauts_class'] = 'alert-success';
                 $_SESSION['import_status_message'] = 'Order status Updated successfully.';
@@ -180,7 +180,7 @@ if (count($_POST) > 0) {
             $sql_log = "INSERT INTO `sup_shipment_details`(`sup_order_id`, `ship_order_name`, `shipment_status`, `created_by`, `created_on`)  VALUES ('$order_id','$edit_order_name','1','$user_id','$chicagotime')";
             $res_log = mysqli_query($sup_db, $sql_log);
 
-            $sql_ses_log = "INSERT INTO `supplier_session_log`(`order_id`, `c_id`, `order_status_id`, `created_by`, `created_on`) VALUES ('$order_id',$c_id,'$order_status_id','$user_id','$chicagotime')";
+            $sql_ses_log = "INSERT INTO `supplier_session_log`(`order_id`, `c_id`, `order_status_id`, `created_by`, `created_on`) VALUES ('$order_id','$c_id','$order_up_status_id','$user_id','$chicagotime')";
             $result_log = mysqli_query($sup_db, $sql_ses_log);
         }
         $_SESSION['message_stauts_class'] = 'alert-success';
