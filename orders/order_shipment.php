@@ -1,4 +1,4 @@
-<?php include("config.php");
+<?php include("../config.php");
 if (!isset($_SESSION['user'])) {
     header('location: logout.php');
 }
@@ -29,11 +29,11 @@ $heading = 'Shipment Details';
     </style>
 <body>
 <div class="container-scroller">
-    <?php include ('admin_menu.php'); ?>
+    <?php include ('../admin_menu.php'); ?>
     <!-- partial -->
     <div class="container-fluid page-body-wrapper margin-244">
         <!-- partial:partials/_navbar.html -->
-        <?php include ('header.php'); ?>
+        <?php include ('../header.php'); ?>
         <!-- partial -->
         <div class="main-panel">
             <div class="content-wrapper">
@@ -92,7 +92,7 @@ $heading = 'Shipment Details';
                 </div>
             </div>
             <!-- content-wrapper ends -->
-            <?php include("footer.php"); ?>
+            <?php include("../footer.php"); ?>
         </div>
         <!-- main-panel ends -->
     </div>
