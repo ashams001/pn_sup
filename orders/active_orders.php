@@ -1,6 +1,6 @@
-<?php include("config.php");
+<?php include("../config.php");
 	if (!isset($_SESSION['user'])) {
-		header('location: logout.php');
+		header('location: ../logout.php');
 	}
 	$temp = "";
 	$timestamp = date('H:i:s');
@@ -16,7 +16,7 @@
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel="stylesheet" href="assets/css/pages/order_track.css">
+	<link rel="stylesheet" href="../assets/css/pages/order_track.css">
 	<title>PN</title>
 	<style>
         .fa.fa-eye {
@@ -45,11 +45,11 @@
 	</style>
 <body>
 <div class="container-scroller">
-	<?php include ('admin_menu.php'); ?>
+	<?php include ('../admin_menu.php'); ?>
 	<!-- partial -->
 	<div class="container-fluid page-body-wrapper margin-244">
 		<!-- partial:partials/_navbar.html -->
-		<?php include ('header.php'); ?>
+		<?php include ('../header.php'); ?>
 		<!-- partial -->
 		<div class="main-panel">
 			<div class="content-wrapper">
@@ -158,31 +158,31 @@
                                                                     </div>
                                                                     <div class="row justify-content-between top">
                                                                         <div class="row d-flex icon-content">
-                                                                            <img class="icon" src="<?php echo $siteURL?>/assets/images/icon/9nnc9Et.png">
+                                                                            <img class="icon" src="<?php echo $siteURL?>assets/images/icon/9nnc9Et.png">
                                                                             <div class="d-flex flex-column">
                                                                                 <p class="font-weight-bold">Order<br>Placed</p>
                                                                             </div>
                                                                         </div>
                                                                         <div class="row d-flex icon-content">
-                                                                            <img class="icon" src="<?php echo $siteURL?>/assets/images/icon/9nnc9Et.png">
+                                                                            <img class="icon" src="<?php echo $siteURL?>assets/images/icon/9nnc9Et.png">
                                                                             <div class="d-flex flex-column">
                                                                                 <p class="font-weight-bold">Order<br>Acknowledged</p>
                                                                             </div>
                                                                         </div>
                                                                         <div class="row d-flex icon-content">
-                                                                            <img class="icon" src="<?php echo $siteURL?>/assets/images/icon/u1AzR7w.png">
+                                                                            <img class="icon" src="<?php echo $siteURL?>assets/images/icon/u1AzR7w.png">
                                                                             <div class="d-flex flex-column">
                                                                                 <p class="font-weight-bold">Order<br>Processed</p>
                                                                             </div>
                                                                         </div>
                                                                         <div class="row d-flex icon-content">
-                                                                            <img class="icon" src="<?php echo $siteURL?>/assets/images/icon/TkPm63y.png">
+                                                                            <img class="icon" src="<?php echo $siteURL?>assets/images/icon/TkPm63y.png">
                                                                             <div class="d-flex flex-column">
                                                                                 <p class="font-weight-bold">Order<br>Shipped</p>
                                                                             </div>
                                                                         </div>
                                                                         <div class="row d-flex icon-content">
-                                                                            <img class="icon" src="<?php echo $siteURL?>/assets/images/icon/HdsziHP.png">
+                                                                            <img class="icon" src="<?php echo $siteURL?>assets/images/icon/HdsziHP.png">
                                                                             <div class="d-flex flex-column">
                                                                                 <p class="font-weight-bold">Order<br>Received</p>
                                                                             </div>
@@ -205,7 +205,7 @@
 				</div>
 			</div>
 			<!-- content-wrapper ends -->
-			<?php include("footer.php"); ?>
+			<?php include("../footer.php"); ?>
 		</div>
 		<!-- main-panel ends -->
 	</div>

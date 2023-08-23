@@ -1,8 +1,8 @@
 <!-- partial:partials/_sidebar.html -->
 <nav class="sidebar sidebar-offcanvas" id="sidebar" style=" float: left; position: fixed;">
     <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-        <a class="sidebar-brand brand-logo" href="supplier_dashboard.php"><img src="assets/images/site_logo.png" alt="logo" /></a>
-        <a class="sidebar-brand brand-logo-mini" href="supplier_dashboard.php"><img src="assets/images/logo-mini.png" alt="logo" /></a>
+        <a class="sidebar-brand brand-logo" href="<?php echo $siteURL; ?>orders/supplier_dashboard.php"><img src="<?php echo $siteURL; ?>assets/images/site_logo.png" alt="logo" /></a>
+        <a class="sidebar-brand brand-logo-mini" href="<?php echo $siteURL; ?>orders/supplier_dashboard.php"><img src="<?php echo $siteURL; ?>assets/images/logo-mini.png" alt="logo" /></a>
     </div>
     <ul class="nav">
         <li class="nav-item profile">
@@ -45,7 +45,7 @@
         </li>
 
         <li class="nav-item menu-items">
-            <a class="nav-link" href="supplier_dashboard.php">
+            <a class="nav-link" href="<?php echo $siteURL; ?>orders/supplier_dashboard.php">
               <span class="menu-icon">
                   <i class="fa-solid fa-file-lines"></i>
               </span>
@@ -53,7 +53,7 @@
             </a>
         </li>
         <li class="nav-item menu-items">
-            <a class="nav-link" href="active_orders.php">
+            <a class="nav-link" href="<?php echo $siteURL; ?>orders/active_orders.php">
               <span class="menu-icon">
                   <i class="fa fa-cart-shopping"></i>
               </span>
@@ -61,7 +61,7 @@
             </a>
         </li>
         <li class="nav-item menu-items">
-            <a class="nav-link" href="historical_orders.php">
+            <a class="nav-link" href="<?php echo $siteURL; ?>orders/historical_orders.php">
               <span class="menu-icon">
                   <i class="fa fa-cart-shopping"></i>
               </span>
@@ -69,7 +69,7 @@
             </a>
         </li>
         <li class="nav-item menu-items">
-            <a class="nav-link" href="order_shipment.php">
+            <a class="nav-link" href="<?php echo $siteURL; ?>orders/order_shipment.php">
               <span class="menu-icon">
                   <i class="fa-sharp fa-solid fa-truck-fast"></i>
               </span>
@@ -77,7 +77,7 @@
             </a>
         </li>
         <li class="nav-item menu-items">
-            <a class="nav-link" href="order_invoice.php">
+            <a class="nav-link" href="<?php echo $siteURL; ?>orders/order_invoice.php">
               <span class="menu-icon">
                    <i class="fa-solid fa-file-lines"></i>
               </span>
@@ -85,7 +85,7 @@
             </a>
         </li>
         <li class="nav-item menu-items">
-            <a class="nav-link" href="supplier_log.php">
+            <a class="nav-link" href="<?php echo $siteURL; ?>orders/supplier_log.php">
               <span class="menu-icon">
                   <i class="fa-solid fa-calendar"></i>
               </span>
