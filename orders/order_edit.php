@@ -341,10 +341,7 @@ if (count($_POST) > 0) {
                                             <div class="form-group row">
                                                 <label for="exampleInputPassword2" class="col-sm-3 col-form-label">Shipment Details</label>
                                                 <div class="col-sm-9">
-                                                       <textarea required id="edit_ship_details" name="edit_ship_details" rows="3"
-                                                                 placeholder="Enter Shipment Details..."
-                                                                 class="form-control">
-                                                       </textarea>
+                                                    <textarea id="edit_ship_details" name="edit_ship_details" rows="3" placeholder="Shipment Details..." class="form-control"></textarea>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
