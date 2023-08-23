@@ -117,6 +117,7 @@
 <script src="assets/js/typeahead.bundle.min.js"></script>
 <!-- End plugin js for this page -->
 
+
 <!-- Custom js for this page -->
 <script src="assets/js/file-upload.js"></script>
 <script src="assets/js/typeahead.js"></script>
