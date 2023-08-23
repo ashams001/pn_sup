@@ -1,4 +1,4 @@
-<?php include("config.php");
+<?php include("../config.php");
 $heading = 'View Invoice';
 ?>
 <!DOCTYPE html>
@@ -12,11 +12,11 @@ $heading = 'View Invoice';
 
 <body>
 <div class="container-scroller">
-    <?php include ('admin_menu.php'); ?>
+    <?php include ('../admin_menu.php'); ?>
     <!-- partial -->
     <div class="container-fluid page-body-wrapper margin-244">
         <!-- partial:partials/_navbar.html -->
-        <?php include ('header.php'); ?>
+        <?php include ('../header.php'); ?>
         <!-- partial -->
         <div class="main-panel">
             <div class="content-wrapper">
@@ -29,7 +29,7 @@ $heading = 'View Invoice';
                         </ol>
                     </nav>
                     <div  style="text-align: end;" class="col-sm-2">
-                        <a href="order_invoice.php" class="btn btn-primary text-white">Back</a>
+                        <a href="../orders/order_invoice.php" class="btn btn-primary text-white">Back</a>
                     </div>
                 </div>
                 <div class="row">

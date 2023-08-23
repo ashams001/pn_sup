@@ -1,4 +1,4 @@
-<?php include("config.php");
+<?php include("../config.php");
 $heading = 'View Historical Order';
 ?>
 <!DOCTYPE html>
@@ -7,17 +7,17 @@ $heading = 'View Historical Order';
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="assets/css/pages/order_timeline.css">
+    <link rel="stylesheet" href="../assets/css/pages/order_timeline.css">
     <title><?php echo $sitename ?></title>
     <!-- plugins:css -->
 
 <body>
 <div class="container-scroller">
-    <?php include ('admin_menu.php'); ?>
+    <?php include ('../admin_menu.php'); ?>
     <!-- partial -->
     <div class="container-fluid page-body-wrapper margin-244">
         <!-- partial:partials/_navbar.html -->
-        <?php include ('header.php'); ?>
+        <?php include ('../header.php'); ?>
         <!-- partial -->
         <div class="main-panel">
             <div class="content-wrapper">
@@ -30,7 +30,7 @@ $heading = 'View Historical Order';
                         </ol>
                     </nav>
                     <div  style="text-align: end;" class="col-sm-2">
-                        <a href="historical_orders.php" class="btn btn-primary text-white">Back</a>
+                        <a href="../orders/historical_orders.php" class="btn btn-primary text-white">Back</a>
                     </div>
                 </div>
 				<?php
