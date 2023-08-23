@@ -1,6 +1,6 @@
 <?php include("../config.php");
 if (!isset($_SESSION['user'])) {
-    header('location: logout.php');
+    header('location: ../logout.php');
 }
 $temp = "";
 $timestamp = date('H:i:s');
@@ -65,10 +65,9 @@ if (count($_POST) > 0) {
         <div class="main-panel">
             <div class="content-wrapper">
                 <div class="page-header">
-                    <h3 class="page-title"> Supplier Log </h3>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#">Supplier</a></li>
+                            <li class="breadcrumb-item"><a href="../orders/supplier_log.php">Supplier</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Supplier Log</li>
                         </ol>
                     </nav>

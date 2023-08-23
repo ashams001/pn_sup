@@ -1,6 +1,6 @@
-<?php include("config.php");
+<?php include("../config.php");
 if (!isset($_SESSION['user'])) {
-    header('location: logout.php');
+    header('location: ../logout.php');
 }
 $temp = "";
 $timestamp = date('H:i:s');
@@ -13,38 +13,38 @@ if (count($_POST) > 0) {
     if (!empty($_POST['op_type']) && $_POST['op_type'] == "del_file") {
         $file_name = $_POST['file_name'];
         $order_id = $_POST['order_id'];
-        $path = "order_invoices/" . $order_id . "/" . $_POST['file_name'];
+        $path = "../order_invoices/" . $order_id . "/" . $_POST['file_name'];
         unlink($path);
         $sql22 = "DELETE FROM `sup_invoice` where sup_order_id = '$order_id' and invoice_file = '$file_name'";
         $result122 = mysqli_query($sup_db, $sql22);
         if(!empty($result122)){
             $_SESSION['message_stauts_class'] = 'alert-success';
             $_SESSION['import_status_message'] = 'Invoice Deleted successfully.';
-            header("Location:active_orders.php");
+            header("Location:../orders/active_orders.php");
             exit();
         }else{
             $_SESSION['message_stauts_class'] = 'alert-danger';
             $_SESSION['import_status_message'] = 'Error: Invoice Not Deleted Please Try Again!...';
-            header("Location:active_orders.php");
+            header("Location:../orders/active_orders.php");
             exit();
         }
     } elseif (!empty($_POST['att_type']) && $_POST['att_type'] == "del_att") {
         $file_name1 = $_POST['file_name1'];
         $file_type1 = $_POST['file_type1'];
         $order_id1 = $_POST['order_id1'];
-        $path = "order_invoices/" . $_POST['file_name1'];
+        $path = "../order_attachments/" . $_POST['file_name1'];
         unlink($path);
         $sql123 = "DELETE FROM `order_files` where order_id = '$order_id1' and file_type ='$file_type1' and file_name= '$file_name1'";
         $result123 = mysqli_query($sup_db, $sql123);
         if(!empty($result123)){
             $_SESSION['message_stauts_class'] = 'alert-success';
             $_SESSION['import_status_message'] = 'Attachments Deleted successfully.';
-            header("Location:active_orders.php");
+            header("Location:../orders/active_orders.php");
             exit();
         }else{
             $_SESSION['message_stauts_class'] = 'alert-danger';
             $_SESSION['import_status_message'] = 'Error: Attachments Not Deleted Please Try Again!..';
-            header("Location:active_orders.php");
+            header("Location:../orders/active_orders.php");
             exit();
         }
     } else {
@@ -74,7 +74,7 @@ if (count($_POST) > 0) {
                 }
                 if (empty($errors) == true) {
                     $file_name = $edit_id . '__' . $file_name;
-                    move_uploaded_file($file_tmp, "order_invoices/" . $edit_id . '/' . $file_name);
+                    move_uploaded_file($file_tmp, "../order_invoices/" . $edit_id . '/' . $file_name);
                     $sql2 = "INSERT INTO `sup_invoice`(`sup_order_id`, `invoice_file`, `invoice_amount`, `invoice_status`, `created_by`, `created_on`) VALUES ('$edit_id' ,'$file_name','$edit_bill_amount','1','$user_id','$chicagotime')";
                     $result2 = mysqli_query($sup_db, $sql2);
                 }
@@ -120,7 +120,7 @@ if (count($_POST) > 0) {
                 }
                 if (empty($errors) == true) {
                     if ($tmpFilePath != "") {
-                        $newFilePath = "order_invoices/" . $edit_id . '/' . $edit_id . '__' . $_FILES['edit_invoice_extra']['name'][$i];
+                        $newFilePath = "../order_invoices/" . $edit_id . '/' . $edit_id . '__' . $_FILES['edit_invoice_extra']['name'][$i];
                         //File is uploaded to temp dir
                         if (move_uploaded_file($tmpFilePath, $newFilePath)) {
                         }
@@ -153,7 +153,7 @@ if (count($_POST) > 0) {
                     }
                     if (empty($errors) == true) {
                         $file_name = $edit_id . '__' . $file_name;
-                        move_uploaded_file($file_tmp, "order_invoices/" . $file_name);
+                        move_uploaded_file($file_tmp, "../order_attachments/" . $file_name);
                         $sql = "INSERT INTO `order_files`(`order_id`, `file_type`, `file_name`, `created_at`) VALUES ('$edit_id' ,'attachment','$file_name','$chicagotime' )";
                         $result111 = mysqli_query($sup_db, $sql);
                     }
@@ -168,18 +168,18 @@ if (count($_POST) > 0) {
             if (!empty(($result1))) {
                 $_SESSION['message_stauts_class'] = 'alert-success';
                 $_SESSION['import_status_message'] = 'Shipment Details Updated successfully.';
-                header("Location:active_orders.php");
+                header("Location:../orders/active_orders.php");
                 exit();
             } else {
                 $_SESSION['message_stauts_class'] = 'alert-danger';
                 $_SESSION['import_status_message'] = 'Error: Error updating  order. Try after sometime.';
-                header("Location:active_orders.php");
+                header("Location:../orders/active_orders.php");
                 exit();
             }
         }
         $_SESSION['message_stauts_class'] = 'alert-success';
         $_SESSION['import_status_message'] = 'Shipment Details Updated successfully.';
-        header("Location:active_orders.php");
+        header("Location:../orders/active_orders.php");
         exit();
     }
 }
@@ -199,11 +199,11 @@ if (count($_POST) > 0) {
 </style>
 <body>
 <div class="container-scroller">
-    <?php include ('admin_menu.php'); ?>
+    <?php include ('../admin_menu.php'); ?>
     <!-- partial -->
-    <div class="container-fluid page-body-wrapper">
+    <div class="container-fluid page-body-wrapper margin-244">
         <!-- partial:partials/_navbar.html -->
-        <?php include ('header.php'); ?>
+        <?php include ('../header.php'); ?>
         <!-- partial -->
         <div class="main-panel">
             <div class="content-wrapper">
@@ -216,7 +216,7 @@ if (count($_POST) > 0) {
                         </ol>
                     </nav>
                     <div  style="text-align: end;" class="col-sm-2">
-                        <a href="active_orders.php" class="btn btn-primary text-white">Back</a>
+                        <a href="../orders/active_orders.php" class="btn btn-primary text-white">Back</a>
                     </div>
                 </div>
                 <?php
@@ -291,7 +291,7 @@ if (count($_POST) > 0) {
                                                    <input type="file" name="edit_invoice" id="edit_invoice" class="form-control">
                                                 </div>
                                             <div class="col-sm-4">
-                                                <input type="text" class="form-control" name="edit_bill_amount" id="edit_bill_amount" placeholder="Enter Bill Amount" maxlength="4" pattern="^0[1-9]|[1-9]\d$">
+                                                <input type="number" class="form-control" name="edit_bill_amount" id="edit_bill_amount" placeholder="Enter Bill Amount" min="1" pattern="[0-9]*">
                                             </div>
                                             <div class="col-sm-1">
                                                 <button type="button" class="btn btn-primary btn-rounded btn-icon" name="add_more" id="add_more"><i class="fa fa-plus"></i></button>
@@ -312,7 +312,7 @@ if (count($_POST) > 0) {
                                                 <label class="col-form-label">Previous Attached Invoice : </label>
                                             </div>
                                             <div class="col-sm-5">
-                                                <a href="order_invoices/<?php echo $sup_order_id; ?>/<?php echo $file_name; ?>" target="_blank">
+                                                <a href="../order_invoices/<?php echo $sup_order_id; ?>/<?php echo $file_name; ?>" target="_blank">
                                                     <input type="text" name="att_doc" class="form-control pn_none" id="att_doc"
                                                            value="<?php echo $file_name; ?><?php /*echo $invoice_amount; */?>">
                                                 </a>
@@ -349,7 +349,7 @@ if (count($_POST) > 0) {
                                                     <label class="col-form-label">Previous Attachments : </label>
                                                 </div>
                                                 <div class="col-sm-7">
-                                                    <a href="order_invoices/<?php echo $file_name4; ?>" target="_blank">
+                                                    <a href="../order_attachments/<?php echo $file_name4; ?>" target="_blank">
                                                         <input type="text" name="att_doc" class="form-control pn_none" id="att_doc"
                                                                value="<?php echo $file_name4; ?>">
                                                     </a>
@@ -365,7 +365,7 @@ if (count($_POST) > 0) {
                                             <?php } ?>
                                         </div>
                                         <button type="submit" name="submit_btn" id="submit_btn" class="btn btn-primary mr-2">Submit</button>
-                                        <a class="btn btn-dark" href="active_orders.php">Cancel</a>
+                                        <a class="btn btn-dark" href="../orders/active_orders.php">Cancel</a>
                                     </form>
                                 <?php } ?>
                             </div>
@@ -429,7 +429,7 @@ if (count($_POST) > 0) {
         var count = i;
 
         $("#click_id").val(count);
-        var html_content = '<div id="'+edit_collapse_id+'" class="collapse in"><div class="form-group row part_rem_' + count + '" id="section_' + count + '"><label for="exampleInputPassword2" class="col-sm-3 col-form-label">Attach Invoice</label><div class="col-sm-4"> <input type="file" name="edit_invoice_extra[]" id="edit_invoice_extra' + count + '" class="form-control"></div><div class="col-sm-4"><input type="text" class="form-control" maxlength="4" pattern="^0[1-9]|[1-9]\d$" name="edit_amount_extra[]" id="edit_amount_extra_' + count + '" placeholder="Enter Bill Amount"></div><button type="button" name="remove_btn" class="btn btn-danger btn-rounded btn-icon remove_btn" id="btn_id_' + count + '" data-id="' + count + '" fdprocessedid="7w26pm"><i class="fa fa-trash"></i></button></a></div></div></div></div>';
+        var html_content = '<div id="'+edit_collapse_id+'" class="collapse in"><div class="form-group row part_rem_' + count + '" id="section_' + count + '"><label for="exampleInputPassword2" class="col-sm-3 col-form-label">Attach Invoice</label><div class="col-sm-4"> <input type="file" name="edit_invoice_extra[]" id="edit_invoice_extra' + count + '" class="form-control"></div><div class="col-sm-4"><input type="number" class="form-control" name="edit_amount_extra[]" id="edit_amount_extra_' + count + '" placeholder="Enter Bill Amount" min="1" pattern="[0-9]*"></div><button type="button" name="remove_btn" class="btn btn-danger btn-rounded btn-icon remove_btn" id="btn_id_' + count + '" data-id="' + count + '" fdprocessedid="7w26pm"><i class="fa fa-trash"></i></button></a></div></div></div></div>';
         $( ".query_rows" ).append( html_content );
         var invc_count = count - 1;
         var inv_ex = $('#edit_invoice_extra' + invc_count).val();
