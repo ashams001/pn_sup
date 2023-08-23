@@ -12,6 +12,7 @@ $heading = 'Order Edit';
 if (count($_POST) > 0) {
     $edit_order_name = $_POST['edit_order_name'];
     $edit_order_id = $_POST['edit_order_id'];
+    $c_id = $_POST['edit_c_id'];
     $edit_order_desc = $_POST['edit_order_desc'];
     $edit_order_status = $_POST['edit_order_status'];
 
@@ -26,7 +27,7 @@ if (count($_POST) > 0) {
             $sql = "update sup_order set order_status_id='$order_status_id', sup_modified_on='$chicagotime', sup_modified_by='$user_id' where  sup_order_id = '$order_id'";
             $result1 = mysqli_query($sup_db, $sql);
             if ($result1) {
-                $sql_ses_log = "INSERT INTO `supplier_session_log`(`order_id`, `c_id`, `order_status_id`, `created_by`, `created_on`) VALUES ('$order_id','','$order_status_id','$user_id','$chicagotime')";
+                $sql_ses_log = "INSERT INTO `supplier_session_log`(`order_id`, `c_id`, `order_status_id`, `created_by`, `created_on`) VALUES ('$order_id',$c_id,'$order_status_id','$user_id','$chicagotime')";
                 $result_log = mysqli_query($sup_db, $sql_ses_log);
                 $_SESSION['message_stauts_class'] = 'alert-success';
                 $_SESSION['import_status_message'] = 'Order status Updated successfully.';
@@ -131,34 +132,36 @@ if (count($_POST) > 0) {
 
             //attachments
             if (isset($_FILES['attachments'])) {
+				$errors = array();
                 foreach ($_FILES['attachments']['name'] as $key => $val) {
-
-                    $errors = array();
-                    $file_name = $_FILES['attachments']['name'][$key];
-                    $file_size = $_FILES['attachments']['size'][$key];
-                    $file_tmp = $_FILES['attachments']['tmp_name'][$key];
-                    $file_type = $_FILES['attachments']['type'][$key];
-                    $file_ext = strtolower(end(explode('.', $file_name)));
-                    $extensions = array("jpeg", "jpg", "png", "pdf");
-                    if (in_array($file_ext, $extensions) === false) {
-                        $errors[] = "extension not allowed, please choose a JPEG/PNG/PDF file.";
-                        $_SESSION['message_stauts_class'] = 'alert-danger';
-                        $_SESSION['import_status_message'] = 'Error: Extension not allowed, please choose a JPEG/PNG/PDF file.';
-                        header("Location:active_orders.php");
-                    }
-                    if ($file_size > 2097152) {
-                        $errors[] = 'Max allowed file size is 2 MB';
-                        $_SESSION['message_stauts_class'] = 'alert-danger';
-                        $_SESSION['import_status_message'] = 'Error: File size must not exceed 2 MB';
-                        header("Location:active_orders.php");
-                    }
-                    if (empty($errors) == true) {
-                        $file_name = $order_id . '__' . $file_name;
-                        move_uploaded_file($file_tmp, "order_invoices/" . $file_name);
-                        $sql = "INSERT INTO `order_files`(`order_id`, `file_type`, `file_name`, `created_at`) VALUES ('$order_id' ,'attachment','$file_name','$chicagotime' )";
-                        $result1 = mysqli_query($sup_db, $sql);
-
-                    }
+					if(!empty($val)) {
+                       
+                        $file_name = $_FILES['attachments']['name'][$key];
+                        $file_size = $_FILES['attachments']['size'][$key];
+                        $file_tmp = $_FILES['attachments']['tmp_name'][$key];
+                        $file_type = $_FILES['attachments']['type'][$key];
+                        $file_ext = strtolower(end(explode('.', $file_name)));
+                        $extensions = array("jpeg", "jpg", "png", "pdf");
+                        if (in_array($file_ext, $extensions) === false) {
+                            $errors[] = "extension not allowed, please choose a JPEG/PNG/PDF file.";
+                            $_SESSION['message_stauts_class'] = 'alert-danger';
+                            $_SESSION['import_status_message'] = 'Error: Extension not allowed, please choose a JPEG/PNG/PDF file.';
+                            header("Location:active_orders.php");
+                        }
+                        if ($file_size > 2097152) {
+                            $errors[] = 'Max allowed file size is 2 MB';
+                            $_SESSION['message_stauts_class'] = 'alert-danger';
+                            $_SESSION['import_status_message'] = 'Error: File size must not exceed 2 MB';
+                            header("Location:active_orders.php");
+                        }
+                        if (empty($errors) == true) {
+                            $file_name = $order_id . '__' . $file_name;
+                            move_uploaded_file($file_tmp, "order_invoices/" . $file_name);
+                            $sql = "INSERT INTO `order_files`(`order_id`, `file_type`, `file_name`, `created_at`) VALUES ('$order_id' ,'attachment','$file_name','$chicagotime' )";
+                            $result1 = mysqli_query($sup_db, $sql);
+                            
+                        }
+					}
                 }
             }
             if (null != $ship_det) {
@@ -177,7 +180,7 @@ if (count($_POST) > 0) {
             $sql_log = "INSERT INTO `sup_shipment_details`(`sup_order_id`, `ship_order_name`, `shipment_status`, `created_by`, `created_on`)  VALUES ('$order_id','$edit_order_name','1','$user_id','$chicagotime')";
             $res_log = mysqli_query($sup_db, $sql_log);
 
-            $sql_ses_log = "INSERT INTO `supplier_session_log`(`order_id`, `c_id`, `order_status_id`, `created_by`, `created_on`) VALUES ('$order_id','','$order_status_id','$user_id','$chicagotime')";
+            $sql_ses_log = "INSERT INTO `supplier_session_log`(`order_id`, `c_id`, `order_status_id`, `created_by`, `created_on`) VALUES ('$order_id',$c_id,'$order_status_id','$user_id','$chicagotime')";
             $result_log = mysqli_query($sup_db, $sql_ses_log);
         }
         $_SESSION['message_stauts_class'] = 'alert-success';
@@ -249,6 +252,7 @@ if (count($_POST) > 0) {
                                 while ($rowcmain = mysqli_fetch_array($qurmain)) {
                                     $order_name = $rowcmain['order_name'];
                                     $ordr_id = $rowcmain['sup_order_id'];
+                                    $c_id = $rowcmain['c_id'];
                                     $order_status_id = $rowcmain['order_status_id'];
                                     ?>
                                     <?php
@@ -261,6 +265,7 @@ if (count($_POST) > 0) {
                                     <form action="" method="post" id="order_edit" enctype="multipart/form-data">
                                         <input type="hidden" name="edit_id" id="edit_id" value="<?php echo $ordr_id; ?>">
                                         <input type="hidden" name="edit_order_status_id" id="edit_order_status_id" value="<?php echo $order_status_id; ?>">
+                                        <input type="hidden" name="edit_c_id" id="edit_c_id" value="<?php echo $c_id; ?>">
                                         <input hidden id="e_order_status" name="e_order_status"
                                                value="<?php echo $order_status_id; ?>">
                                         <div class="form-group row">
@@ -361,7 +366,7 @@ if (count($_POST) > 0) {
                                                     <?php } ?>
                                                 </div>
                                                 <div class="col-sm-4">
-                                                    <input type="text" class="form-control" name="bill_amount" id="bill_amount" placeholder="Enter Bill Amount" maxlength="4" pattern="^0[1-9]|[1-9]\d$" >
+                                                    <input type="number" class="form-control" name="bill_amount" id="bill_amount" placeholder="Enter Bill Amount" min="1" pattern="[0-9]*" >
                                                 </div>
 
                                                 <div class="col-sm-1">

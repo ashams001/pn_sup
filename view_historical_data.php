@@ -7,6 +7,7 @@ $heading = 'View Historical Order';
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="assets/css/pages/order_timeline.css">
     <title><?php echo $sitename ?></title>
     <!-- plugins:css -->
 
@@ -32,25 +33,73 @@ $heading = 'View Historical Order';
                         <a href="historical_orders.php" class="btn btn-primary text-white">Back</a>
                     </div>
                 </div>
+				<?php
+					$id = $_GET['id'];
+					
+					$sql = sprintf("SELECT * FROM sup_order where order_id = '$id' and is_deleted != 1");
+					$qur = mysqli_query($sup_db, $sql);
+					$row = mysqli_fetch_array($qur);
+					$sup_order_id = $row['sup_order_id'];
+					$order_name = $row['order_name'];
+					$order_desc = $row['order_desc'];
+					$order_status_id = $row['order_status_id'];
+					$created_on = $row['created_on'];
+					$created_by = $row['created_by'];
+					$shipment_details = $row['shipment_details'];
+					$c_id = $row['c_id'];
+				?>
                 <div class="row">
-                    <div class="col-md-10 grid-margin stretch-card">
+                    <div class="col-md-12 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <?php
-                                $id = $_GET['id'];
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="card">
+                                                <div class="card-body" style="padding: .8rem !important;">
+                                                    <?php
+                                                    $query = sprintf("SELECT * FROM  supplier_session_log  where order_id = '$sup_order_id' ORDER BY `supplier_session_log`.`order_status_id` ASC");
+                                                    $qur = mysqli_query($sup_db, $query);
+                                                    while ($rowc = mysqli_fetch_array($qur)) {
+                                                        $osid = $rowc['order_status_id'];
+                                                        if($osid != 6){
+														$sql1 = sprintf("SELECT * FROM sup_order_status where sup_order_status_id =  '$osid'");
+														$qur1 = mysqli_query($sup_db, $sql1);
+														$row1 = mysqli_fetch_array($qur1);
+														$sup_order_status = $row1['sup_order_status'];
+                                                        $o_status = explode(' ' ,  $sup_order_status);
+                                                        ?>
+                                                        <div class="hori-timeline" dir="ltr">
+                                                        <ul class="list-inline events">
+                                                            <li class="list-inline-item event-list">
+                                                                <div class="px-4">
+                                                                    <div class="event-date bg-soft-primary"><?php echo $o_status[0] ?> <br> <?php echo $o_status[1] ?></div>
+                                                                    <h6><?php echo $rowc['created_on'] ?></h6>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                        </div>
+                                                        
+                                                    <?php }else{?>
+                                                </div>
+                                                            <div class="top_row rr">
+                                                                <div class="cdiv"> <p class="font-weight-bold">Order Number : <span class="text-primary font-weight-bold"><?php echo $sup_order_id; ?></span></p>
+                                                                </div>
+                                                                <div class="cdiv"><p class="font-weight-bold">Order Close Date : <span class="text-primary font-weight-bold"><?php echo dateReadFormat($rowc['created_on']); ?></span></p>
+                                                                </div>
+                                                            </div>
+                                                       <?php }
+													} ?>
+<!--                                                    <h4 class="card-title mb-5">Order Number : <span class="text-primary font-weight-bold">--><?php //echo $sup_order_id; ?><!--</span></p></h4>-->
+                                                    
 
-                                $sql = sprintf("SELECT * FROM sup_order where order_id = '$id' and is_deleted != 1");
-                                $qur = mysqli_query($sup_db, $sql);
-                                $row = mysqli_fetch_array($qur);
-                                $sup_order_id = $row['sup_order_id'];
-                                $order_name = $row['order_name'];
-                                $order_desc = $row['order_desc'];
-                                $order_status_id = $row['order_status_id'];
-                                $created_on = $row['created_on'];
-                                $created_by = $row['created_by'];
-                                $shipment_details = $row['shipment_details'];
-                                $c_id = $row['c_id'];
-                                ?>
+                                            
+                                            </div>
+                                            <!-- end card -->
+                                        </div>
+                                    </div>
+                                </div>
+                                
                                 <h4 class="card-title">Order Id - <?php echo $sup_order_id; ?></h4>
                                     <form class="forms-sample">
                                         <input type="hidden" name="hidden_id" id="hidden_id" value="<?php echo $id; ?>">
