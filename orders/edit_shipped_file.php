@@ -314,12 +314,12 @@ if (count($_POST) > 0) {
                                             <div class="col-sm-5">
                                                 <a href="../order_invoices/<?php echo $sup_order_id; ?>/<?php echo $file_name; ?>" target="_blank">
                                                     <input type="text" name="att_doc" class="form-control pn_none" id="att_doc"
-                                                           value="<?php echo $file_name; ?><?php /*echo $invoice_amount; */?>">
+                                                           value="<?php echo $file_name; ?>" style="pointer-events: none!important;">
                                                 </a>
                                             </div>
                                             <div class="col-sm-2">
                                                 <input type="text" name="att_doc" class="form-control pn_none" id="att_doc"
-                                                       value="<?php echo $invoice_amount; ?>">
+                                                       value="<?php echo $invoice_amount; ?>" style="pointer-events: none!important;">
                                             </div>
                                             <div class="col-sm-2">
                                                 <button id="file_del" onClick="file_del('$sup_order_id','$file_name')" style="font-size: 14px!important;color: red;display: flex!important;">
@@ -351,7 +351,7 @@ if (count($_POST) > 0) {
                                                 <div class="col-sm-7">
                                                     <a href="../order_attachments/<?php echo $file_name4; ?>" target="_blank">
                                                         <input type="text" name="att_doc" class="form-control pn_none" id="att_doc"
-                                                               value="<?php echo $file_name4; ?>">
+                                                               value="<?php echo $file_name4; ?>" style="pointer-events: none!important;">
                                                     </a>
                                                 </div>
                                                 <div class="col-sm-2">
