@@ -57,7 +57,7 @@ $heading = 'Historical Orders';
                                         </thead>
                                         <tbody>
                                         <?php
-                                        $query = sprintf("SELECT * FROM  sup_order  where order_active = 0 and is_deleted != 1 order by created_on DESC");
+                                        $query = sprintf("SELECT * FROM  sup_order  where order_active = 0 and is_deleted != 1 and c_id = '$user_id'  order by created_on DESC");
                                         $qur = mysqli_query($sup_db, $query);
                                         while ($rowc     = mysqli_fetch_array($qur)) {
                                             $order_id = $rowc['order_id'];
