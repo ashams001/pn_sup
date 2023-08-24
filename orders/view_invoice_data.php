@@ -36,48 +36,47 @@ $heading = 'View Invoice';
                     <div class="col-md-10 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Order Id - <?php echo $_GET['id']; ?></h4>
-                                <form class="forms-sample">
-                                    <div class="form-group row">
-                                        <div class="col-sm-4">Invoice Files</div>
-                                        <div class="col-sm-4"> Total Invoice Amount</div>
-                                        <div class="col-sm-1"></div>
-                                        <div class="col-sm-2">Date</div>
-                                    </div>
-                                <?php
-                                    $id = $_GET['id'];
-                                    $sql = sprintf("SELECT * FROM sup_invoice where sup_order_id = '$id' ");
-                                    $qur = mysqli_query($sup_db, $sql);
-                                    while($row = mysqli_fetch_array($qur)){
-                                    //$sup_order_id = $row['sup_order_id'];
-                                    $invoice_file = $row['invoice_file'];
-                                    $invoice_amount = $row['invoice_amount'];
-                                    $created_by = $row['created_by'];
-                                    $q = sprintf("SELECT * FROM sup_account_users where u_id = '$created_by'");
-                                    $qurr = mysqli_query($sup_db, $q);
-                                    $row2 = mysqli_fetch_array($qurr);
-                                    $fullname = $row2['u_firstname'] . ' ' . $row2['u_lastname'];
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>S.No</th>
+                                            <th>Invoice Files</th>
+                                            <th>Total Invoice Amount</th>
+                                            <th>Date</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?php
+                                        $id = $_GET['id'];
+                                        $sql = sprintf("SELECT * FROM sup_invoice where sup_order_id = '$id' ");
+                                        $qur = mysqli_query($sup_db, $sql);
+                                        while($row = mysqli_fetch_array($qur)){
+                                            //$sup_order_id = $row['sup_order_id'];
+                                            $invoice_file = $row['invoice_file'];
+                                            $invoice_amount = $row['invoice_amount'];
+                                            $created_by = $row['created_by'];
+                                            $q = sprintf("SELECT * FROM sup_account_users where u_id = '$created_by'");
+                                            $qurr = mysqli_query($sup_db, $q);
+                                            $row2 = mysqli_fetch_array($qurr);
+                                            $fullname = $row2['u_firstname'] . ' ' . $row2['u_lastname'];
 
-                                ?>
-                                    <div class="form-group row">
-                                        <div class="col-sm-4">
-                                            <a href="order_invoices/<?php echo $row['sup_order_id']; ?>/<?php echo $invoice_file; ?>" target="_blank">
-                                                <input type="text" name="att_doc" class="form-control pn_none" id="att_doc"
-                                                       value="<?php echo $invoice_file; ?>" style="pointer-events: none;">
-                                            </a>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <input type="text" name="o_name" id="o_name" class="form-control" value="<?php echo $invoice_amount; ?>" style="pointer-events: none;">
-                                        </div>
-                                        <div class="col-sm-1" style="font-size: 20px!important;text-align: center!important;margin-left: -42px!important;">
-                                            <?php echo payment_currency; ?>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <input type="text" name="o_name" id="o_name" class="form-control" value="<?php echo dateReadFormat($row['created_on']); ?>" style="pointer-events: none;">
-                                        </div>
-                                    </div>
-                                <?php } ?>
-                                </form>
+                                            ?>
+                                            <tr>
+                                                <td><?php echo ++$counter; ?></td>
+                                                <td>
+                                                    <a href="order_invoices/<?php echo $row['sup_order_id']; ?>/<?php echo $invoice_file; ?>" target="_blank">
+                                                        <input type="text" name="att_doc" class="form-control pn_none" id="att_doc"
+                                                               value="<?php echo $invoice_file; ?>" style="pointer-events: none;">
+                                                    </a>
+                                                </td>
+                                                <td><?php echo $invoice_amount; ?> <?php echo payment_currency; ?></td>
+                                                <td><?php echo dateReadFormat($row['created_on']); ?></td>
+                                            </tr>
+                                        <?php } ?>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
