@@ -174,7 +174,7 @@ $heading = 'View Historical Order';
                                                                                 <input type="text" name="att_voice" class="form-control pn_none" value="<?php echo $file_name; ?>" style="pointer-events: none!important;">
                                                                             </a>
                                                                         </div>
-                                                                        <label for="exampleInputMobile" class="col-sm-1 col-form-label">Amount  </label>
+                                                                        <label for="exampleInputMobile" class="col-form-label">Amount  </label>
                                                                         <div class="col-sm-2">
                                                                             <input type="text" name="att_amount" class="form-control pn_none" value="<?php echo $invoice_amount; ?>" style="pointer-events: none!important;">
                                                                         </div>
