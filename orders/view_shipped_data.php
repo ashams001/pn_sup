@@ -141,19 +141,21 @@ $heading = 'View Shipped Order';
                                             <?php } } ?>
                                     </div>
                                     <div class="form-group row">
+                                        <?php
+                                        $sql4 = sprintf("SELECT * FROM order_files where order_id = '$sup_order_id' and file_type = 'attachment'");
+                                        $qur4 = mysqli_query($sup_db, $sql4);
+                                        while($row4 = mysqli_fetch_array($qur4)){
+                                        $file_name4 = $row4['file_name'];
+                                        ?>
+                                        <?php if(!empty($file_name)){ ?>
                                         <label for="exampleInputMobile" class="col-sm-3 col-form-label">Attachments : </label>
                                         <div class="col-sm-9">
-                                            <?php
-                                            $sql4 = sprintf("SELECT * FROM order_files where order_id = '$sup_order_id' and file_type = 'attachment'");
-                                            $qur4 = mysqli_query($sup_db, $sql4);
-                                            $row4 = mysqli_fetch_array($qur4);
-                                            $file_name4 = $row4['file_name'];
-                                            ?>
-                                            <a href="order_invoices/<?php echo $file_name4; ?>" target="_blank">
+                                            <a href="order_attachments/<?php echo $file_name4; ?>" target="_blank">
                                                 <input type="text" name="att_doc" class="form-control pn_none" id="att_doc"
                                                        value="<?php echo $file_name4; ?>" style="pointer-events: none!important;">
                                             </a>
                                         </div>
+                                            <?php } } ?>
                                     </div>
                                 </form>
                             </div>
