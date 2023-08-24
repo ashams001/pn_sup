@@ -20,7 +20,7 @@
 <link rel="shortcut icon" href="https://themewagon.github.io/corona-free-dark-bootstrap-admin-template/assets/images/favicon.png" />
 <nav class="navbar p-0 fixed-top d-flex flex-row">
     <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo-mini" href="<?php echo $siteURL; ?>orders/supplier_dashboard.php"><img src="./assets/images/site_logo.png" alt="logo" /></a>
+        <a class="navbar-brand brand-logo-mini" href="<?php echo $siteURL; ?>orders/supplier_dashboard.php"><img src="./../assets/images/site_logo.png" alt="logo" /></a>
     </div>
     <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">

@@ -72,7 +72,9 @@
     /*border-bottom: 1px solid #eee;*/
 }
 
-.rr{
-    width: 85%;
-    margin: auto;
+.cr{
+    margin: auto auto 1rem auto;
+}
+.form-group label {
+    max-width: initial;
 }
