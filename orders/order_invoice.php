@@ -48,9 +48,9 @@ $heading = 'Orders Invoice';
                                         <tr>
                                             <th>S.No</th>
                                             <th>Action</th>
-                                            <th>Order Id</th>
+                                            <th>Order Number</th>
                                             <th>Order Name</th>
-                                            <th>Total Invoice Amount</th>
+                                            <th>Total Invoice Amount <?php echo "(" . payment_currency . ")"; ?></th>
                                             <th>Date</th>
                                             <th>Invoice Status</th>
                                         </tr>
@@ -66,7 +66,7 @@ $heading = 'Orders Invoice';
                                             $row213 = mysqli_fetch_array($qurr13);
                                             $invoice_status_name = $row213['invoice_status_name'];
                                             $created_by = $rowc['created_by'];
-                                            $q = sprintf("SELECT * FROM sup_account_users where u_id = '$created_by'");
+                                            $q = sprintf("SELECT * FROM sup_account_users where sup_id = '$created_by'");
                                             $qurr = mysqli_query($sup_db, $q);
                                             $row2 = mysqli_fetch_array($qurr);
                                             $fullname = $row2['u_firstname'] . ' ' . $row2['u_lastname'];
@@ -88,7 +88,7 @@ $heading = 'Orders Invoice';
                                                 </td>
                                                 <td><?php echo $rowc['sup_order_id']; ?></td>
                                                 <td><?php echo $order_name; ?> </td>
-                                                <td><?php echo $invoice_amount; ?><?php echo "(" . payment_currency . ")"; ?></td>
+                                                <td><?php echo $invoice_amount; ?></td>
                                                 <td><?php echo dateReadFormat($rowc['created_on']); ?></td>
                                                 <td><?php echo $invoice_status_name; ?></td>
                                             </tr>

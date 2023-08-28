@@ -17,7 +17,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="stylesheet" href="../assets/css/pages/order_track.css">
-	<title>PN</title>
+	<title>Active Orders</title>
 	<style>
         .fa.fa-eye {
             color: #ffffff!important;
