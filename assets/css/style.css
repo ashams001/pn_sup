@@ -20421,10 +20421,11 @@ div.tagsinput span.tag a {
         display: none; } }
 @media (max-width: 991px) {
     .navbar .navbar-menu-wrapper .navbar-toggler.navbar-toggler-right {
-        padding-left: 188px;
-        padding-right: 11px;
-        border-right: none;
-        display: none;} }
+        /*padding-left: 188px;*/
+        /*padding-right: 11px;*/
+        /*border-right: none;*/
+        /*display: none;*/
+    } }
 .navbar .navbar-menu-wrapper .search-field .input-group input, .navbar .navbar-menu-wrapper .search-field .asColorPicker-wrap input {
     font-size: 0.875rem;
     padding: .5rem; }
@@ -20635,7 +20636,8 @@ div.tagsinput span.tag a {
         padding-top: 0px; }
     .margin-244{
         margin-left: 0px;
-    }}
+    }
+}
 
 .sidebar-tinted .navbar .navbar-brand-wrapper {
     background: #fa424a; }
@@ -20962,7 +20964,7 @@ div.tagsinput span.tag a {
     .sidebar-offcanvas {
         position: fixed;
         max-height: calc(100vh - 70px);
-        top: 70px;
+        /*top: 70px;*/
         bottom: 0;
         overflow: auto;
         right: -244px;
@@ -21130,7 +21132,8 @@ div.tagsinput span.tag a {
         transition: all 0.25s ease;
         -webkit-transition: all 0.25s ease;
         -moz-transition: all 0.25s ease;
-        -ms-transition: all 0.25s ease; }
+        -ms-transition: all 0.25s ease;
+        margin-left: 70px;}
 
 .page-body-wrapper {
     min-height: 100vh;
