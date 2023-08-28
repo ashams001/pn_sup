@@ -56,7 +56,7 @@ $heading = 'View Invoice';
                                             $invoice_file = $row['invoice_file'];
                                             $invoice_amount = $row['invoice_amount'];
                                             $created_by = $row['created_by'];
-                                            $q = sprintf("SELECT * FROM sup_account_users where u_id = '$created_by'");
+                                            $q = sprintf("SELECT * FROM sup_account_users where sup_id = '$created_by'");
                                             $qurr = mysqli_query($sup_db, $q);
                                             $row2 = mysqli_fetch_array($qurr);
                                             $fullname = $row2['u_firstname'] . ' ' . $row2['u_lastname'];
@@ -65,7 +65,7 @@ $heading = 'View Invoice';
                                             <tr>
                                                 <td><?php echo ++$counter; ?></td>
                                                 <td>
-                                                    <a href="order_invoices/<?php echo $row['sup_order_id']; ?>/<?php echo $invoice_file; ?>" target="_blank">
+                                                    <a href="../order_invoices/<?php echo $row['sup_order_id']; ?>/<?php echo $invoice_file; ?>" target="_blank">
                                                         <input type="text" name="att_doc" class="form-control pn_none" id="att_doc"
                                                                value="<?php echo $invoice_file; ?>" style="pointer-events: none;">
                                                     </a>

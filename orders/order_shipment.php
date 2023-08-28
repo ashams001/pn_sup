@@ -66,7 +66,7 @@ $heading = 'Shipment Details';
                                                 $ship = 'Not-Shipped';
                                             }
                                             $created_by = $rowc['created_by'];
-                                            $q = sprintf("SELECT * FROM sup_account_users where u_id = '$created_by'");
+                                            $q = sprintf("SELECT * FROM sup_account_users where sup_id = '$created_by'");
                                             $qurr = mysqli_query($sup_db, $q);
                                             $row2 = mysqli_fetch_array($qurr);
                                             $fullname = $row2['u_firstname'] . ' ' . $row2['u_lastname'];
