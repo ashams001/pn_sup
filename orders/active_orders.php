@@ -18,31 +18,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="stylesheet" href="../assets/css/pages/order_track.css">
 	<title>Active Orders</title>
-	<style>
-        .fa.fa-eye {
-            color: #ffffff!important;
-            width: 25px;
-        }
-        .fa-solid.fa-pen{
-            width: 25px;
-        }
-        .btn.btn-success{
-            background: #1F5D96!important;
-            border-color: #1F5D96!important;
-        }
-        .alert-success {
-            color: #0f5132!important;
-            background-color: #d1e7dd!important;
-            border-color: #badbcc!important;
-            font-size: 17px!important;
-        }
-        .alert-danger {
-            color: #721c24!important;
-            background-color: #f8d7da!important;
-            border-color: #f5c6cb!important;
-            font-size: 17px;
-        }
-	</style>
 <body>
 <div class="container-scroller">
 	<?php include ('../admin_menu.php'); ?>
@@ -213,7 +188,6 @@
 </div>
 <!-- container-scroller -->
 <script>
-
     var $rows = $('#table tr');
     $('#search').keyup(function() {
         var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
@@ -228,15 +202,5 @@
         $('input:checkbox').not(this).prop('checked', this.checked);
     });
 </script>
-<script>
-
-    $('.select2').select2();
-
-    $(".js-example-placeholder-single").select2({
-        placeholder: "Select Stations",
-        allowClear: true
-    });
-</script>
-<!-- End custom js for this page -->
 </body>
 </html>
