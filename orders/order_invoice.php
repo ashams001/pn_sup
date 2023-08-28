@@ -66,7 +66,7 @@ $heading = 'Orders Invoice';
                                             $row213 = mysqli_fetch_array($qurr13);
                                             $invoice_status_name = $row213['invoice_status_name'];
                                             $created_by = $rowc['created_by'];
-                                            $q = sprintf("SELECT * FROM sup_account_users where u_id = '$created_by'");
+                                            $q = sprintf("SELECT * FROM sup_account_users where sup_id = '$created_by'");
                                             $qurr = mysqli_query($sup_db, $q);
                                             $row2 = mysqli_fetch_array($qurr);
                                             $fullname = $row2['u_firstname'] . ' ' . $row2['u_lastname'];

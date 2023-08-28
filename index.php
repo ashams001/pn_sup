@@ -8,13 +8,13 @@ if (count($_POST) > 0) {
     $q = mysqli_query($sup_db,$result);
     $row = mysqli_fetch_array($q);
     if (is_array($row)) {
-        $_SESSION["id"] = $row['u_id'];
+        $_SESSION["id"] = $row['sup_id'];
         $_SESSION["user"] = $row['user_name'];
         $_SESSION["name"] = $row['user_name'];
         $_SESSION["email"] = $row['u_email'];
         $_SESSION["uu_img"] = $row['u_profile_pic'];
         $_SESSION["role_id"] = $row['role'];
-        $logid = $row['u_id'];
+        $logid = $row['sup_id'];
         $_SESSION["fullname"] = $row['u_firstname'] . "&nbsp;" . $row['u_lastname'];
         $_SESSION["pin"] = $row['pin'];
         $_SESSION["pin_flag"] = $row['pin_flag'];

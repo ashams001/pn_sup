@@ -93,7 +93,7 @@ if (count($_POST) > 0) {
                                                     <?php
                                                     $st_dashboard = $_POST['supplier'];
                                                     $sql1 = "SELECT * FROM `sup_account` order by c_id asc";
-                                                    $result1 = $mysqli->query($sql1);
+                                                    $result1 = mysqli_query($sup_db,$sql1);
                                                     while ($row1 = $result1->fetch_assoc()) {
                                                         if($st_dashboard == $row1['c_id'])
                                                         {
