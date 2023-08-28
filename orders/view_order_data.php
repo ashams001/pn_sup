@@ -127,7 +127,7 @@ $heading = 'View Historical Order';
                                         <?php if(!empty($file_name)){ ?>
                                                 <label for="exampleInputMobile" class="col-sm-3 col-form-label">Invoice : </label>
                                         <div class="col-sm-5">
-                                                    <a href="order_invoices/<?php echo $sup_order_id; ?>/<?php echo $file_name; ?>" target="_blank">
+                                                    <a href="../order_invoices/<?php echo $sup_order_id; ?>/<?php echo $file_name; ?>" target="_blank">
                                                         <input type="text" name="att_voice" class="form-control pn_none" value="<?php echo $file_name; ?>" style="pointer-events: none!important;">
                                                     </a>
                                         </div>
@@ -141,19 +141,21 @@ $heading = 'View Historical Order';
                                             <?php } } ?>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="exampleInputMobile" class="col-sm-3 col-form-label">Attachments : </label>
-                                        <div class="col-sm-9">
                                             <?php
                                             $sql4 = sprintf("SELECT * FROM order_files where order_id = '$sup_order_id' and file_type = 'attachment'");
                                             $qur4 = mysqli_query($sup_db, $sql4);
-                                            $row4 = mysqli_fetch_array($qur4);
+                                            while($row4 = mysqli_fetch_array($qur4)){
                                             $file_name4 = $row4['file_name'];
                                             ?>
-                                            <a href="order_invoices/<?php echo $file_name4; ?>" target="_blank">
+                                            <?php if(!empty($file_name)){ ?>
+                                        <label for="exampleInputMobile" class="col-sm-3 col-form-label">Attachments : </label>
+                                        <div class="col-sm-9">
+                                            <a href="../order_attachments/<?php echo $file_name4; ?>" target="_blank">
                                                 <input type="text" name="att_doc" class="form-control pn_none" id="att_doc"
                                                        value="<?php echo $file_name4; ?>" style="pointer-events: none!important;">
                                             </a>
                                         </div>
+                                                <?php } } ?>
                                     </div>
                                 </form>
                             </div>

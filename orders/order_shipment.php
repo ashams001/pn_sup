@@ -99,20 +99,6 @@ $heading = 'Shipment Details';
     <!-- page-body-wrapper ends -->
 </div>
 <!-- container-scroller -->
-<script>
-    $("#checkAll").click(function () {
-        $('input:checkbox').not(this).prop('checked', this.checked);
-    });
-</script>
-<script>
-
-    $('.select2').select2();
-
-    $(".js-example-placeholder-single").select2({
-        placeholder: "Select Stations",
-        allowClear: true
-    });
-</script>
 <!-- End custom js for this page -->
 </body>
 </html>

@@ -9,7 +9,6 @@ $heading = 'View Invoice';
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>View Invoice Order</title>
     <!-- plugins:css -->
-
 <body>
 <div class="container-scroller">
     <?php include ('../admin_menu.php'); ?>
@@ -88,27 +87,6 @@ $heading = 'View Invoice';
     <!-- page-body-wrapper ends -->
 </div>
 <!-- container-scroller -->
-<script>
-    $("#checkAll").click(function () {
-        $('input:checkbox').not(this).prop('checked', this.checked);
-    });
-</script>
-<script>
-
-    $('.select2').select2();
-
-    $(".js-example-placeholder-single").select2({
-        placeholder: "Select Stations",
-        allowClear: true
-    });
-</script>
-<script>
-    function ShowHideDiv() {
-        var ddlPassport = document.getElementById("edit_order_status");
-        var dvPassport = document.getElementById("dvPassport");
-        dvPassport.style.display = ddlPassport.value == "4" ? "block" : "none";
-    }
-</script>
 <!-- End custom js for this page -->
 </body>
 </html>

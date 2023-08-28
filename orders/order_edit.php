@@ -417,15 +417,6 @@ if (count($_POST) > 0) {
     });
 </script>
 <script>
-
-    $('.select2').select2();
-
-    $(".js-example-placeholder-single").select2({
-        placeholder: "Select Stations",
-        allowClear: true
-    });
-</script>
-<script>
     function ShowHideDiv() {
         var ddlPassport = document.getElementById("edit_order_status");
         var dvPassport = document.getElementById("dvPassport");
@@ -466,7 +457,6 @@ if (count($_POST) > 0) {
         $(".part_rem_"+row_id).remove();
 
     });
-
 </script>
 <!-- End custom js for this page -->
 </body>

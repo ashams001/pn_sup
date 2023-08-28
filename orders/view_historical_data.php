@@ -8,7 +8,7 @@ $heading = 'View Historical Order';
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="../assets/css/pages/order_timeline.css">
-    <title><?php echo $sitename ?></title>
+    <title><?php echo $heading ?></title>
     <!-- plugins:css -->
 
 <body>
@@ -220,27 +220,6 @@ $heading = 'View Historical Order';
     <!-- page-body-wrapper ends -->
 </div>
 <!-- container-scroller -->
-<script>
-    $("#checkAll").click(function () {
-        $('input:checkbox').not(this).prop('checked', this.checked);
-    });
-</script>
-<script>
-
-    $('.select2').select2();
-
-    $(".js-example-placeholder-single").select2({
-        placeholder: "Select Stations",
-        allowClear: true
-    });
-</script>
-<script>
-    function ShowHideDiv() {
-        var ddlPassport = document.getElementById("edit_order_status");
-        var dvPassport = document.getElementById("dvPassport");
-        dvPassport.style.display = ddlPassport.value == "4" ? "block" : "none";
-    }
-</script>
 <!-- End custom js for this page -->
 </body>
 </html>

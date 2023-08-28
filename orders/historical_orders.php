@@ -79,13 +79,6 @@ $heading = 'Historical Orders';
                                                 }
                                                 ?>
                                                 <td><?php echo dateReadFormat($rowc['created_on']); ?></td>
-                                                <!--<td>
-                                                    <?php
-/*                                                    $query34 = sprintf("SELECT sup_order_status FROM  sup_order_status where sup_order_status_id = '$order_status_id'");
-                                                    $qur34 = mysqli_query($sup_db, $query34);
-                                                    $rowc34 = mysqli_fetch_array($qur34);
-                                                    echo $rowc34["sup_order_status"]; */?>
-                                                </td>-->
                                             </tr>
                                         <?php } ?>
                                         </tbody>
@@ -107,15 +100,6 @@ $heading = 'Historical Orders';
 <script>
     $("#checkAll").click(function () {
         $('input:checkbox').not(this).prop('checked', this.checked);
-    });
-</script>
-<script>
-
-    $('.select2').select2();
-
-    $(".js-example-placeholder-single").select2({
-        placeholder: "Select Stations",
-        allowClear: true
     });
 </script>
 <!-- End custom js for this page -->
