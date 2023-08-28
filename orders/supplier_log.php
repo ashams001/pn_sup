@@ -1,25 +1,37 @@
 <?php include("../config.php");
+$curdate = date('Y-m-d');
+$button = "";
+$temp = "";
 if (!isset($_SESSION['user'])) {
     header('location: ../logout.php');
 }
-$temp = "";
 $timestamp = date('H:i:s');
 $message = date("Y-m-d H:i:s");
 $chicagotime = date("d-m-Y");
 $role = $_SESSION['role_id'];
 $user_id = $_SESSION["id"];
 $heading = 'Supplier Logs';
-$button_event = "button3";
-$curdate = date($message);
-$dfrom =   date($message,strtotime("-1 days"));
-$dateto = $curdate;
-$datefrom = $dfrom;
-$temp = "";
+$_SESSION['supplier'] = "";
+$_SESSION['button'] = "";
+$_SESSION['timezone'] = "";
 if (count($_POST) > 0) {
+    $_SESSION['supplier'] = $_POST['supplier'];
+    $_SESSION['date_from'] = $_POST['date_from'];
+    $_SESSION['date_to'] = $_POST['date_to'];
+    $_SESSION['timezone'] = $_POST['timezone'];
     $supplier = $_POST['supplier'];
     $dateto = $_POST['date_to'];
     $datefrom = $_POST['date_from'];
     $timezone = $_POST['timezone'];
+}
+if(empty($dateto)){
+    $curdate = date('Y-m-d');
+    $dateto = $curdate;
+}
+
+if(empty($datefrom)){
+    $yesdate = date('Y-m-d',strtotime("-1 days"));
+    $datefrom = $yesdate;
 }
 ?>
 <!DOCTYPE html>
@@ -72,10 +84,14 @@ if (count($_POST) > 0) {
                 </div>
                 <?php
                 if (!empty($import_status_message)) {
-                    echo '<br/><div class="alert ' . $message_stauts_class . '">' . $import_status_message . '</div>';
+                    echo '<div class="alert ' . $message_stauts_class . '">' . $import_status_message . '</div>';
                 }
+                ?>
+                <?php
                 if (!empty($_SESSION['import_status_message'])) {
-                    echo '<br/><div class="alert ' . $_SESSION['message_stauts_class'] . '">' . $_SESSION['import_status_message'] . '</div>';
+                    echo '<div class="alert ' . $_SESSION['message_stauts_class'] . '">' . $_SESSION['import_status_message'] . '</div>';
+                    $_SESSION['message_stauts_class'] = '';
+                    $_SESSION['import_status_message'] = '';
                 }
                 ?>
                 <div class="row">
@@ -86,7 +102,7 @@ if (count($_POST) > 0) {
                                         <div class="form-group row">
                                             <label for="exampleInputConfirmPassword2" class="col-sm-2 col-form-label">Order Status</label>
                                             <div class="col-sm-4">
-                                                <select name="supplier" id="supplier" class="form-control form-select select2" data-bs-placeholder="Select Supplier" style="border: 1px solid black;">
+                                                <select name="supplier" id="supplier" class="form-control" data-bs-placeholder="Select Supplier" style="border: 1px solid black;">
                                                     <option value="" selected> Select Supplier </option>
                                                     <?php
                                                     $st_dashboard = $_POST['supplier'];
@@ -112,13 +128,13 @@ if (count($_POST) > 0) {
                                             <label for="exampleInputUsername2" class="col-sm-2 col-form-label">Date From</label>
                                             <div class="col-sm-4">
                                                 <div class="input-group">
-                                                    <input class="form-control" name="date_from" id="date_from" value="<?php echo $datefrom; ?>" type="date">
+                                                    <input type="date" name="date_from" id="date_from" class="form-control" value="<?php echo $datefrom; ?>" style="float: left;width: initial;" required>
                                                 </div>
                                             </div>
                                             <div class="col-sm-1"></div>
                                             <label for="exampleInputUsername2" class="col-sm-1 col-form-label">Date To</label>
                                             <div class="col-sm-4">
-                                                    <input class="form-control datepicker" name="date_to" id="date_to" value="<?php echo $dateto; ?>"  type="date">
+                                                <input type="date" name="date_to" id="date_to" class="form-control" value="<?php echo $dateto; ?>" style="float: left;width: initial;" required>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -217,7 +233,6 @@ if (count($_POST) > 0) {
                                                 $rowctemp1 = mysqli_fetch_array($restemp1);
                                                 $invoice_amount = $rowctemp1["invoice_amount"];
                                                 ?>
-                                                <td><label class="ckbox"><input type="checkbox" id="delete_check[]" name="delete_check[]"
                                                 <td><span class="pl-2"><?php echo ++$counter; ?></span></td>
                                                 <td> <a class="btn btn-success" href="view_historical_data.php?id=<?php echo $rowc['order_id'] ?>"><i class="fa fa-eye"></i></a> </td>
                                                 <td><span class="pl-2"><?php echo $rowc['sup_order_id']; ?></span></td>
@@ -285,6 +300,39 @@ if (count($_POST) > 0) {
 </div>
 <!-- container-scroller -->
 </div>
+<script>
+    $(function () {
+        $('input:radio').change(function () {
+            var abc = $(this).val()
+            //alert(abc)
+            if (abc == "button1")
+            {
+                $('#date_from').prop('disabled', false);
+                $('#date_to').prop('disabled', false);
+                $('#timezone').prop('disabled', true);
+            }
+        });
+    });
+</script>
+<script>
+    $(function(){
+        var dtToday = new Date();
+
+        var month = dtToday.getMonth() + 1;
+        var day = dtToday.getDate();
+        var year = dtToday.getFullYear();
+        if(month < 10)
+            month = '0' + month.toString();
+        if(day < 10)
+            day = '0' + day.toString();
+
+        var maxDate = year + '-' + month + '-' + day;
+
+        $('#date_to').attr('max', maxDate);
+        $('#date_from').attr('max', maxDate);
+    });
+</script>
+
 <script>
     $("#num_tab_rec").change(function (e) {
         e.preventDefault();
