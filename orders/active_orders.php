@@ -30,12 +30,12 @@
 			<div class="content-wrapper">
 				<?php
 					if (!empty($import_status_message)) {
-						echo '<br/><div class="alert ' . $message_stauts_class . '">' . $import_status_message . '</div>';
+						echo '<br/><div style="width: 1520px!important;font-size: 18px!important;" class="alert ' . $message_stauts_class . '">' . $import_status_message . '</div>';
 					}
 				?>
 				<?php
 					if (!empty($_SESSION['import_status_message'])) {
-						echo '<br/><div class="alert ' . $_SESSION['message_stauts_class'] . '">' . $_SESSION['import_status_message'] . '</div>';
+						echo '<br/><div style="width: 1520px!important;font-size: 18px!important;" class="alert ' . $_SESSION['message_stauts_class'] . '">' . $_SESSION['import_status_message'] . '</div>';
 						$_SESSION['message_stauts_class'] = '';
 						$_SESSION['import_status_message'] = '';
 					}
