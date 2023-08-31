@@ -37,7 +37,7 @@
                 <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
                     <div class="navbar-profile">
                         <?php if(!empty($_SESSION["uu_img"])) {?>
-                            <img class="img-xs rounded-circle" src="<?php echo $siteURL; ?>user_images/<?php echo $_SESSION["uu_img"]; ?>" alt="">
+                            <img class="img-xs rounded-circle" src="<?php echo site_img_url; ?>/assets/images/sup_user_img/<?php echo $_SESSION["uu_img"]; ?>" alt="">
                         <?php }else{?>
                             <img class="img-xs rounded-circle" src="<?php echo $siteURL; ?>user_images/user.png" alt="">
                         <?php }?>
