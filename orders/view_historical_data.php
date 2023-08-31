@@ -100,10 +100,10 @@ $heading = 'View Historical Order';
                                                             <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Supplier Name : </label>
                                                             <div class="col-sm-9">
 																<?php
-																	$sql5 = sprintf("SELECT * FROM sup_account where c_id = '$c_id'");
+																	$sql5 = sprintf("SELECT * FROM sup_account_users where sup_id = '$c_id'");
 																	$qur5 = mysqli_query($sup_db, $sql5);
 																	$row5 = mysqli_fetch_array($qur5);
-																	$c_name = $row5['c_name'];
+																	$c_name = $row5['user_name'];
 																?>
                                                                 <input type="text" name="s_name" id="s_name" class="form-control" value="<?php echo $c_name; ?>" style="pointer-events: none;background: #d8dbe1;">
                                                             </div>

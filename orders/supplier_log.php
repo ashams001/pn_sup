@@ -106,10 +106,10 @@ if(empty($datefrom)){
                                                     <option value="" selected> Select Supplier </option>
                                                     <?php
                                                     $st_dashboard = $_POST['supplier'];
-                                                    $sql1 = "SELECT * FROM `sup_account` order by c_id asc";
+                                                    $sql1 = "SELECT * FROM `sup_account_users` order by sup_id asc";
                                                     $result1 = mysqli_query($sup_db,$sql1);
                                                     while ($row1 = $result1->fetch_assoc()) {
-                                                        if($st_dashboard == $row1['c_id'])
+                                                        if($st_dashboard == $row1['sup_id'])
                                                         {
                                                             $entry = 'selected';
                                                         }
@@ -118,7 +118,7 @@ if(empty($datefrom)){
                                                             $entry = '';
 
                                                         }
-                                                        echo "<option value='" . $row1['c_id'] . "'  $entry>" . $row1['c_name'] . "</option>";
+                                                        echo "<option value='" . $row1['sup_id'] . "'  $entry>" . $row1['user_name'] . "</option>";
                                                     }
                                                     ?>
                                                 </select>
