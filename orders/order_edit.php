@@ -1,4 +1,9 @@
 <?php include("../config.php");
+require "../vendor/autoload.php";
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+use Firebase\JWT\JWT;
 if (!isset($_SESSION['user'])) {
     header('location: ../logout.php');
 }
@@ -29,9 +34,122 @@ if (count($_POST) > 0) {
             if ($result1) {
                 $sql_ses_log = "INSERT INTO `supplier_session_log`(`order_id`, `c_id`, `order_status_id`, `created_by`, `created_on`) VALUES ('$order_id','$c_id','$order_status_id','$user_id','$chicagotime')";
                 $result_log = mysqli_query($sup_db, $sql_ses_log);
-                $_SESSION['message_stauts_class'] = 'alert-success';
-                $_SESSION['import_status_message'] = 'Order status Updated successfully.';
-                header("Location:../orders/active_orders.php");
+                if(!empty($result_log)){
+                    $acknowledged = $_POST['acknowledged'];
+                    $created_by = $_POST['created_by'];
+                    $shipment = $_POST['shipment'];
+                    if($order_status_id == 2){
+                        //email configuration
+                        $mail = new PHPMailer();
+                        $mail->isSMTP();
+                        $mail->Host = 'smtp.gmail.com';
+                        $mail->Port = 587;
+                        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+                        $mail->SMTPAuth = true;
+                        $mail->Username = "admin@plantnavigator.com";
+                        $mail->Password = "jphnpcmrqvtrjwef";
+                        $mail->setFrom('admin@plantnavigator.com', 'admin@plantnavigator.com');
+                        $sub_msg1 = 'Order Acknowledged Successfully..';
+                        $sub_msg2 = 'To View Order';
+                        $sub_msg3 = $siteURL . "orders/view_order_data.php?id=" . $order_id;
+                        $signature = "-Plantnavigator Admin";
+                        $subject = "Order Acknowledged";
+                        $structure = '<html><body>';
+                        $structure .= "<br/><br/><span style='font-family: 'Source Sans Pro', sans-serif;color:#757575;font-weight:600;' > Hello,</span><br/><br/>";
+                        $structure .= "<span style='font-family: 'Source Sans Pro', sans-serif;color:#757575;font-weight:600;' > " . $sub_msg1 . "</span><br/> ";
+                        $structure .= "<span style='font-family: 'Source Sans Pro', sans-serif;color:#757575;font-weight:600;' > " . $sub_msg2 . "</span><br/> ";
+                        $structure .= "<span style='font-family: 'Source Sans Pro', sans-serif;color:#757575;font-weight:600;' > <a href=" . $sub_msg3 . ">Click Here</a></span><br/> ";
+                        $structure .= "<br/><br/>";
+                        $structure .= $signature;
+                        $structure .= "</body></html>";
+                        //
+                        $u_name = $c_id;
+                        if(!empty($u_name)) {
+                            $query0003 = sprintf("SELECT * FROM sup_account_users where sup_id = '$user_id'");
+                            $qur0003 = mysqli_query($sup_db, $query0003);
+                            $rowc0003 = mysqli_fetch_array($qur0003);
+                            $email = $rowc0003["u_email"];
+                            $lasname = $rowc0003["u_lastname"];
+                            $firstname = $rowc0003["u_firstname"];
+                            $mail->addAddress($email, $firstname);
+                        }
+                        //
+                        $query0004 = sprintf("SELECT * FROM cam_users where users_id = '$created_by'");
+                        $qur0004 = mysqli_query($db, $query0004);
+                        $rowc0004 = mysqli_fetch_array($qur0004);
+                        $email123 = $rowc0004["email"];
+                        //
+                        $mail->addCC($email123);
+                        $mail->isHTML(true);
+                        $mail->Subject = $subject;
+                        $mail->Body = $structure;
+                        if($acknowledged == '1'){
+                            if(!$mail->Send()){
+                                echo "Mailer Error: " . $mail->ErrorInfo;
+                            }
+                            else{
+                                // echo "success";
+                            }
+                        }
+                    }
+                    if($order_status_id == 3){
+                        //email configuration
+                        $mail = new PHPMailer();
+                        $mail->isSMTP();
+                        $mail->Host = 'smtp.gmail.com';
+                        $mail->Port = 587;
+                        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+                        $mail->SMTPAuth = true;
+                        $mail->Username = "admin@plantnavigator.com";
+                        $mail->Password = "jphnpcmrqvtrjwef";
+                        $mail->setFrom('admin@plantnavigator.com', 'admin@plantnavigator.com');
+                        $sub_msg1 = 'Order Awaiting Shipment Successfully..';
+                        $sub_msg2 = 'To View Order';
+                        $sub_msg3 = $siteURL . "orders/view_order_data.php?id=" . $order_id;
+                        $signature = "-Plantnavigator Admin";
+                        $subject = "Order Awaiting Shipment";
+                        $structure = '<html><body>';
+                        $structure .= "<br/><br/><span style='font-family: 'Source Sans Pro', sans-serif;color:#757575;font-weight:600;' > Hello,</span><br/><br/>";
+                        $structure .= "<span style='font-family: 'Source Sans Pro', sans-serif;color:#757575;font-weight:600;' > " . $sub_msg1 . "</span><br/> ";
+                        $structure .= "<span style='font-family: 'Source Sans Pro', sans-serif;color:#757575;font-weight:600;' > " . $sub_msg2 . "</span><br/> ";
+                        $structure .= "<span style='font-family: 'Source Sans Pro', sans-serif;color:#757575;font-weight:600;' > <a href=" . $sub_msg3 . ">Click Here</a></span><br/> ";
+                        $structure .= "<br/><br/>";
+                        $structure .= $signature;
+                        $structure .= "</body></html>";
+                        //
+                        $u_name = $c_id;
+                        if(!empty($u_name)) {
+                            $query0003 = sprintf("SELECT * FROM sup_account_users where sup_id = '$user_id'");
+                            $qur0003 = mysqli_query($sup_db, $query0003);
+                            $rowc0003 = mysqli_fetch_array($qur0003);
+                            $email = $rowc0003["u_email"];
+                            $lasname = $rowc0003["u_lastname"];
+                            $firstname = $rowc0003["u_firstname"];
+                            $mail->addAddress($email, $firstname);
+                        }
+                        //
+                        $query0004 = sprintf("SELECT * FROM cam_users where users_id = '$created_by'");
+                        $qur0004 = mysqli_query($db, $query0004);
+                        $rowc0004 = mysqli_fetch_array($qur0004);
+                        $email123 = $rowc0004["email"];
+                        //
+                        $mail->addCC($email123);
+                        $mail->isHTML(true);
+                        $mail->Subject = $subject;
+                        $mail->Body = $structure;
+                        if($shipment == '1'){
+                            if(!$mail->Send()){
+                                echo "Mailer Error: " . $mail->ErrorInfo;
+                            }
+                            else{
+                                // echo "success";
+                            }
+                        }
+                    }
+                    $_SESSION['message_stauts_class'] = 'alert-success';
+                    $_SESSION['import_status_message'] = 'Order status Updated successfully.';
+                    header("Location:../orders/active_orders.php");
+                }
             } else {
                 $_SESSION['message_stauts_class'] = 'alert-danger';
                 $_SESSION['import_status_message'] = 'Error: Please Insert valid data';
@@ -182,6 +300,62 @@ if (count($_POST) > 0) {
 
             $sql_ses_log = "INSERT INTO `supplier_session_log`(`order_id`, `c_id`, `order_status_id`, `created_by`, `created_on`) VALUES ('$order_id','$c_id','$order_up_status_id','$user_id','$chicagotime')";
             $result_log = mysqli_query($sup_db, $sql_ses_log);
+            if($order_up_status_id == 4){
+                $shipped = $_POST['shipped'];
+                $created_by = $_POST['created_by'];
+                //email configuration
+                $mail = new PHPMailer();
+                $mail->isSMTP();
+                $mail->Host = 'smtp.gmail.com';
+                $mail->Port = 587;
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+                $mail->SMTPAuth = true;
+                $mail->Username = "admin@plantnavigator.com";
+                $mail->Password = "jphnpcmrqvtrjwef";
+                $mail->setFrom('admin@plantnavigator.com', 'admin@plantnavigator.com');
+                $sub_msg1 = 'Order Shipped Successfully..';
+                $sub_msg2 = 'To View Order';
+                $sub_msg3 = $siteURL . "orders/view_order_data.php?id=" . $order_id;
+                $signature = "-Plantnavigator Admin";
+                $subject = "Order Shipped";
+                $structure = '<html><body>';
+                $structure .= "<br/><br/><span style='font-family: 'Source Sans Pro', sans-serif;color:#757575;font-weight:600;' > Hello,</span><br/><br/>";
+                $structure .= "<span style='font-family: 'Source Sans Pro', sans-serif;color:#757575;font-weight:600;' > " . $sub_msg1 . "</span><br/> ";
+                $structure .= "<span style='font-family: 'Source Sans Pro', sans-serif;color:#757575;font-weight:600;' > " . $sub_msg2 . "</span><br/> ";
+                $structure .= "<span style='font-family: 'Source Sans Pro', sans-serif;color:#757575;font-weight:600;' > <a href=" . $sub_msg3 . ">Click Here</a></span><br/> ";
+                $structure .= "<br/><br/>";
+                $structure .= $signature;
+                $structure .= "</body></html>";
+                //
+                $u_name = $c_id;
+                if(!empty($u_name)) {
+                    $query0003 = sprintf("SELECT * FROM sup_account_users where sup_id = '$user_id'");
+                    $qur0003 = mysqli_query($sup_db, $query0003);
+                    $rowc0003 = mysqli_fetch_array($qur0003);
+                    $email = $rowc0003["u_email"];
+                    $lasname = $rowc0003["u_lastname"];
+                    $firstname = $rowc0003["u_firstname"];
+                    $mail->addAddress($email, $firstname);
+                }
+                //
+                $query0004 = sprintf("SELECT * FROM cam_users where users_id = '$created_by'");
+                $qur0004 = mysqli_query($db, $query0004);
+                $rowc0004 = mysqli_fetch_array($qur0004);
+                $email123 = $rowc0004["email"];
+                //
+                $mail->addCC($email123);
+                $mail->isHTML(true);
+                $mail->Subject = $subject;
+                $mail->Body = $structure;
+                if($shipped == '1'){
+                    if(!$mail->Send()){
+                        echo "Mailer Error: " . $mail->ErrorInfo;
+                    }
+                    else{
+                        // echo "success";
+                    }
+                }
+            }
         }
         $_SESSION['message_stauts_class'] = 'alert-success';
         $_SESSION['import_status_message'] = 'Order status Updated successfully.';
@@ -254,9 +428,15 @@ if (count($_POST) > 0) {
                                     $ordr_id = $rowcmain['sup_order_id'];
                                     $c_id = $rowcmain['c_id'];
                                     $order_status_id = $rowcmain['order_status_id'];
+                                    $created_by = $rowcmain['created_by'];
+                                    $qurtemp2 =  "SELECT * FROM email_notification where sup_order_id  = '$ordr_id'";
+                                    $restemp2 = mysqli_query($sup_db,$qurtemp2);
+                                    $rowctemp2 = mysqli_fetch_array($restemp2);
+                                    $acknowledged = $rowctemp2["acknowledged"];
+                                    $shipment = $rowctemp2["Shipment"];
+                                    $shipped = $rowctemp2["Shipped"];
                                     ?>
                                     <?php
-
                                     $qurtemp = mysqli_query($sup_db, "SELECT * FROM  sup_order_status where sup_order_status_id  = '$order_status_id'");
                                     while ($rowctemp = mysqli_fetch_array($qurtemp)) {
                                         $order_status = $rowctemp["sup_order_status"];
@@ -268,6 +448,10 @@ if (count($_POST) > 0) {
                                         <input type="hidden" name="edit_c_id" id="edit_c_id" value="<?php echo $c_id; ?>">
                                         <input hidden id="e_order_status" name="e_order_status"
                                                value="<?php echo $order_status_id; ?>">
+                                        <input type="hidden" name="acknowledged" id="acknowledged" value="<?php echo $acknowledged; ?>">
+                                        <input type="hidden" name="created_by" id="created_by" value="<?php echo $created_by; ?>">
+                                        <input type="hidden" name="shipment" id="shipment" value="<?php echo $shipment; ?>">
+                                        <input type="hidden" name="shipped" id="shipped" value="<?php echo $shipped; ?>">
                                         <div class="form-group row">
                                             <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Order Name</label>
                                             <div class="col-sm-9">
